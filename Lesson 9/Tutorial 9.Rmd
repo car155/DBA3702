@@ -1,0 +1,99 @@
+---
+title: "Tutorial 9"
+output: html_document
+---
+
+Notes:
+- ggmap has geoplot function that can give the longitude and latitude from the city and street name
+
+```{r}
+library("dplyr")
+library("ggmap")
+library("ggplot2")
+library("tidyr")
+library("lubridate")
+
+data = read.csv("./Data/Police Use of Force.csv")
+head(data)
+```
+
+1. Convert incident date and time into date time format
+
+```{r}
+# detect 4 digit year and 2 digit year
+incident_dates = parse_date_time(data$INCIDENT_DATE, c("%-m/%-d/%Y", "%-m/%-d/%y"))
+# detect time
+incident_times = parse_date_time(data$INCIDENT_TIME, c("%-I:%M:%S %p","%I:%M:%S %p")) 
+
+# combine
+incident_dates = incident_dates %>% as_datetime()
+incident_times = incident_times %>% as_datetime()
+datestrings = incident_dates %>% strftime(format="%d/%m/%Y")
+
+data$NEW_DATETIME = paste(datestrings,incident_times) %>% strptime(format="%d/%m/%Y %H:%M:%S %p", tz="GMT") %>% as.POSIXct()
+```
+
+2. Split force-effective column
+
+```{r}
+num_cols = data$FORCE_EFFECTIVE %>% 
+  sapply(strsplit, ", ") %>%
+  sapply(length) %>%
+  max()
+new_cols = paste("FORCE_EFFECTIVE", seq(1, num_cols), sep="_")
+data = separate(data, FORCE_EFFECTIVE, into=new_cols, sep=", ")
+```
+
+3. Fill up NA in longitude and latitude using address
+
+```{r}
+ggmap::register_google(key='AIzaSyCnGFj3-tmhyhkx2Suxw3HNa6P0c0fjHc0')
+
+missing = is.na(data$LOCATION_LATITUDE)
+
+loc = paste(data$LOCATION_FULL_STREET_ADDRESS_OR_INTERSECTION, data$LOCATION_CITY, ", ")
+loc = loc[missing]
+loc = geocode(loc, output="latlon")
+data[missing, c("LOCATION_LATITUDE", "LOCATION_LONGITUDE")] = loc[c("lat", "lon")]
+```
+
+4. Convert number of EC cycles to consistent numbers
+
+```{r}
+data$NUMBER_EC_CYCLES = gsub("NULL", NA, data$NUMBER_EC_CYCLES, fixed=T)
+data$NUMBER_EC_CYCLES = data$NUMBER_EC_CYCLES %>%
+  sapply(strsplit, ", ") %>%
+  sapply(as.integer) %>%
+  sapply(sum)
+
+head(data)
+```
+
+5. Data Visulisation
+
+Racial Discrimination:
+- For the offense, compare the severity of the force used between different races
+- May also want to compare the officer race
+
+```{r}
+
+```
+
+When experience increases, is officer more likely to shoot:
+
+```{r}
+data$OFFICER_YEARS_ON_FORCE = as.integer(data$OFFICER_YEARS_ON_FORCE)
+
+obs = data %>% mutate_at(vars(NUMBER_EC_CYCLES), ~replace(., is.na(.), 0)) %>%
+  group_by(OFFICER_YEARS_ON_FORCE) %>% 
+  summarise(MEAN_EC_CYCLES = mean(NUMBER_EC_CYCLES > 0))
+
+ggplot(obs, aes(x=OFFICER_YEARS_ON_FORCE, y=MEAN_EC_CYCLES)) + 
+  geom_point()
+```
+
+Use ggmap/ leaflet to display the distribution of events:
+
+```{r}
+
+```

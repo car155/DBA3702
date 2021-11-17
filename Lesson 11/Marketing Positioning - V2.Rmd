@@ -1,0 +1,429 @@
+---
+title: "Market Positioning"
+author: "Liu Qizhang"
+date: "6 February 2019"
+output:
+  html_document:
+    highlight: default
+    number_sections: no
+    theme: default
+    toc: yes
+    toc_depth: 4
+  pdf_document:
+    toc: yes
+    toc_depth: '4'
+---
+
+## Introduction
+
+```{r}
+library(psych)
+library(GPArotation)
+```
+One of the most challenging aspects of big data is the enormous amount of data available and the complexity of the information coming with the data. When we have a dataset with hundreds of variables, how are we going to make sense of our analysis, especially if the variables are inter-related? For example, What is the impact of promotion on sales when consumers will take features of our products as well as competitors' prices into consideration? Two related but distinct methodologies in reducing data complexity without losing too much of the original information are *Principal Componnets Analysis* (**PCA**) and *Exploratory Factor Analysis* (**EFA**).
+
+PCA is a data-reduction technique that transforms a large number of correlated variables into a much smaller set of uncorrelated vraibles called *principal components*. The first component captures as much of the variance as possible from all variables as a single linear function. The second component captures as much variance as possible that remains after the first component. This continues until there are as many components as there are variables. We can use this process to reduce data complexity by retaining and analyzing only a subset of those components-such as the first one or two components that
+explain a large proportion of the variation in the data.
+
+In contrast, EFA is a family of techniques to assess the relationship of *constructs* (concepts) in surveys and psychological assessments. *Factors* are basically the latent variables that cannot be observed directly,  but are imperfectly assessed through their relationship to other variables. Mathematically, EFA is looking for a smaller set of latent contructs that can explain the relationshops among the observed or manifest variables. 
+
+People are often confused over the difference between PCA and EFA. There are a few clear differences between the two. For example, the resulted principal components are uncorrelated with each other, but the factors identified by EFA may be related to each other (although not necessary). Furthermore, we normally perform EFA because we believe that there are some factors driving the variation in the data, just that we don't know how to measure them directly. (Take IQ test as an example.) PCA does not require such assumption. It can be applied to any data to simplify them.
+
+## Insead MBA Case
+
+Students are issued the "Who's #1: INSEAD, Harvard, Wharton, LBS?" case to read before class. They are also given "Insead Data.csv" data file to look through the data. For this lesson, we will focus on analysing responses on Q17. Students can use Excel or R to play with the data.
+
+Pre-class case questions:
+
+* Do you spot any data problem? How will you deal with it?
+* Do a research on INSEAD. Who are their direct competitors?
+* What are the latent factors INSEAD managers had in mind when designing the survey?
+* How strong is INSEAD' brand compared to its competitors? How would you interpret the results and how would you visualise the answer to this question? Would a single criterion be enough?
+* How is the INSEAD brand perceived versus its competitors? Can you create a summary of the perception of the INSEAD brand compared to its direct competitors?
+* What are the important attributes when choosing an MBA?
+
+## Lesson Plan
+
+### Student Presentation
+
+In class, after students present their answers to the pre-class questions for about 30 mins.
+
+**Outcome**:
+
+* A list of key competitors
+* A list of latent factors
+* A list of INSEAD's strength
+* A list of important attributes
+
+### Data Preparation
+
+There are two main data problems: (1) duplicated records for each response ID. The "Preferred School" for the second record is the same as the first record. From the survey design, this should not be the case. So we will remove the second record for each response ID. This is already done offline. Students will be given another data file named "Insead Data No Duplicate.csv"; (2) the same school is named differently. The following codes will do the correction.
+
+```{r}
+library(corrplot)
+library(ggplot2)
+library(reshape2)
+
+#Read data
+data<-read.csv("./Data/Insead Data.csv",stringsAsFactors = F)
+
+#Eight schools for Q17 selection
+  schools <- c("Harvard Business School","HEC","IESE","INSEAD","Kellogg","London Business School","Stanford","Wharton")
+
+#If we now look through the list of schools, we noticed that some schools have multiple records with different names.
+#For example, "Harvard Business School", "Harvard", "harvard". We need to merge these records.
+#As our study will focus on the top schools, we will only do such cleaning for top schools
+data[data$PrefSchool == "Harvard Business School",]$PrefSchool = "Harvard"
+data[data$PrefSchool == "Harvard School of Business",]$PrefSchool = "Harvard"
+data[data$PrefSchool == "harvard",]$PrefSchool = "Harvard"
+data[data$PrefSchool == "HBS",]$PrefSchool = "Harvard"
+data[data$PrefSchool == "Insead",]$PrefSchool = "INSEAD"
+data[data$PrefSchool == "standford u",]$PrefSchool = "Stanford"
+data[data$PrefSchool == "stanford",]$PrefSchool = "Stanford"
+data[data$PrefSchool == "Stanford Graduate School of Business",]$PrefSchool = "Stanford"
+data[data$PrefSchool == "Stanford GSB",]$PrefSchool = "Stanford"
+data[data$PrefSchool == "London School Of Business",]$PrefSchool = "LBS"
+data[data$PrefSchool == "London Business School",]$PrefSchool = "LBS"
+data[data$PrefSchool == "Columbia Business School",]$PrefSchool = "Columbia"
+```
+
+Now sort the schools by the number of times that they were chosen as preferred schools.
+
+```{r}
+#Sort schools by #preferences
+school.counts <- as.data.frame(table(data$PrefSchool))
+school.counts <- school.counts[order(-school.counts$Freq),]
+school.counts
+```
+
+The above result shows the top schools preferred by survey responders.
+
+```{r}
+
+
+#Obtain the subset of the raw data for the 8 selected schools and with only responses to Q17
+data.A<-data[,c(72:102)]
+
+#Code Book
+#One-year Program - One-year MBA program
+#Student Quality - High quality of students
+#Career Opportunity - Potential of top jobs / career opportunities after graduation
+#Leadership Skills - Nurtures leadership potential and skills
+#Career Switch - Excellent avenues for career change (i.e. in terms of sector, geography and/or function) after graduation
+#Location - Located in a world class city
+#Funding Source - Wide range of funding options
+#Multi Location - Multiple locations thereby providing international experience
+#Career Service - Outstanding career services
+#Curriculum - Best curriculum in terms of content, relevance and application
+#Research Reputation - Excellent research reputation of faculty
+#Multi Language - Multiple language proficiency required
+#Fun School - Great social activities as part of the experience
+#Online Course - Ability to take some of the courses on-line
+#Corp Relationship - Very strong recruiter and corporate relations
+#Long Heritage - Long-standing and rich heritage
+#Student Experience - Students have substantial years of work experience
+#Entrepreneurial Skills - Nurtures and develops entrepreneurial skills
+#Diverse Student Background - Very diverse class profile (age, gender, nationality, years of experience)
+#Salary Increment - Excellent potential for salary increase after graduation
+#Intl Reputation - Outstanding international reputation
+#Flexibility - High degree of flexibility in designing your own MBA program
+#Alumni Network - Exceptionally strong alumni network
+#ROI - Excellent return on investment
+#Top faculty - World-class teaching faculty
+#Top Rank - Highly ranked MBA programme
+#Scholarship - High volume of scholarships on offer
+#Wide Content - High number of electives in a wide range of topics
+#Long Internship - Ability to do longer internship (i.e. 3 month)
+#Best Content - Is considered the world's best in the specific sector I am interested in
+
+colnames(data.A) <- c("SchoolRated",
+                      "One-year Program",
+                      "Student Quality",
+                      "Career Opportunity",
+                      "Leadership Skills",
+                      "Career Switch",
+                      "Location",
+                      "Funding Source",
+                      "Multi Location",
+                      "Career Service",
+                      "Curriculum",
+                      "Research Reputation",
+                      "Multi Language",
+                      "Fun School",
+                      "Online Course",
+                      "Corp Relationship",
+                      "Long Heritage",
+                      "Student Experience",
+                      "Entrepreneurial Skills",
+                      "Diverse Student Background",
+                      "Salary Increment",
+                      "Intl Reputation",
+                      "Flexibility",
+                      "Alumni Network",
+                      "ROI",
+                      "Top faculty",
+                      "Top Rank",
+                      "Scholarship",
+                      "Wide Content",
+                      "Long Internship",
+                             "Best Content" )
+
+data.A$School <- schools[data.A$SchoolRated]
+```
+
+With 30 fields in Q17, it makes the analysis hard, especially when the variables are correlated to each other. The following codes analyze the correlation.
+
+```{r}
+cor(data.A[,2:31])
+```
+
+Let's try to visualise the correlation among a few attributes.
+
+```{r}
+library("PerformanceAnalytics")
+
+
+chart.Correlation(data.A[,c("Top Rank","ROI","Top faculty","Intl Reputation","Research Reputation","Student Quality")], histogram=TRUE, pch=19)
+```
+
+With the data set obtained so far, run the following codes for students to visualise the comparison of the 8 schools over the 30 attributes.
+
+```{r}
+library(dplyr)
+
+#Get the mean of the Q17 scores for each school.
+m <- data.A[,-1] %>% group_by(School) %>% summarise(across(everything(),mean)) %>% as.data.frame()
+
+m.l <- melt(m, id.vars='School',variable.name = 'Attribute')
+
+#Students to comment on the following plot
+ggplot(m.l,aes(x=Attribute,y=value, color=School,group=School)) + geom_line() + theme(axis.text.x=element_text(angle=90))
+```
+
+Although messy, students can try to identify what are the redudant attributes and what are the key attributes to be investigated. Overall, it seems that all the eight schools behave similary over most of the attributes. For example, they all perform closely in language skills and availability of scholarship. Those important attributes that could be used to distinguish them should be those having large variances. Therefore, we can compare the variances of the 30 attributes and identify the top few for our future analysis.
+
+```{r}
+#We take the variances of the means 
+v<-as.data.frame(tapply(m.l$value,m.l$Attribute,var))
+colnames(v) <- c("Variance")
+v$Attribute <- rownames(v)
+v <- v[order(-v$Variance),]
+v
+```
+
+You may compare the top 10 attributes with the list of important attributes identified earlier. Have a short discussion to select 8 attributes for further investigation. 
+
+For the sake of my analysis in this teaching notes, I will define my 8 attributes:
+
+```{r}
+attributes <- c("Multi Location","Student Experience","Flexibility","Diverse Student Background","Multi Language","Fun School","Long Heritage","Research Reputation")
+```
+
+
+Let's zoom in to compare the schools only by these 8 attributes:
+
+```{r}
+#Get the mean of the Q17 scores for each school.
+m <- data.A %>% select(c("School",attributes)) %>% group_by(School) %>% summarise(across(everything(),mean)) %>% as.data.frame()
+
+m<-aggregate(data.A[,attributes],list(data.A$School),mean)
+m.l <- melt(m, id.vars='Group.1',variable.name = 'Attribute')
+
+#Students to comment on the following plot
+ggplot(m.l,aes(x=Attribute,y=value, color=Group.1,group=Group.1)) + geom_line() + theme(axis.text.x=element_text(angle=90))
+
+```
+
+One common technique to overcome different scales in the responses to the 30 attributes is to standardize them. We will do that now and see what is the resulted comparison among the schools.
+
+```{r}
+#Now standardize data
+data.sc <- data.A
+data.sc[,2:31] <-  scale(data.A[, 2:31])
+
+#Get the mean of the Q17 scores for each school.
+m.sc<-data.sc[,-1] %>% group_by(School) %>% summarise(across(everything(),mean)) %>% as.data.frame()
+m.sc.l <- melt(m.sc, id.vars='School',variable.name = 'Attribute')
+
+#Students to comment on the following plot, as compared to previous line chart
+ggplot(m.sc.l,aes(x=Attribute,y=value, color=School,group=School)) + geom_line() + theme(axis.text.x=element_text(angle=90))
+```
+
+We don't observe a clear higher score and lower score across different attributes now. Eliminating the difference in scales do help us in our analysis of the relationship among attributes. It is also an important step in principal component analysis. With the standardised data, let's have another visualisation to identify the strength of INSEAD.
+
+```{r}
+ggplot(m.sc.l,aes(x=Attribute,y=School)) + geom_tile(aes(fill=value)) + theme(axis.text.x=element_text(angle=90)) + scale_fill_gradient(low='white',high='blue')
+```
+
+Not surprising, INSEAD is leading in quite a few areas, such as top ranking, research reputation, corporate relationship, etc. 
+
+### Principal Component Analysis
+
+Introduce the background and theory about PCA and use R to build perceptual map.
+
+```{r}
+#PCA on the raw data
+data.s <- data.A[,attributes]
+
+brand.s <- prcomp(data.s)
+
+biplot(brand.s)
+```
+
+```{r}
+#Reserve only the data on the 8 selected attributes to study
+
+m.s <- m.sc[,c("School",attributes)]
+rownames(m.s) <- m.s[,1]
+rating.pc <- prcomp(m.s[,2:9])
+summary(rating.pc)
+```
+
+The first component explain about 80.8% of the variance among the data and the first four components explain about 99% of the variance.
+
+```{r}
+plot(rating.pc,type="l")
+```
+
+The scree plot shows that 2 PCs are the best. For visualisation purpose, we use the first two components.
+
+```{r}
+biplot(rating.pc)
+```
+
+A few discussions to be carried out:
+
+1. Students to discuss a meaningful interpretation of the two dimensions based of the location of individual attributes.
+
+2. Students to break the attributes into 4 clusters and give meaningful interpretation of the clusters.
+
+3. Students to discuss about the current position of INSEAD. Is it good or bad?
+
+4. Students to discuss INSEAD's strategy and action to take.
+
+it depends on INSEAD's strategic goals. If it wishes to increase differentiation, one possibility would be to take action to further strengthen its currect position. Suppose INSEAD wants
+to move in the direction of LBS It could look at the specific differences from LBS in the following data:
+
+```{r}
+m.s$School <- NULL
+m.s["INSEAD",] - m.s["London Business School",]
+```
+
+It seesm that INSEAD needs to allow more flexibility in its MBA program, engage more social activities and improve research reputation as compared to London Business School. Interestingly, to Asians, LBS is perceived to have more long-standing and rich heritage than INSEAD, even though LBS was established in 1964 while INSEAD was established in 1957. INSEAD has to do some promotion to change such wrong perception.
+
+Another option would be not to follow another school but to aim for differentiated
+space where no school is positioned. If there is such position found, (for this case, there is no such position while INSEAD is already in good position), then can compare INSEAD's score with the mean score among the schools.
+
+### Exploratory Factor Analysis
+
+Give an introduction of EFA.
+
+Because EFA is used when there is an assumption that there are underlying factors of interests and EFA produces results that are interpretable in terms of the original variables, an analyst may be able to interpret and act on the results in ways that would be difficult with PCA. For instance, EFA can be used to refine a survey by keeping items with high loading on factors of interest while cutting items that do not load highly. EFA is also useful to investigate whether a survey's items actually go together in a way that is consistent with expectations.
+
+For example, if we have a 10-item survey that is supposed to assess the single construct customer satisfaction, it is important to know whether those items in fact go together in a way that can be interpreted as a single factor, or whether they instead reflect multiple dimensions that we might not have considered. Before interpreting multiple items as assessing a single concept, one might wish to test that it is appropriate to do so.
+
+EFA serves as a data reduction technique in three broad senses:
+
+* In the technical sense of dimensional reduction, we can use factor scores instead
+of a larger set of items. For instance, if we are assessing satisfaction, we could
+use a single satisfaction score instead of several separate items. (In Sect. 9.1.2
+we review how this is also useful when observations are correlated.)
+
+* We can reduce uncertainty. If we believe satisfaction is imperfectly manifest in
+several measures, the combination of those will have less noise than the set of
+individual items.
+
+* We might also reduce data collection by focusing on items that are known to
+have high contribution to factors of interest. If we discover that some items are
+not important for a factor of interest, we can discard them from data collection
+efforts.
+
+In this case we use the brand rating data to ask the following questions: How
+many latent factors are there? How do the survey items map to the factors?
+How are the brands positioned on the factors? What are the respondents' factor
+scores?
+
+The first step in EFA is to determine the number of factors to estimate. There are var-
+ious ways to do this, and two traditional methods are to use a scree plot,
+and to retain factors where the eigenvalue (a metric for proportion of variance ex-
+plained) is greater than 1.0. An eigenvalue of 1.0 corresponds to the amount of vari-
+ance that might be attributed to a single independent variable; a factor that captures
+less variance than such an item may be considered relatively uninteresting.
+
+```{r}
+rating.pc <- prcomp(data.sc[,2:31])
+plot(rating.pc,type='l')
+```
+
+```{r}
+library(nFactors)
+nScree(data.sc[,2:31])
+```
+```{r}
+eigen(cor(data.sc[,2:31]))
+```
+
+The first method suggests 2 factors. Both nScree and eigen function suggest that the data has 3 factors.  We can use EFA model to compare 2 factor and 3 factor case to see which one gives better interpretation.
+
+```{r}
+
+factanal(data.sc[,2:31],factors = 3)
+
+factanal(data.sc[,2:31],factors = 2)
+```
+
+Students are asked to compare the three cases and see how many factors is appropriate, and then give a proper interpretation of the factors. Compare them against the latent factors identified at the beginning of the class. Do they match?
+
+
+The default in factanal() is to find factors that have zero correlation (using a *varimax* rotation). But this assumption is too strong. We believe the factors should interrelated. This suggests that we could allow correlated factors in our solution. This is known as an oblique rotation ("oblique" because the dimensional axes are not perpendicular but are skewed by the correlation between factors).
+
+```{r}
+library(GPArotation)
+factor.sc <- factanal(data.sc[,2:31],factors = 2,rotation = "oblimin")
+factor.sc
+```
+
+Compared to previous analysis, this one seems to be better for interpretation. The two factors could be interpret as "Quality", and "Flexibility". It also shows that these two factors are negatively correlated.
+
+In the output above, the item-to-factor loadings are displayed. In the returned model object, those are present as the \$loadings element. We can the visualize item-factor relationships with a heatmap of \$loadings:
+
+```{r}
+library(gplots)
+library(RColorBrewer)
+
+heatmap.2(factor.sc$loadings,col=brewer.pal(9,"Blues"),trace="none",key=F,dend="none",Colv=F,cexCol = 1.2,main = "Factor loadings for school branding")
+```
+
+This chart allows us to see the relationship between each attribute with the factors.
+
+```{r}
+school.ob <- factanal(data.sc[,2:31],factors = 2,rotation = "oblimin", scores = "Bartlett")
+school.scores <- data.frame(school.ob$scores)
+school.scores$School <- data.sc$School
+head(school.scores)
+```
+
+The result is an estimated score for each respondent on each factor and school. If we
+wish to investigate individual-level correlates of the factors, such as their relationship to demographics or purchase behavior, we could use these estimates of factor
+scores. This can be very helpful in analyses such as regression and segmentation
+because it reduces the model complexity (number of dimensions) and uses more
+reliable estimates (factor scores that reflect several manifest variables). Instead of
+30 items, we have three factors.
+
+The following codes is to find the overall position for each school.
+
+```{r}
+school.scores.mean <- aggregate(.~School,data=school.scores,mean)
+rownames(school.scores.mean)<-school.scores.mean$School
+school.scores.mean <- school.scores.mean[,-1]
+colnames(school.scores.mean) <- c("Quality","Flexibility")
+
+heatmap.2(as.matrix(school.scores.mean),col=brewer.pal(9,"Blues"),trace="none",key=F,dend="none",Colv=F,cexCol = 1.2,main = "Factor scores for school branding")
+```
+
+The findings are interesting. Let students discuss on the findings.
+
+
+###After Class Report
+
+Students need to try different combination of schools, or on specific target student groups (by nationality, by gender, etc.) to come up with their own report.

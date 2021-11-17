@@ -1,0 +1,516 @@
+---
+title: "Lecture 2"
+output: html_document
+---
+
+## Data Management
+
+The process of storing, acquiring, validating, processing, storing and protecting data to ensure the accessibility, reliability, and timeliness of the data for users.
+
+## Data Workflow
+
+1. Collection and Storage
+2. Preparation
+3. Analysis and Visualisation
+4. Experimentation and Prediction
+
+## Data Types
+
+### 1. Structured Data
+- stored in relational databases
+
+### 2. Unstructured Data
+- stored in non-relational (aka non-SQL) databases
+- e.g. text, images, audio
+
+***
+
+## Structured Data
+
+- every column has a dedicated meaning and a single, fixed data type
+- columns are called data variables
+- rows are called data records
+
+```{R read}
+head(read.csv("./Police Use of Force.csv"), 3)
+```
+
+## 5 Atomic Data Types
+
+You can use class(x) to find the type of a variable.
+
+1. Logical
+- TRUE(T) / FALSE(F)
+
+2. Integer
+
+3. Numeric
+- decimals
+
+4. Complex 
+
+5. Character
+- non-numeric
+
+```{r type}
+a = T # short for TRUE
+class(a)
+```
+
+```{r str}
+# read
+data <- read.csv("./Police Use of Force.csv", stringsAsFactors = F)
+# run the structure data command, gives the data type of each variable
+str(data)
+```
+
+***
+
+## Logical
+
+Often the result of a relational operation
+
+```{r relation}
+a = 7
+a > 8 # FALSE, 7 is less than 8
+```
+
+Can also be the result of a logical operation
+
+```{r operation}
+a = 8 > 7 # TRUE
+b = 5 == 3 # FALSE
+a & b # FALSE
+a | b # TRUE
+```
+
+***
+
+## Integer and Numeric
+
+An integer is a subset of numeric. If a numeric has no decimal, it does not mean that it is treated as an integer. **By default, any number assigned to a variable will be treated as numeric**.
+
+```{r num}
+a = 3.5
+class(a) # numeric
+b = 3
+class(b) # numeric
+```
+
+To make a variable an integer there are 2 methods. First is to use the function as.integer(x):
+
+```{r int1}
+class(3)
+class(as.integer(3))
+```
+
+The other is to add a capital 'L' to the end of the number
+```{r int2}
+class(3)
+class(3L)
+```
+
+During mathematical calculations, the more inclusive type is used:
+```{r calc}
+class(4L) # integer
+class(1) # numeric
+class(4L - 1) # numeric
+```
+
+***
+
+## Character
+
+Aka text / strings
+
+1. Length
+```{r len}
+nchar("hello test") # returns the number of char, including space
+```
+
+2. Concatenate
+```{r concat}
+paste("I", "am", "taking", "DBA3702") # separated by spaces by default
+paste("I", "am", "taking", "DBA3702", sep = "%") # change separator
+```
+
+3. Split
+```{r split}
+strsplit("I am taking DBA3702", " ") # returns a list
+```
+
+4. Substring
+```{r sub}
+substr("I am taking DBA3702", 13, 19) # indexes are inclusive
+substring("I am taking DBA3702", 13) # only specify start index
+```
+
+5. Replace
+```{r rep}
+txt = "According to all known laws of aviation, there is no way that a B should be able to fly. Its wings are too small to get its fat little body off the ground. The B, of course, flies anyways. Because Bs don't care what humans think is impossible."
+gsub("B", "bee", txt)
+```
+
+Other replacement functions include:
+- grep
+- grepl
+- sub
+- regexpr
+- gregexpr
+- regexev
+
+Other useful functions include:
+- toupper
+- tolower
+- abbreviate
+- trimws
+
+The package "stringr" also contains useful functions for handling strings.
+
+***
+
+## Data Structures
+
+A data structure is a data organization, management, and storage format that enables efficient access and modification of data.
+
+It is a collection of data values, the relationships among them and the functions and operations that can be applied to the data.
+
+## Basic R Data Structures
+
+1. Vector
+2. Matrix
+3. List
+4. Data Frame
+
+***
+
+## Vector
+
+A vector is a sequence of data elements of the same basic data type. As some may realise, this is a similar condition to that of a column in a structured data set.
+
+```{r vec}
+data = read.csv("./Police Use of Force.csv")
+col = data$INCIDENT_DATE
+# confirm that the columns is a vector
+is.vector(col)
+```
+
+The most common method to create a vector is the function c(x):
+```{r c}
+v1 = c(1, 2, 3)
+is.vector(v1)
+v2 = c(First=100, Second=200, Third=300) # vector with labels
+v2
+```
+
+A common way to create a sequence of consecutive number is to use a ':' or the seq(from=x, to=y, by=z) function:
+```{r seq}
+3:10 # start and end inclusive
+5:-3
+seq(from=1, to=10, by=3) 
+```
+
+```{r prac}
+seq(2, 10, 2)
+seq(2, 10, length.out=5) # length.out dictates the number of elements
+2 * 1:5
+2 * (1:5)
+```
+
+R also has built in vectors for common uses:
+```{r commons}
+letters
+LETTERS
+month.abb
+month.name
+```
+
+All data have to have the same type. Otherwise, the other data will be converted to a suitable data type.
+```{r type_convert}
+v1 = c(1, F, "a")
+```
+
+This process of converting values to the correct data type is called coercion hierarchy. It follows the order, logical < integer < numeric < complex < character.
+
+***
+
+## Mathematical Operations on Vectors
+
+```{r ops}
+a = c(1, 2, 3)
+b = c(5, 6, 7)
+a + b
+b ^ a
+```
+
+When 2 vectors have different lengths, R automaticaly repeats elements in the shorter on until it is long enough to match the long vector. This is called **recycling**.
+```{r recycle}
+a = 1:10
+b = 0:1
+a * b
+```
+## Difference between '&' and '&&'
+
+'&' operates on all elements and returns a vector of logical types. '&&' operates on only the first element in each of the vectors.
+
+```{r and}
+a = c(T, F, T, F)
+b = c(T, T, F, F)
+c = c(F, T)
+
+a & b # element-wise
+a && b # first pair
+a && c
+```
+
+## Vector Manipulation
+
+We can get an element using its position in the vector:
+
+```{r retr}
+salaries = c(John=10000, James=8000, Lily=5600, Jo=7000)
+salaries
+# retrieve
+salaries[2]
+salaries[2:3]
+salaries[c(1,3)]
+```
+
+We can also edit values in the vector, like so:
+
+```{r edit}
+salaries[2] = 9000
+salaries
+
+salaries[2:3] = c(8500, 6500)
+salaries
+
+# can use label if vector is named, must use double quotes
+salaries["John"] = 10200
+salaries
+```
+
+Negative indexes can be used to exclude elements.
+
+```{r neg}
+salaries[-2]
+salaries[-(1:2)]
+# salaries[-1][1:2] will first process (salaries[-1]) and exclude John. Then, the first 2 elements of the result are taken
+salaries[-1][1:2]
+```
+
+We can also find elements that meet a certain logical criteria.
+
+```{r crit}
+salaries > 7500 # returns logical vector
+salaries[salaries > 7500] # filters out F
+```
+
+Lastly, we can sort a vector
+```{r sort}
+asc = order(salaries) # returns a integer vector of the order
+desc = order(-salaries)
+salaries[asc]
+salaries[desc]
+```
+
+***
+
+## Matrices
+
+Matrices store data in a two-dimensional struction. Matrices can be created by arranging a vector by rows and/or columns.
+
+```{r matrix}
+# arrange by columns
+matrix(1:12, nrow=4)
+matrix(1:10, ncol=3) # will recycle
+
+#arrange by rows
+matrix(1:12, nrow=4, byrow=T)
+```
+
+Another way of creating matrices is to bind multiple rows/columns together.
+```{r bind}
+a = 1:5
+b = 2:4
+c = 3:6
+
+rbind(a, b, c) # by rows
+cbind(a, b, c) # by cols
+```
+
+The same commands can be used to grow a matrix
+
+```{r grow}
+m = matrix(1:25, nrow=5, byrow=T)
+a = c(0,1)
+rbind(m, a)
+cbind(a, m)
+```
+
+Similar to vectors, we can also name the columns and rows of matrices.
+
+```{r namem}
+colnames(m) = c("Col1", "Col2", "Col3", "Col4", "Col5")
+rownames(m) = c("Row1", "Row2", "Row3", "Row4", "Row5")
+m
+```
+
+***
+
+## Mathematical Operations on Matrices
+
+```{r mops}
+m1 = matrix(1:12, nrow=4)
+m2 = matrix(c(1,-1), nrow=4, ncol=3)
+m1 * m2
+```
+
+We can also transpose a matrix using the function t(x)
+
+```{r transpose}
+m1
+t(m1)
+```
+
+We can also perform matrix multiplication using '%*%'.
+
+```{r mmult}
+m1 = matrix(1:6, nrow=2, ncol=3)
+m2 = matrix(c(1, -1, 2, -2), nrow=3, ncol=4)
+m1 %*% m2 # results in a 2 x 4 matrix
+```
+
+***
+
+## Manipulating Matrices
+
+We can retrieve elements in a way similar to vectors, only that we supply both the row and the column this time.
+
+```{r mpos}
+m = matrix(1:12, ncol=4, byrow=T)
+colnames(m) = c("Col1", "Col2", "Col3", "Col4")
+rownames(m) = c("Row1", "Row2", "Row3")
+m
+
+# retrieve
+m[2,3:4]
+# leaving a field blank means all elements for that row/col
+m[, c("Col1", "Col3")]  
+```
+
+We can also find the maximum, sum rows/columns, and filter.
+
+```{r mfilter}
+sales = rbind(c(100, 102, 95, 200),
+              c(95, 60, 50, 120),
+              c(150, 100, 98, 205))
+colnames(sales) = c("Stephen", "Alice", "Mary", "John")
+rownames(sales) = c("October", "November", "December")
+sales
+
+# find max
+sales[which.max(sales)]
+
+# sum
+rowSums(sales)
+
+# filter
+sales[ , colSums(sales) > 300]
+```
+
+***
+
+## Lists
+
+The requirement of same data type limits the usage of vectors and matrices. Some data might appear in different types and need to be stored differently.
+
+List is a 1-dimensional structure that allows for a variety of data types. Lists can even store other data structures.However, note that it will lose some of it's efficiency.
+
+```{r list}
+list(1, 2, 3)
+
+steven = list(first.name="Steven", 
+              age=30, married=T, 
+              children=c("Mary", "Sue"))
+steven
+```
+
+Like a vector, we can access elements by their position. Additionally, we can use '$' to access elements by their name.
+
+```{r lretr}
+# returns lists 
+steven["first.name"]
+steven[c(1,3)]
+# returns element
+steven$age
+```
+
+## Difference between '[]' and '[[]]'
+
+When retrieving an element from a list using '[]', the result is still a list. '[[]]' opens the structure and can hence only return one element at a time.
+
+```{r bracket}
+steven["children"][2] # cannot retrieve
+steven[["children"]][2]
+steven$children[2]
+```
+
+***
+
+## Difference between '=' and '<-'
+
+'=' assigns variables in a smaller scope. '<-' assigns variables on a global scope.
+
+```{r equals}
+rm(x)
+mean(x=1:10)
+# finding x now will produce an error
+mean(x<-1:10)
+x
+```
+
+***
+
+## Factors
+
+In the "Police Use of Force.csv" file, we have 3 types of character columns: date-time, free text, and categorical. 
+
+Categorical values need to be handled differently because:
+- statistical analysis (e.g. counting) by category
+- improve memory usage, reduce storing of repeated strings
+- need to order and rank categories
+- needed in machine learning
+
+In R, we use **factors** to represent categories.
+
+```{r fac}
+data = read.csv("./Police Use of Force.csv", stringsAsFactors=F)
+
+head(data$OFFICER_GENDER, 20)
+object.size(data$OFFICER_GENDER)
+
+# convert to factor
+data$OFFICER_GENDER = factor(data$OFFICER_GENDER)
+head(data$OFFICER_GENDER, 20)
+object.size(data$OFFICER_GENDER)
+```
+
+Note that the categories are actually stored as integers. Female is stored as 1, Male is stored as 2. This is ordered alphabetically and can be explicitly changed using the factor(x, levels) function.
+
+```{r catint}
+as.integer(head(data$OFFICER_GENDER, 20))
+
+a = c("M", "F", "M") # ordered by alphabet
+b = as.factor(a)
+c(b,"4")
+
+# change order
+b = factor(a, levels=c("M", "F"))
+c(b, "4")
+```
+
+We can count categories usign the table(x) function
+```{r table}
+table(data$OFFICER_GENDER)
+```

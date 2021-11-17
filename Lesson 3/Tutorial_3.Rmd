@@ -1,0 +1,97 @@
+---
+title: "Tutorial 3"
+output: html_document
+---
+
+# Tutorial 3
+
+```{r}
+head(airquality)
+```
+
+## Missing values
+
+```{r}
+head(is.na(airquality)) # all VALUES with NA, some rows have multiple
+
+head(complete.cases(airquality)) # which ROWS are complete
+
+# No. of incomplete records
+sum(!complete.cases(airquality))
+```
+
+## Clean Data
+
+```{r}
+# method 1
+airquality.clean = airquality[complete.cases(airquality), ]
+
+# method 2
+library(tidyr)
+airquality.clean = drop_na(airquality)
+
+# method 3
+airquality.clean = na.omit(airquality)
+```
+
+## Subset
+
+```{r}
+# method 1
+subset = airquality.clean[airquality.clean$Month==6, ]
+dim(subset)
+
+# method 2
+library(dplyr)
+airquality.clean %>% filter(Month==6) %>% dim()
+
+# method 3
+subset(airquality.clean, Month==6)
+```
+
+## Efficient Counting
+
+```{r}
+# method 1 
+# creates subset -> slow
+subset = airquality.clean[airquality.clean$Wind >=7 & airquality.clean$Wind <= 8, ]
+nrow(subset)
+
+# method 2
+# not storing subset -> faster
+sum(airquality.clean$Wind >=7 & airquality.clean$Wind <= 8)
+```
+
+## 
+
+```{r}
+library(dplyr)
+airquality.clean = airquality.clean %>% mutate(Index=Solar.R*Wind/Temp)
+airquality.clean[5, "Index"]
+
+head(airquality.clean[5, "Index"])
+```
+## Last Day of the Month
+```{r}
+# method 1
+airquality.clean %>% group_by(Month) %>% filter(Day == max(Day))
+
+# method 2
+max.month.day = aggregate(airquality.clean$Day, by=list(airquality.clean$Month), max)
+# then use join
+merge(airquality.clean, max.month.day, by.x=c("Month", "Day"), by.y=c("Group.1", "x"))
+```
+
+***
+
+```{r}
+residents_raw = read.csv("./Data/singapore-residents-by-age-group-ethnic-group-and-sex-end-june-annual.csv")
+
+# We want the columns to be only Year, Gender, Race, Value
+```
+
+```{r}
+unique(unlist(strsplit(residents_raw$level_1, " ")))
+```
+
+

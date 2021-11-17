@@ -1,0 +1,122 @@
+---
+title: "Tutorial 2"
+output: html_document
+---
+
+## Priority
+
+```{r}
+2 * 1:5 # : takes precedence over *
+1: 5^2 # ^ takes precedence over :
+```
+
+':' takes precedence over '*'.
+
+## Matrix Formation
+
+The number of rows and columns do not have to be exact
+
+```{r}
+matrix(10:15, ncol=2, nrow=2) # truncate
+matrix(10:15, ncol=3, nrow=3) # recycle
+
+# truncate + warning, 7 numbers will not fit in (not a multiple of the rows)
+matrix(10:16, ncol=2, nrow=2)
+
+# will first produce the recycled version (cause warning):
+# 10 12 14 16
+# 11 13 15 10
+
+# and then truncate
+```
+
+**NOTE:** A warning will always apply when matrix/vector lengths do not match. (e.g. 3:7 + 1:2)
+
+## Matrix Selection
+
+```{r}
+m = matrix(10:16, ncol=4, nrow=3)
+m[3,-2]
+# 10 13 16 12
+# 11 14 10 13
+# 12 15 11 14
+
+# Look at row 3, exclude column 2 -> 12 11 14
+```
+
+## Matrix Naming
+
+```{r}
+x = c(A=1, B=2, C=3)
+y = c(James=4, John=5, Joe=6)
+z = x-y # takes the names of the first vector x
+z
+```
+
+## Matrix Function
+
+```{r}
+sin(1:10) # function applied onto all elements
+```
+
+## Duplication
+
+```{r}
+rep(1:5, 2)
+c(1:5, 1:5)
+```
+
+***
+
+## Self-practice
+
+1. Generate 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1
+```{r}
+rep_len(1:5, 16)
+rep(1:5, length.out=16)
+matrix(1:5, ncol=16)[1,] # throws warning
+```
+
+2. Split the string "Jack Wong, Liu Qizhang, Tingting Koh, Carol Tan"
+into 4 names and store in a vector.
+
+```{r}
+name = "Jack Wong, Liu Qizhang, Tingting Koh, Carol Tan"
+strsplit(name, ", ")[[1]]
+unlist(strsplit(name, ", "))
+```
+
+3. 
+
+```{r}
+result = c(James="97,A+",Tom="87,A",Jack="50,C",Carol="67,B")
+
+# substring
+library(stringr)
+loc = str_locate(result,",")[,"start"]
+score = as.integer(substring(result, 0, loc - 1))
+names(score) = names(result)
+score
+grade = substring(result, loc + 1)
+grade
+
+#strplit and matrix
+m = matrix(unlist(strsplit(result, ",")), nrow=2)
+score = as.integer(m[1,])
+```
+
+4. 
+
+```{r}
+salaries = c(Tom=3000, James=7000, Grace= 5000, Wong=3500, Wong=5000, Grace=6000)
+dupes = duplicated(names(salaries))
+salaries[dupes]
+```
+
+5. 
+
+```{r}
+salaries = c(Tom=3000, James=7000, Grace= 5000, Wong=3500, Wong=5000)
+ave = mean(salaries)
+names(salaries[salaries > ave])
+```

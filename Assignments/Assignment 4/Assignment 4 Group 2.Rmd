@@ -1,0 +1,225 @@
+---
+title: "Assignment 4"
+author: "SA01 Team 2"
+date: "9/12/2021"
+output: html_document
+---
+
+```{r,warning=FALSE,message=FALSE}
+library(curl)
+library(rvest)
+library(tidyverse)
+library(XML)
+```
+
+# Q1
+
+Write a programme to crawl as much information as possible about NBA teams and NBA players from ESPN NBA website: [http://www.espn.com/nba/players](http://www.espn.com/nba/players) .
+
+```{r,warning=FALSE}
+url = "http://www.espn.com/nba/players"
+page = read_html(url)
+nodes = html_nodes(page, ".small-logos div a")
+
+# gets all the url of the different teams
+rosters = html_attr(nodes,"href") 
+partial = "https://espn.com"
+urls = paste0(partial,rosters)
+
+# gets team names
+teams = html_text(nodes)
+
+# no. of teams
+nteams = length(teams)
+
+# loops through urls and crawls
+df = data.frame("Team" = teams)
+
+for (i in 1:nteams)
+{
+  url = curl(urls[[i]])
+  urldata = readLines(url)
+  data = readHTMLTable(urldata)
+  data$Team = teams[[i]]
+  df = merge(df, data, on="Team", all=T)
+  close(url)
+}
+
+head(df)
+```
+
+Cleaning df:
+
+```{r,warning=FALSE}
+# handle NA
+nba_data = df[!is.na(df$NULL.Name), ]
+nba_data[nba_data == "--"] = NA
+
+# column names
+nba_data = nba_data[-2]
+header = colnames(nba_data) %>% 
+  lapply(gsub, pattern="NULL.", replacement="")
+names(nba_data) = header
+
+# team number 
+nba_data = nba_data %>% separate(Name, 
+           into = c("Name", "Jersey"), 
+           sep = "(?<=[A-Za-z])(?=[0-9])",
+           )
+
+# data type
+nba_data$Team = factor(nba_data$Team)
+nba_data$POS = factor(nba_data$POS)
+nba_data$Jersey = as.integer(nba_data$Jersey)
+nba_data$Age = as.integer(nba_data$Age)
+
+nba_data$WT = nba_data$WT %>% 
+  gsub(" lbs", "", .) %>%
+  as.integer()
+names(nba_data)[names(nba_data) == 'WT'] <- 'WT(lbs)'
+
+nba_data$Salary = nba_data$Salary %>% 
+  gsub("[$,]", "", .) %>%
+  as.numeric()
+names(nba_data)[names(nba_data) == 'Salary'] <- 'Salary($)'
+
+# Answer
+head(nba_data)
+```
+
+# Q2
+
+Based on the discussion today, write a procedure to clean family data (only the gene sequence column). It should include
+- A function to validate if a particular input complies with the format requirement;
+- A sequence of functions (handlers) to handle all error patterns you could identify in the column.
+Run the procedure written above on the given data and make sure you could obtain clean data at the end.
+
+```{r}
+family= read_csv("./Data/The family with the largest number of children.csv")
+head(family)
+```
+
+Check compliance:
+
+```{r}
+complies = function(vec) {
+  return(grepl("^([FM],)+[FM]$", vec))
+}
+```
+
+Using validation function to process the data:
+
+```{r}
+valid = complies(family$`Gender Sequence`)
+family_unclean = family[!valid, ]
+family_unclean$original = family_unclean$`Gender Sequence`
+family = family[valid, ]
+```
+
+Sequence of handlers to handle the error patterns  
+
+1. Convert all to uppercase
+
+```{r}
+family_unclean$`Gender Sequence` = toupper(family_unclean$`Gender Sequence`)
+
+# Update validation
+valid = complies(family_unclean$`Gender Sequence`)
+family = rbind(family, subset(family_unclean[valid, ], select=-c(original)))
+family_unclean = family_unclean[!valid, ]
+```
+
+2. Convert female/male into m or f
+
+```{r}
+family_unclean$`Gender Sequence` = 
+  gsub("FEMALE", "F", family_unclean$`Gender Sequence`)
+# FMALE vague -> F, Male or Female, handle manually
+family_unclean$`Gender Sequence` = 
+  gsub("(?<!F)MALE", "M", family_unclean$`Gender Sequence`, perl=T) 
+
+# Update validation
+valid = complies(family_unclean$`Gender Sequence`)
+family = rbind(family, subset(family_unclean[valid, ], select=-c(original)))
+family_unclean = family_unclean[!valid, ]
+```
+
+3. Removal of whitespaces
+
+```{r}
+family_unclean$`Gender Sequence` = 
+  gsub(" ", "", family_unclean$`Gender Sequence`, fixed=T)
+
+# Update validation
+valid = complies(family_unclean$`Gender Sequence`)
+family = rbind(family, subset(family_unclean[valid, ], select=-c(original)))
+family_unclean = family_unclean[!valid, ]
+```
+
+4. Drop blank rows
+
+```{r}
+family_unclean = family_unclean[!is.na(family_unclean$`Gender Sequence`), ]
+```
+
+5. Remove additional symbols
+
+```{r}
+family_unclean$`Gender Sequence` = 
+  gsub("[^A-Z, ]", "", family_unclean$`Gender Sequence`)
+
+# Update validation
+valid = complies(family_unclean$`Gender Sequence`)
+family = rbind(family, subset(family_unclean[valid, ], select=-c(original)))
+family_unclean = family_unclean[!valid, ]
+```
+
+6. Remove additional commas
+
+```{r}
+# remove consecutive commas
+family_unclean$`Gender Sequence` =
+  gsub("[,]+", ",", family_unclean$`Gender Sequence`)
+# remove from the ends
+family_unclean$`Gender Sequence` = family_unclean$`Gender Sequence` %>%
+  gsub("^,", "", .) %>% gsub(",$", "", .)
+
+# Update validation
+valid = complies(family_unclean$`Gender Sequence`)
+family = rbind(family, subset(family_unclean[valid, ], select=-c(original)))
+family_unclean = family_unclean[!valid, ]
+```
+
+7. Adding in the commas
+
+```{r}
+# find FM and breaks it with ,
+select = grepl("^[FM,]+$", family_unclean$`Gender Sequence`) 
+family_unclean$`Gender Sequence`[select] = 
+  family_unclean$`Gender Sequence`[select] %>%
+  gsub("(?<=[FM])(?=[FM])", ",", ., perl=T)
+
+# Update validation
+valid = complies(family_unclean$`Gender Sequence`)
+family = rbind(family, subset(family_unclean[valid, ], select=-c(original)))
+family_unclean = family_unclean[!valid, ]
+```
+
+8. Remove Single Child
+
+```{r}
+only_child = grepl("^[FM]$", family_unclean$`Gender Sequence`)
+family_unclean = family_unclean[!only_child, ]
+```
+
+9. Wrong words (Manual intervention)
+
+```{r}
+family_unclean # is an only child in this case, no need to add
+```
+
+Answer:
+
+```{r}
+head(family)
+```

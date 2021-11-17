@@ -1,0 +1,141 @@
+---
+title: "Assignment 1"
+author: "SA01 Team 2"
+output: html_document
+---
+
+## Q1
+
+Suppose that you have the following vector storing the sales value you have with your top 12 customers:
+```{r}
+sales <- c(1736134, 10034,1003948,209445,98878.76,398454,777734.12,1039489.34,293894,9834,9384754.65)
+```
+Now, you want to perfect your record in the following ways:
+
+### 1.1
+
+Convert the figures in sales vector into currency format and assign each element in the vector a name, which follows the format of customer[id], where id is a two-digit number following the sequence of elements in the vector. For example, 1736134 is named as customer01, 10034 is named as customer02, etc.
+
+```{r}
+# currency format
+sales_currency <- paste0('$',formatC(sales, digits=2, big.mark=',', format='f'))
+
+# customer names
+cust_name <- sprintf("customer%02d",1:11)
+names(sales_currency) <- cust_name
+
+# answer
+sales_currency
+```
+
+### 1.2
+
+You want to classify your customers into three categories based on the sales value. Those with sales value above 1 million are VVIC, those with sales value in between 100,000 and 1 million are VIC, and the rest are IC. Create a vector named category to store the categories of your customers corresponding to sales vector.
+
+```{r}
+# assigning categories
+category <- c()
+category[sales < 100000] <- 'IC'
+category[sales > 100000 & sales < 1000000] <- 'VIC'
+category[sales > 1000000] <- 'VVIC'
+
+# convert to factor
+category <- factor(category)
+names(category) <- cust_name
+
+# answer
+category
+```
+
+## Q2
+
+Let n=5. Write R codes using n to generate the following matrix:
+```{r}
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    2    3    4    5    6
+## [2,]    7    8    9   10   11
+## [3,]   12   13   14   15   16
+## [4,]   17   18   19   20   21
+## [5,]   22   23   24   25    1
+```
+  
+```{r}
+n <- 5
+
+# generate vector
+vec <- append(2:n^2, 1)
+m <- matrix(vec, nrow=n, byrow=T)
+
+# answer 
+m
+```
+
+## Q3
+
+Assign the following string to a single variable countries.
+```{r}
+countries <- "Athens (Greece), Paris (France), St. Louis (United States), London (England), Stockholm (Sweden), Berlin (Germany) [cancelled], Antwerp (Belgium), Paris (France), Amsterdam (Netherlands), Los Angeles (United States), Berlin (Germany), Tokyo (Japan) [cancelled], London (England) [cancelled], London (England), Helsinki (Finland), Melbourne (Australia), Rome (Italy), Tokyo (Japan), Mexico City (Mexico), Munich (West Germany), Montreal (Canada), Moscow (Soviet Union), Los Angeles (United Statesz), Seoul (South Korea), Barcelona (Spain), Atlanta (United States), Sydney (Australia), Athens (Greece), Beijing (China), London (England), Rio de Janeiro (Brazil), Tokyo (Japan)"
+```
+The string contains Summer Olympic host cities and countries from 1896 to 2020 in chronological order. Unpack the string into a vector of strings, each containing both the host city (without its corresponding country) and the year of the Olympics. The resultant vector should look like:  
+“Athens Olympics 1896”, “Paris Olympics 1900”, “St. Louis Olympics 1904”, …..
+
+### 3.1
+
+The string contains the host countries in parentheses. Remove the countries information by removing all texts inside parentheses.
+
+```{r}
+cities <- gsub(" \\([^)]*)", "", countries)
+
+# answer
+cities
+```
+
+### 3.2
+
+In 1916, 1940 and 1944, the Summer Olympics were cancelled due to the world wars. Remove all texts inside square brackets containing this information.
+
+```{r}
+cities_names <- gsub(" \\[cancelled\\]", "", cities)
+
+# answer
+cities_names
+```
+
+### 3.3
+
+Split the current string into a vector of strings, each containing only one city.
+
+```{r}
+cities_split <- unlist(strsplit(cities_names,', '))
+
+# answer
+cities_split
+```
+
+### 3.4
+
+The Olympics is held every 4 years. Create a vector of years from 1896 to 2020 when the Olympic Games were held.
+
+```{r}
+years <- seq(1896, 2020, by=4)
+
+# answer
+years
+```
+
+### 3.5
+
+Combine the strings from part 3 and 4 to create the desired vector.
+
+```{r}
+olympics <- paste(cities_split, "Olympics", years)
+
+# final vector
+olympics
+```
+
+```{r}
+# Format output to be the same as the question
+final <- paste("\"", olympics,"\"",collapse = ", ", sep="")
+cat(final)
+```

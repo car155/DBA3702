@@ -1,0 +1,220 @@
+---
+title: "Assignment 6"
+output: html_document
+---
+
+# Assignment 1
+
+## (1)
+
+```{r}
+library("lubridate")
+library("dplyr")
+
+flights = read.csv("./Data/flights1.csv")
+
+# Format scheduled departure time
+flights$SCHEDULED_DEPARTURE_DATE = paste(flights$YEAR, flights$MONTH, flights$DAY,sep = "-")
+flights$SCHEDULED_DEPARTURE = sprintf("%04.0f", flights$SCHEDULED_DEPARTURE)
+flights$SCHEDULED_DEPARTURE = strptime(
+  paste(flights$SCHEDULED_DEPARTURE_DATE, flights$SCHEDULED_DEPARTURE),
+  format='%Y-%m-%d %H%M')
+
+# Format departure time
+flights$DEPARTURE_TIME = sprintf("%04.0f", flights$DEPARTURE_TIME)
+flights$DEPARTURE_TIME = strptime(
+  paste(flights$SCHEDULED_DEPARTURE_DATE, flights$DEPARTURE_TIME),
+  format='%Y-%m-%d %H%M')
+wrong_date = (flights$SCHEDULED_DEPARTURE > flights$DEPARTURE_TIME) &
+  (flights$DEPARTURE_DELAY > 0) & 
+  !is.na(flights$DEPARTURE_TIME)
+flights[wrong_date, ]$DEPARTURE_TIME = flights[wrong_date, ]$DEPARTURE_TIME + days(1)
+
+# Format wheels off
+flights$WHEELS_OFF = sprintf("%04.0f", flights$WHEELS_OFF)
+flights$WHEELS_OFF = strptime(
+  paste(flights$SCHEDULED_DEPARTURE_DATE, flights$WHEELS_OFF),
+  format='%Y-%m-%d %H%M')
+wrong_date = (flights$SCHEDULED_DEPARTURE > flights$WHEELS_OFF) &
+  !is.na(flights$WHEELS_OFF)
+flights[wrong_date, ]$WHEELS_OFF = flights[wrong_date, ]$WHEELS_OFF + days(1)
+
+# Format wheels on
+flights$WHEELS_ON = sprintf("%04.0f", flights$WHEELS_ON)
+flights$WHEELS_ON = strptime(
+  paste(flights$SCHEDULED_DEPARTURE_DATE, flights$WHEELS_ON),
+  format='%Y-%m-%d %H%M')
+wrong_date = (flights$SCHEDULED_DEPARTURE > flights$WHEELS_ON) &
+  !is.na(flights$WHEELS_ON)
+flights[wrong_date, ]$WHEELS_ON = flights[wrong_date, ]$WHEELS_ON + days(1)
+
+# Format scheduled arrival
+flights$SCHEDULED_ARRIVAL = sprintf("%04.0f", flights$SCHEDULED_ARRIVAL)
+flights$SCHEDULED_ARRIVAL = strptime(
+  paste(flights$SCHEDULED_DEPARTURE_DATE, flights$SCHEDULED_ARRIVAL),
+  format='%Y-%m-%d %H%M')
+wrong_date = (flights$SCHEDULED_DEPARTURE > flights$SCHEDULED_ARRIVAL)
+flights[wrong_date, ]$SCHEDULED_ARRIVAL = flights[wrong_date, ]$SCHEDULED_ARRIVAL + days(1)
+
+# Format arrival time
+flights$ARRIVAL_TIME = sprintf("%04.0f", flights$ARRIVAL_TIME)
+flights$ARRIVAL_TIME = strptime(
+  paste(flights$SCHEDULED_DEPARTURE_DATE, flights$ARRIVAL_TIME),
+  format='%Y-%m-%d %H%M')
+wrong_date = (flights$SCHEDULED_DEPARTURE > flights$ARRIVAL_TIME) & 
+  !is.na(flights$ARRIVAL_TIME)
+flights[wrong_date, ]$ARRIVAL_TIME = flights[wrong_date, ]$ARRIVAL_TIME + days(1)
+
+# replace NA delays with 0
+not_cancelled = flights$CANCELLED == 0
+flights[not_cancelled, ] = flights[not_cancelled, ] %>% mutate_at(c(27:31), ~replace(., is.na(.), 0))
+
+# Remove unnecessary column
+flights = flights[-32]
+
+head(flights)
+```
+
+```{r}
+airlines = read.csv("./Data/airlines.csv")
+airports = read.csv("./Data/airports.csv")
+
+head(airlines)
+head(airports)
+```
+
+## (2)
+
+```{r}
+library("ggplot2")
+library("dplyr")
+```
+
+### Airline to avoid:
+
+#### By amount of delay
+
+```{r}
+flights$AIRLINE = as.factor(flights$AIRLINE)
+
+data = flights[flights$CANCELLED == 0 & flights$AIRLINE_DELAY > 0, ]
+data$LOG_AIRLINE_DELAY = log10(data$AIRLINE_DELAY)
+
+# standard boxplot
+p = ggplot() + geom_jitter(aes(x=AIRLINE, y=LOG_AIRLINE_DELAY),
+              data, shape=16, alpha=0.1, 
+              color="blue", position=position_jitter(0.2))
+p = p + stat_boxplot(aes(x=AIRLINE, y=LOG_AIRLINE_DELAY), 
+               data, geom ='errorbar')
+p = p + geom_boxplot(aes(x=AIRLINE, y=LOG_AIRLINE_DELAY, fill="Log(Airline Delay)"), 
+               data, outlier.shape=NA)
+p = p + scale_fill_manual(name="boxplot", values="white")
+
+# median line
+med = median(data$LOG_AIRLINE_DELAY)
+p = p + geom_hline(aes(yintercept=med, 
+                       linetype = "Median of Log(Airline Delay)"), 
+                   colour="green4")
+p = p + scale_linetype_manual(name="dashed line", values = c(2), 
+            guide=guide_legend(override.aes = list(color = c("green4"))))
+
+# probability of delay
+coeff = 15
+p = p + scale_y_continuous(
+    # Features of the first axis
+    name = "Log(Airline Delay)",
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~./coeff, name="Probability of Airline Delay")
+  )
+data = flights[complete.cases(flights$AIRLINE) & flights$CANCELLED == 0, ] %>%
+  group_by(AIRLINE) %>% summarise("P_AIRLINE_DELAY" = mean(AIRLINE_DELAY > 0)*coeff)
+p = p + geom_point(data=data,
+                   aes(x=AIRLINE, y=P_AIRLINE_DELAY), color="red",
+                   group=1, size=3)
+p = p + geom_line(data=data, 
+                  aes(x=AIRLINE, y=P_AIRLINE_DELAY, color="Probability of Airline Delay"), 
+                  group=1, size=1.2)
+p = p + scale_color_manual(name="line", values="red")
+
+p
+```
+#### By unpleasant index
+
+User input:
+
+```{r}
+# User unpleasant index threshold
+unpleasant_index_cutoff = 0.1
+
+# Options
+unpleasant_delay = 5
+consider_diverted = TRUE
+consider_cancelled = F
+```
+
+```{r}
+flights$UNPLEASANT = flights$CANCELLED == 0 & 
+  flights$AIRLINE_DELAY > 0 & flights$AIRLINE_DELAY > unpleasant_delay
+
+if (consider_cancelled) {
+  flights$UNPLEASANT = flights$UNPLEASANT | flights$CANCELLED == 1
+}
+
+if (consider_diverted) {
+  flights$UNPLEASANT = flights$UNPLEASANT | flights$DIVERTED == 1
+}
+
+data = flights %>% group_by(AIRLINE) %>% 
+  summarise(UNPLEASANT_INDEX = mean(UNPLEASANT)) %>%
+  mutate(ACCEPTABLE = UNPLEASANT_INDEX < unpleasant_index_cutoff)
+
+ggplot(data, aes(x=reorder(AIRLINE, -UNPLEASANT_INDEX), y=UNPLEASANT_INDEX, fill=ACCEPTABLE)) + 
+  geom_bar(stat="identity") + ylab("Unpleasant Index") + xlab("Airlines") +
+  scale_fill_manual(values=c("green", "red"), limits=c(TRUE, FALSE)) + coord_flip()
+```
+
+### Airport to avoid (Departure from USA):
+
+User input:
+
+```{r}
+# User unpleasant index threshold
+unpleasant_index_cutoff = 0.02
+origin_state = "TX"
+
+# Options
+unpleasant_delay = 2
+consider_weather = TRUE
+consider_cancelled = FALSE
+unpleasant_weather_delay = 5
+```
+
+```{r}
+flights$UNPLEASANT = flights$CANCELLED == 0 & 
+  flights$SECURITY_DELAY > 0 & flights$SECURITY_DELAY > unpleasant_delay
+
+if (consider_weather) {
+  flights$UNPLEASANT = flights$UNPLEASANT | 
+    (flights$CANCELLED == 0 & flights$WEATHER_DELAY >= 10)
+}
+
+if (consider_cancelled) {
+  flights$UNPLEASANT = flights$UNPLEASANT | flights$CANCELLED == 1
+}
+
+data = flights %>% merge(airports, by.x="ORIGIN_AIRPORT", by.y="IATA_CODE") %>%
+  filter((tolower(origin_state) == "all" | STATE == origin_state) & CANCELLED == 0) %>%
+  group_by(ORIGIN_AIRPORT) %>%
+  summarise(UNPLEASANT_INDEX = mean(UNPLEASANT)) %>%
+  mutate(ACCEPTABLE = UNPLEASANT_INDEX < unpleasant_index_cutoff)
+
+ggplot(data, 
+       aes(x=reorder(ORIGIN_AIRPORT, -UNPLEASANT_INDEX), 
+           y=UNPLEASANT_INDEX, fill=ACCEPTABLE)) + 
+  geom_bar(stat="identity") + ylab("Unpleasant Index") + xlab("Airports") +
+  scale_fill_manual(values=c("green", "red"), limits=c(TRUE, FALSE)) + coord_flip()
+```
+
+Discussion notes:
+- delay * (cancel + delay)
+- cut off point

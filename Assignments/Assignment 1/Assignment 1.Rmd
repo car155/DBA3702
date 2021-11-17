@@ -1,0 +1,110 @@
+---
+title: "Assignment 1"
+author: "Carissa Ying Geok Teng, A0205190R"
+date: "8/21/2021"
+output: html_document
+---
+
+## Q1
+
+### 1.1
+
+```{r}
+# Using a library
+library(formattable)
+
+sales <- c(1736134, 10034,1003948,209445,98878.76,398454,777734.12,1039489.34,293894,9834,9384754.65)
+
+# format to currency
+sales_formatted <- currency(sales, "$", 2L)
+
+##########################################
+# format to currency
+# sales_formatted <- sprintf("$%#.2f", sales)
+##########################################
+
+# create names
+num <- sprintf("%02d", 1:11)
+names <- paste("customer", num, sep="")
+names(sales_formatted) = names
+
+# answer
+sales_formatted
+
+```
+
+### 1.2
+
+```{r}
+# filling the vector
+categories <- rep("VIC", 11)
+categories[sales > 1000000] <- "VVIC"
+categories[sales < 100000] <- "IC"
+categories <- factor(categories)
+names(categories) <- names
+
+# answer
+categories
+```
+
+## Q2
+
+```{r}
+n <- 5
+
+# generate vector
+vec <- append(2:n^2, 1)
+m <- matrix(vec, nrow=n, byrow=T)
+
+# answer 
+m
+```
+
+## Q3
+
+### 3.1
+
+```{r}
+countries = "Athens (Greece), Paris (France), St. Louis (United States), London (England), Stockholm (Sweden), Berlin (Germany) [cancelled], Antwerp (Belgium), Paris (France), Amsterdam (Netherlands), Los Angeles (United States), Berlin (Germany), Tokyo (Japan) [cancelled], London (England) [cancelled], London (England), Helsinki (Finland), Melbourne (Australia), Rome (Italy), Tokyo (Japan), Mexico City (Mexico), Munich (West Germany), Montreal (Canada), Moscow (Soviet Union), Los Angeles (United Statesz), Seoul (South Korea), Barcelona (Spain), Atlanta (United States), Sydney (Australia), Athens (Greece), Beijing (China), London (England), Rio de Janeiro (Brazil), Tokyo (Japan)"
+
+cities = gsub(" \\([A-Za-z ]*\\)", "", countries) # space then (only alphabets)
+
+# answer
+cities
+```
+
+### 3.2
+
+```{r}
+cities_formatted = gsub(" \\[cancelled\\]", "", cities)
+
+# answer
+cities_formatted
+```
+
+### 3.3
+
+```{r}
+cities_split = unlist(strsplit(cities_formatted, ", "))
+
+# answer
+cities_split
+```
+
+### 3.4
+
+```{r}
+years = seq(1896, 2020, 4)
+
+# answer
+years
+```
+
+### 3.5
+
+```{r}
+olympics = paste(cities_split, "Olympics", years)
+
+# answer
+olympics
+```

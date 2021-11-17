@@ -1,0 +1,249 @@
+---
+title: "Assignment 6"
+author: "SA01 Team 2"
+date: "10/16/2021"
+output: html_document
+---
+
+# Assignment 6
+
+Packages:
+
+```{r, warning=FALSE, message=FALSE}
+library("dplyr")
+library("ggmap")
+library("ggplot2")
+library("htmltools")
+library("leaflet")
+library("leaflet.extras")
+library("lubridate")
+library("rworldmap")
+library("tidyverse")
+```
+
+Data:
+
+```{r}
+flights = read.csv("./Data/flights.csv")
+airports = read.csv("./Data/airports.csv")
+airlines = read.csv("./Data/airlines.csv")
+```
+
+### (1) Clean Data
+
+flights:
+
+```{r}
+# Format scheduled departure time
+flights$SCHEDULED_DEPARTURE_DATE = paste(flights$YEAR, flights$MONTH, flights$DAY, sep="-")
+flights$SCHEDULED_DEPARTURE = sprintf("%04.0f", flights$SCHEDULED_DEPARTURE)
+flights$SCHEDULED_DEPARTURE = strptime(paste(flights$SCHEDULED_DEPARTURE_DATE, flights$SCHEDULED_DEPARTURE), format='%Y-%m-%d %H%M')
+
+# Format departure time
+flights$DEPARTURE_TIME = sprintf("%04.0f", flights$DEPARTURE_TIME)
+flights$DEPARTURE_TIME = strptime(paste(flights$SCHEDULED_DEPARTURE_DATE, flights$DEPARTURE_TIME), format='%Y-%m-%d %H%M')
+wrong_date = (flights$SCHEDULED_DEPARTURE > flights$DEPARTURE_TIME) &
+  (flights$DEPARTURE_DELAY > 0) & 
+  !is.na(flights$DEPARTURE_TIME)
+flights[wrong_date, ]$DEPARTURE_TIME = flights[wrong_date, ]$DEPARTURE_TIME + days(1)
+
+# Format wheels off time
+flights$WHEELS_OFF = flights$DEPARTURE_TIME + minutes(flights$TAXI_OUT)
+
+# Format wheels on time
+flights$WHEELS_ON = flights$WHEELS_OFF + minutes(flights$AIR_TIME)
+
+# Format arrival time
+flights$ARRIVAL_TIME = flights$WHEELS_ON + minutes(flights$TAXI_IN)
+
+# replace NA delays with 0
+not_cancelled = flights$CANCELLED == 0
+flights[not_cancelled, ] = flights[not_cancelled, ] %>% mutate_at(c(27:31), ~replace(., is.na(.), 0))
+
+# Remove unnecessary column
+flights = flights[-32]
+
+head(flights)
+```
+
+airports:
+
+```{r, include=FALSE}
+ggmap::register_google(key='AIzaSyCnGFj3-tmhyhkx2Suxw3HNa6P0c0fjHc0')
+```
+
+```{r}
+missing = is.na(airports$LATITUDE)
+
+loc = paste(airports$AIRPORT, airports$CITY, ", ")
+loc = loc[missing]
+loc = geocode(loc, output="latlon")
+airports[missing, c("LATITUDE", "LONGITUDE")] = loc[c("lat", "lon")]
+```
+
+### (2) Data Visualisation
+
+#### Which airline to choose or avoid when travelling?
+
+User input:
+
+```{r}
+# User unpleasant index threshold
+unpleasant_index_cutoff = 0.1
+
+# Options
+unpleasant_delay = 5
+consider_diverted = TRUE
+consider_cancelled = FALSE
+```
+
+```{r}
+flights$UNPLEASANT = flights$CANCELLED == 0 & 
+  flights$AIRLINE_DELAY > 0 & flights$AIRLINE_DELAY > unpleasant_delay
+
+if (consider_cancelled) {
+  flights$UNPLEASANT = flights$UNPLEASANT | flights$CANCELLED == 1
+}
+
+if (consider_diverted) {
+  flights$UNPLEASANT = flights$UNPLEASANT | flights$DIVERTED == 1
+}
+
+data = flights %>% group_by(AIRLINE) %>% 
+  summarise(UNPLEASANT_INDEX = mean(UNPLEASANT)) %>%
+  mutate(ACCEPTABLE = UNPLEASANT_INDEX < unpleasant_index_cutoff)
+
+ggplot(data, aes(x=reorder(AIRLINE, -UNPLEASANT_INDEX), y=UNPLEASANT_INDEX, fill=ACCEPTABLE)) + 
+  geom_bar(stat="identity") + ylab("Unpleasant Index") + xlab("Airlines") +
+  scale_fill_manual(values=c("green", "red"), limits=c(TRUE, FALSE)) + coord_flip()
+```
+
+#### Which airport to choose or avoid when travelling (Departure from USA)?
+
+User input:
+
+```{r}
+# User unpleasant index threshold
+unpleasant_index_cutoff = 0.02
+origin_state = "TX"
+
+# Options
+unpleasant_delay = 2
+consider_weather = TRUE
+consider_cancelled = FALSE
+unpleasant_weather_delay = 5
+```
+
+```{r}
+flights$UNPLEASANT = flights$CANCELLED == 0 & 
+  flights$SECURITY_DELAY > 0 & flights$SECURITY_DELAY > unpleasant_delay
+
+if (consider_weather) {
+  flights$UNPLEASANT = flights$UNPLEASANT | 
+    (flights$CANCELLED == 0 & flights$WEATHER_DELAY >= 10)
+}
+
+if (consider_cancelled) {
+  flights$UNPLEASANT = flights$UNPLEASANT | flights$CANCELLED == 1
+}
+
+data = flights %>% merge(airports, by.x="ORIGIN_AIRPORT", by.y="IATA_CODE") %>%
+  filter(tolower(origin_state) == "all" | STATE == origin_state) %>%
+  group_by(ORIGIN_AIRPORT) %>%
+  summarise(UNPLEASANT_INDEX = mean(UNPLEASANT)) %>%
+  mutate(ACCEPTABLE = UNPLEASANT_INDEX < unpleasant_index_cutoff)
+
+ggplot(data, 
+       aes(x=reorder(ORIGIN_AIRPORT, -UNPLEASANT_INDEX), 
+           y=UNPLEASANT_INDEX, fill=ACCEPTABLE)) + 
+  geom_bar(stat="identity") + ylab("Unpleasant Index") + xlab("Airports") +
+  scale_fill_manual(values=c("green", "red"), limits=c(TRUE, FALSE)) + coord_flip()
+```
+
+#### What is the seasonal effect on flight performance?
+
+User input:
+
+```{r}
+# Options
+unpleasant_delay = 5
+consider_diverted = TRUE
+consider_cancelled = TRUE
+```
+
+```{r}
+flights$UNPLEASANT = flights$CANCELLED == 0 & 
+  flights$ARRIVAL_DELAY > unpleasant_delay
+
+if (consider_cancelled) {
+  flights$UNPLEASANT = flights$UNPLEASANT | flights$CANCELLED == 1
+}
+
+if (consider_diverted) {
+  flights$UNPLEASANT = flights$UNPLEASANT | flights$DIVERTED == 1
+}
+
+season_ui = flights %>% group_by(MONTH) %>% 
+  summarise(UNPLEASANT_INDEX = mean(UNPLEASANT)) %>%
+  mutate(MONTH_NUM = MONTH, MONTH=month.name) %>%
+  mutate(season = ifelse(MONTH_NUM %in% c(3:5), "Spring", 
+        ifelse(MONTH_NUM %in% c(6:8), "Summer", 
+        ifelse(MONTH_NUM %in% c(9:11),"Autum","Winter")))) %>%
+  arrange(season)
+
+season_ui$MONTH = factor(season_ui$MONTH, levels=season_ui$MONTH)
+ggplot(season_ui, aes(x=MONTH, y=UNPLEASANT_INDEX)) + 
+  geom_point(aes(colour=season), stat="identity", size=5) + 
+  theme(axis.text.x = element_text(angle=70, vjust=0.5) )
+```
+
+#### How to visualise the data on map?
+
+```{r, warning=FALSE}
+# Plot the airports on world map 
+interactivemap <- leaflet(airports) %>% 
+  addProviderTiles(providers$CartoDB.Positron) %>% 
+  addCircleMarkers(~as.numeric(airports$LONGITUDE), as.numeric(airports$LATITUDE), stroke=FALSE, 
+                   fillOpacity = 0.8, popup=airports$AIRPORT,
+                   clusterOptions=markerClusterOptions(), radius=5) 
+
+tagList(interactivemap)
+```
+User Input:
+
+```{r}
+# Options
+unpleasant_delay = 2
+consider_weather = TRUE
+consider_cancelled = FALSE
+unpleasant_weather_delay = 5
+```
+
+```{r}
+flights$UNPLEASANT = flights$CANCELLED == 0 & 
+  flights$SECURITY_DELAY > 0 & flights$SECURITY_DELAY > unpleasant_delay
+
+if (consider_weather) {
+  flights$UNPLEASANT = flights$UNPLEASANT | 
+    (flights$CANCELLED == 0 & flights$WEATHER_DELAY >= 10)
+}
+
+if (consider_cancelled) {
+  flights$UNPLEASANT = flights$UNPLEASANT | flights$CANCELLED == 1
+}
+
+data = flights %>% group_by(ORIGIN_AIRPORT) %>%
+  summarise(COUNT=n(), UNPLEASANT_INDEX = mean(UNPLEASANT)) %>%
+  merge(airports, by.x="ORIGIN_AIRPORT", by.y="IATA_CODE")
+
+us = getMap(resolution = "low")
+ggplot(data, aes(x=LONGITUDE, y=LATITUDE)) +   
+  borders("world", colour=NA, fill="wheat1")  +
+  geom_point(aes(color=UNPLEASANT_INDEX, size=COUNT), alpha=0.4) +
+  scale_color_viridis_c(limits=c(0, 0.05)) + 
+  scale_size_continuous(range=c(0,15)) + 
+  scale_x_continuous(name="Longitude", limits=c(-130, -60)) +
+  scale_y_continuous(name="Latitude", limits=c(15, 50)) + 
+  labs(title="Magnitude of flights")
+
+```

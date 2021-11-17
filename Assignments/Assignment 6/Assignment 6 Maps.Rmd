@@ -1,0 +1,75 @@
+---
+title: "Assignment 6 Maps"
+author: "Liew Jie Ying"
+date: "10/14/2021"
+output: html_document
+---
+```{r}
+data <- read.csv("./Data/flights.csv")
+airlines <- read.csv("./Data/airlines.csv")
+airports <- read.csv("./Data/airports.csv")
+```
+
+```{r}
+#To just plot all the airports on the map 
+library(leaflet)
+library(tidyverse)
+#plot the airports on world map 
+m <- leaflet() %>% addTiles() %>% setView(lng=-95,lat=40,zoom=4) #%>% addProviderTiles(m,options=providerTileOptions(minZoom=2,maxZoom=6)) 
+m <- addCircleMarkers(m,lng=airports$LONGITUDE,
+                     lat=airports$LATITUDE,
+                     popup=airports$AIRPORT,
+                     radius=3,
+                     stroke=FALSE,
+                     fillOpacity=1) 
+m
+```
+
+```{r}
+#Interactive map 
+
+library(htmltools)
+#group airports into countries then based on the countries - heat map - USA
+uniqueState <- unique(airports$STATE)
+head(uniqueState)
+
+for (i in 1:length(uniqueState))
+{
+  airport.region <- airports[airports$STATE == uniqueState[i],]
+}
+
+library(leaflet.extras)
+
+#need include the counts of flights going in and out of an airport 
+#keep only those 3 letter airports 
+df3 <- data %>% filter(nchar(data$ORIGIN_AIRPORT)<=3)
+
+origindf <- as.data.frame(table(df3$ORIGIN_AIRPORT))
+names(origindf) <- c("IATA_CODE","Count")
+
+#match the data with its state from airports #combine two dataframe based on a matching value
+df3 <- left_join(origindf,airports[,c("IATA_CODE","STATE")],by="IATA_CODE")
+#filter based on each state and how many outgoing flights from airports in each state
+counts <- df3 %>% group_by(STATE) %>% summarise(Count = sum(Count))
+
+#merge the counts of each airport into airports 
+airports <- left_join(airports,df3[,c("IATA_CODE","Count")],by="IATA_CODE")
+
+interactivemap <-airports %>% leaflet() %>% addProviderTiles(providers$CartoDB.Positron) %>% addCircleMarkers(~as.numeric(airports$LONGITUDE), as.numeric(airports$LATITUDE),stroke = FALSE,fillOpacity = 0.8,popup=airports$AIRPORT,clusterOptions = markerClusterOptions(),radius= 5) 
+
+#interactivemap
+tagList(interactivemap)
+```
+
+```{r}
+library(rworldmap)
+# get map
+us <- getMap(resolution = "low")
+ggplot(airports, aes(x=LONGITUDE, y= LATITUDE),size=airports$Count) +   
+  borders("world", colour=NA, fill="wheat1")  +
+  geom_point(color="blue", alpha = .4, size = airports$Count/2000) +
+  scale_x_continuous(name="Longitude", limits=c(-130, -60)) +
+  scale_y_continuous(name="Latitude", limits=c(15, 50)) + 
+  labs(title="Magnitude of flights")
+```
+

@@ -1,0 +1,157 @@
+---
+title: "Assignment 4"
+output: html_document
+---
+
+```{r, message=F}
+library("rvest")
+library("tidyverse")
+library("curl")
+library("XML")
+library("dplyr")
+library("tidyr")
+```
+
+## Q1
+
+```{r}
+## HTML nodes
+url = "http://www.espn.com/nba/players"
+page = read_html(url)
+nodes = html_nodes(page, ".small-logos div a")
+rosters = html_attr(nodes,"href")
+
+# links for each team
+url_header = "http://www.espn.com"
+urls = paste0(url_header, rosters)
+
+# name for each team
+teams = html_text(nodes)
+
+# no. of teams
+nteams = length(teams)
+
+nba_data = data.frame("Team" = teams)
+
+for (x in 1:nteams) {
+  url = curl(urls[[x]])
+  urldata = readLines(url)
+  team_data = readHTMLTable(urldata, stringAsFactors=F)
+  # assign team name
+  team_data$Team = teams[[x]]
+  # join
+  nba_data = merge(nba_data, team_data, on="Team", all=T)
+  
+  close(url)
+}
+
+head(nba_data)
+```
+
+Cleaning crawled data:
+
+```{r}
+# handle NA
+nba_data_clean = nba_data[rowSums(is.na(nba_data)) == 0, ]
+nba_data_clean[nba_data_clean == "--"] = NA
+
+# column names
+nba_data_clean = nba_data_clean[-2]
+header = colnames(nba_data_clean) %>% 
+  lapply(gsub, pattern="NULL.", replacement="")
+names(nba_data_clean) = header
+
+# team number 
+nba_data_clean = nba_data_clean %>% separate(Name, 
+           into = c("Name", "Jersey"), 
+           sep = "(?<=[A-Za-z])(?=[0-9])",
+           )
+
+# data type
+nba_data_clean$Team = factor(nba_data_clean$Team)
+nba_data_clean$POS = factor(nba_data_clean$POS)
+nba_data_clean$Jersey = as.integer(nba_data_clean$Jersey)
+nba_data_clean$Age = as.integer(nba_data_clean$Age)
+
+nba_data_clean$WT = nba_data_clean$WT %>% 
+  gsub(" lbs", "", .) %>%
+  as.integer()
+names(nba_data_clean)[names(nba_data_clean) == 'WT'] <- 'WT(lbs)'
+
+nba_data_clean$Salary = nba_data_clean$Salary %>% 
+  gsub("[$,]", "", .) %>%
+  as.numeric()
+names(nba_data_clean)[names(nba_data_clean) == 'Salary'] <- 'Salary($)'
+
+# Answer
+head(nba_data_clean)
+```
+
+## Q2
+
+``` {r}
+family_raw = read_csv("./Data/The family with the largest number of children.csv")
+head(family_raw)
+```
+
+Functions:
+
+```{r}
+# Checks to see if values follow the correct input format
+### args: vec -> vector to be checked for compliance
+### returns: a logical vector. Each value corresponds to if the value in that same position in the input passes the compliance check
+complies = function(vec) {
+  return(grepl("^([FM],)+[FM]$", vec))
+}
+
+# returns a vector with common errors corrected
+handle_common_errors = function(vec) {
+  # upper case
+  res = toupper(vec)
+  # removes other symbols
+  res = gsub("[^A-Z, ]", "", res)
+  # abbreviate male and female
+  res = gsub("FEMALE", "F", res)
+  res = gsub("(?<!F)MALE", "M", res, perl=T) # FMALE vague -> F, Male or Female
+  # adds comma between unseparated Fs and Ms where possible
+  select = grepl("^[FM, ]+$", res) # only made of F and M
+  res[select] = res[select] %>% gsub("[, ]*", "", .) %>% 
+    gsub("(?<=[FM])(?=[FM])", ",", ., perl=T)
+  return(res)
+}
+```
+
+Applying functions:
+
+```{r}
+family_unclean = family_raw[!is.na(family_raw$`Gender Sequence`), ]
+
+# input correct
+correct = complies(family_unclean$`Gender Sequence`)
+family_data = family_unclean[correct, ]
+
+# handle incorrect
+family_unclean = family_unclean[!correct, ]
+family_unclean$og_sequence = family_unclean$`Gender Sequence`
+family_unclean$`Gender Sequence` = 
+  handle_common_errors(family_unclean$`Gender Sequence`)
+correct = complies(family_unclean$`Gender Sequence`)
+
+# add corrected rows
+family_data = rbind(family_data, 
+  family_unclean[correct, !names(family_unclean) %in% c("og_sequence")])
+
+# discard rows that only have once child
+family_unclean = family_unclean[!correct, ]
+only_child = grepl("^[FM]$", family_unclean$`Gender Sequence`)
+
+# handle others rows manually
+family_unclean = family_unclean[!only_child, ]
+family_unclean
+```
+
+Cleaned Data:
+
+```{r}
+head(family_data)
+```

@@ -1,0 +1,92 @@
+---
+title: "Assignment 2"
+output: html_document
+---
+
+## Q1
+
+```{r, message=FALSE}
+# importing libraries
+library(dplyr)
+library(tidyr)
+```
+
+```{r}
+# reading data
+univ_raw = read.csv("./Data/Univ Education.csv")
+
+# rename columns
+years = univ_raw[4, -1]
+colnames(univ_raw) = c("Major", years)
+
+# trim
+univ_raw = univ_raw[5:36, ]
+
+# convert to long format
+univ_raw = univ_raw %>% gather(Year, Count, -1)
+
+# convert column classes
+univ_raw$Year = factor(univ_raw$Year)
+univ_raw$Count = univ_raw$Count %>% 
+  gsub(",", "", .) %>% 
+  gsub("na", NA, .) %>%
+  as.integer()
+
+head(univ_raw,20)
+```
+
+## Q2
+
+```{r}
+# gender
+univ_data = univ_raw %>% mutate(univ_raw, Gender = case_when(
+  grepl("Males: ", Major, fixed=T) ~ "Male",
+  grepl("Females: ", Major, fixed=T) ~ "Female"))
+univ_data$Gender = factor(univ_data$Gender)
+
+# major
+univ_data$Major = univ_data$Major %>% 
+  gsub("Males: ", "", .) %>% 
+  gsub("Females: ", "", .) %>%
+  trimws()
+
+# removing na
+univ_data = univ_data %>% filter(complete.cases(univ_data))
+
+head(univ_data,20)
+```
+
+## Q3
+
+```{r}
+gender = univ_data %>% group_by(Gender) %>%
+  summarise(Total = sum(Count)) %>% 
+  filter(Total == max(Total))
+  
+gender$Gender[1]
+```
+
+## Q4
+
+```{r}
+dentistry = univ_data %>% 
+  filter(Major == "Dentistry") %>%
+  group_by(Year) %>%
+  summarise(Total = sum(Count)) %>%
+  filter(Total == max(Total))
+
+dentistry$Year[1]
+```
+
+## Q5
+
+In general, the most favorable major is Humanities & Social Sciences. However, from 2004 to 2008, the favourite was Engineering Sciences.
+
+```{r}
+fav = univ_data %>%
+  filter(Gender == "Female") %>%
+  group_by(Year) %>%
+  summarise(Major = Major[Count == max(Count)])
+
+fav
+```

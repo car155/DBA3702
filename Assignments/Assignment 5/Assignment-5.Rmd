@@ -1,0 +1,58 @@
+---
+title: "Assignment 5"
+output: html_document
+---
+  
+## Iteration function
+
+```{r}
+# returns the position of the winner
+ticket.pos.iteration = function(iter=0) {
+  # stores birthdays of previous persons
+  queue.birthdays = c()
+  
+  # randomly gets a birthday from 1st day to last of the year
+  position = 1
+  person.birthday = sample(1:365, 1, replace=T)
+  
+  # checks if person's birthday is the same as previous persons
+  while (!person.birthday %in% queue.birthdays) {
+    queue.birthdays = c(queue.birthdays, person.birthday)
+
+    # get next person
+    position = position + 1
+    person.birthday = sample(1:365, 1, replace=T)
+  }
+  
+  return(position)
+}
+```
+
+## Running the simulation
+
+```{r}
+n = 10000
+my.pos = 30
+simulation.outcome = data.frame(iter=c(1:n), 
+                                winning.pos=sapply(1:n, ticket.pos.iteration))
+```
+
+## Q1
+
+```{r}
+my.win = simulation.outcome$winning.pos == my.pos
+prob = mean(my.win)
+
+prob
+```
+
+## Q2
+
+```{r}
+library(dplyr)
+
+pos.win.count = simulation.outcome %>% group_by(winning.pos) %>% summarise(count = n())
+best_pos = pos.win.count[which.max(pos.win.count$count),]$winning.pos
+
+best_pos
+```

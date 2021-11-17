@@ -1,0 +1,122 @@
+---
+title: "Assignment 3"
+output: html_document
+---
+
+## Q1
+
+(1)
+
+```{r}
+library("curl")
+library("XML")
+
+# curl from website
+url = curl("https://coronavirus.jhu.edu/data/mortality")
+urldata = readLines(url)
+corona_data = readHTMLTable(urldata, stringAsFactors=F)[[1]]
+
+# transform data
+corona_data$Confirmed = as.integer(gsub(",", "", corona_data$Confirmed))
+corona_data$Deaths = as.integer(gsub(",", "", corona_data$Deaths))
+corona_data["Deaths/100K pop."] = as.numeric(corona_data[ ,"Deaths/100K pop."])
+head(corona_data)
+
+# read from csv
+countries_data = read.csv("./Data/Countries.csv")
+head(countries_data)
+
+# left join 
+# corona data is a must but population can be filled using existing data
+data = merge(corona_data, countries_data, by="Country", all.x=T)
+head(data)
+```
+
+(2)
+
+```{r}
+# calculate population for missing rows
+rows = is.na(data$Population)
+data[rows, "Population"] = data[rows,"Deaths"] / 
+  data[rows,"Deaths/100K pop."] * 100000
+
+# remove rows without population (could not calculate from existing)
+cleaned_data = data[complete.cases(data$Population), ]
+
+# calculate confirmed cases per 100k
+cleaned_data$"confirmed_per_100k" = cleaned_data$Confirmed / 
+  cleaned_data$Population * 100000
+head(cleaned_data)
+```
+
+(3)
+
+```{r}
+library("countrycode")
+library("dplyr")
+
+cleaned_data$Continent = countrycode(sourcevar=cleaned_data[, "Country"],
+                             origin="country.name",
+                             destination="continent")
+
+continent_data = cleaned_data %>% group_by(Continent) %>% 
+  summarise(Ave_confirmed = mean(confirmed_per_100k))
+
+head(continent_data)
+
+continent_data[which.max(continent_data$Ave_confirmed), "Continent"]
+```
+
+## Q2
+
+```{r}
+vacc_data = read.csv("./Data/country_vaccinations.csv")
+
+# separate vaccine types
+vacc_types = unique(unlist(strsplit(vacc_data$vaccines, ", ")))
+for (vacc in vacc_types) {
+  vacc_data[vacc] = grepl(vacc, vacc_data$vaccines, fixed=T)
+}
+
+# try to resolve vaccinations data
+### sum
+rows = which(is.na(vacc_data$total_vaccinations), arr.ind=T)
+vacc_data[rows, "total_vaccinations"] = vacc_data[rows, "people_vaccinated"] +
+  vacc_data[rows, "people_fully_vaccinated"]
+
+
+head(vacc_data)
+```
+
+## Q3
+
+```{r}
+library(rvest)
+library(tidyverse)
+
+
+url = "https://www.srx.com.sg/singapore-property-listings/hdb-for-sale"
+page = read_html(url)
+nodes = html_nodes(page, ".listingDetailTitle")
+
+listings = html_attr(nodes,"href")
+url_header = "https://www.srx.com.sg"
+urls = paste0(url_header, listings)
+
+houses = html_text(nodes) %>% gsub("\n", "", .) %>% 
+  gsub("\t", "", .) %>% trimws()
+
+hdb_data = unique(data.frame(Housing=houses, URL=urls))
+
+for (i in 1:nrow(hdb_data)) {
+  page = read_html(hdb_data[i, "URL"])
+  nodes = html_nodes(page, ".row.listing-about")
+  hdb_about = html_children(nodes) %>% html_text() %>% 
+    gsub("\n", "", .) %>% gsub("\t", "", .) %>% trimws()
+  headers = hdb_about[seq(1, length(hdb_about), by=2)]
+  values = hdb_about[seq(2, length(hdb_about), by=2)]
+  hdb_data[i, c(headers)] = c(values)
+}
+
+head(hdb_data)
+```

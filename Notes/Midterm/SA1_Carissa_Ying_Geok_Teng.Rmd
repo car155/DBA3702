@@ -1,0 +1,156 @@
+---
+title: "SA1_Carissa_Ying_Geok_Teng"
+author: "Carissa Ying Geok Teng, A0205190R"
+date: "10/2/2021"
+output: html_document
+---
+
+```{r}
+library("tidyr")
+library("dplyr")
+library("gapminder")
+```
+
+# Q1
+
+## (1)
+
+```{r}
+medals = read.csv("./Data/Country_Medals.csv")
+
+# get column names
+cols = unlist(strsplit(colnames(medals), ".", fixed=T))
+
+# use tidyr to split columns
+medals = medals %>% separate(colnames(medals), into=cols, sep=";")
+
+# convert numeric
+
+
+# check format
+head(medals)
+```
+
+## (2)
+
+```{r}
+# get country names
+country_names = unique(medals$Country_Name)
+
+# for each, get the code and apply to the NA
+no_na = medals[complete.cases(medals),]
+for (country_name in country_names){
+  code = medals[medals$Country_Name == country_name,]$Country_Code[1]
+  
+  has_missing = (medals$Country_Code == "") && medals$Country_Name == country_name
+  medals[has_missing, "Country_Code"] = code
+}
+  
+head(medals)
+```
+
+## (3)
+
+```{r}
+n_host = medals %>% group_by(Host_country) %>% summarise(Count = n())
+
+n_host[which.max(n_host$Count),]$Host_country
+```
+
+## (4)
+
+```{r}
+# convert type to numeric
+medals$Bronze = as.integer(medals$Bronze)
+medals$Silver = as.integer(medals$Silver)
+medals$Gold = as.integer(medals$Gold)
+
+medals$Total = medals$Bronze + medals$Silver + medals$Gold
+
+# summarise 
+n_medals = medals %>% group_by(Country_Code) %>% summarise(Total = sum(Total))
+
+# sort
+sorter = order(n_medals$Total, decreasing=T)
+n_medals_sorted = n_medals[sorter, ]
+code = n_medals_sorted[2, ]$Country_Code
+gsub("[\\(\\)]", "", code)
+```
+
+```{r}
+# get years
+medals$Year = as.integer(medals$Year)
+years = unique(medals$Year)
+
+# for each year, check that country that won most medals == country that won most golds
+exceptions = c()
+
+for (year in years) {
+  focus = medals[medals$Year == year, ]
+  most_gold = focus[which.max(focus$Gold), ]$Country_Name
+  most_medals = focus[which.max(focus$Total), ]$Country_Name
+  if (most_gold != most_medals) {
+    exceptions = append(exceptions, year)
+  }
+}
+
+exceptions
+```
+
+## (6)
+
+```{r}
+# Medal.Year and Gapminder.Year
+Medal.Year = unique(medals$Year)
+Gapminder.Year= unique(gapminder$year)
+
+# Row = Medal.Year
+x = t(mapply(rep, Medal.Year, rep(length(Gapminder.Year), length(Medal.Year))))
+
+# col = Gapminder.Year
+y = mapply(rep, Gapminder.Year, rep(length(Medal.Year), length(Gapminder.Year)))
+
+# differences
+diff = as.data.frame(abs(x - y))
+colnames(diff) = Gapminder.Year
+rownames(diff) = Medal.Year
+diff$Min.Diff = apply(diff, MARGIN=1, FUN=min)
+diff$Closest.Year = names(diff)[apply(diff, MARGIN=1, FUN=which.min)]
+
+
+years = data.frame("Medal.Year"=Medal.Year, "Closest.Gapminder"=diff$Closest.Year, "Difference"=diff$Min.Diff)
+head(years)
+```
+
+## (7)
+
+```{r}
+# join medals and gapminder
+final.data = merge(medals, gapminder[,-which(names(gapminder)=="year")], by.x=
+"Country_Name", by.y="country"
+)
+
+#join with years
+final.data = merge(final.data, years, by.x="Year", by.y="Medal.Year")
+
+# remove missing
+final.data = final.data[complete.cases(final.data), ]
+
+# remove difference
+final.data = final.data[final.data$Difference <= 3, ]
+final.data$Difference = NA
+
+head(final.data)
+```
+
+## (8)
+
+```{r}
+final.data$GDP = final.data$pop * final.data$gdpPercap
+
+cor(final.data[ ,c("Gold", "Total", "lifeExp", "pop", "gdpPercap", "GDP")])
+
+```
+
+Conclusion:  
+The total number of medals won is positively correlated to the wealth of a country.

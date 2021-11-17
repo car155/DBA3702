@@ -1,0 +1,203 @@
+---
+title: "SA1_Carissa Ying Geok Teng"
+author: "SA1 Carissa Ying Geok Teng A0205190R"
+date: "11/2/2021"
+output: html_document
+---
+
+```{r}
+library("dplyr")
+library("lubridate")
+library("ggplot2")
+library("tidyr")
+library("ggmap")
+library("leaflet")
+```
+
+
+```{r}
+journeys = read.csv("./Data/journeys.csv")
+stations = read.csv("./Data/stations.csv")
+
+head(journeys)
+head(stations)
+```
+
+## Q1
+
+```{r}
+journeys = journeys %>% mutate(Start.Time = paste0(Start.Year, "-", 
+                                                   Start.Month, "-",
+                                                   Start.Date, " ",
+                                                   Start.Hour, ":",
+                                                   Start.Minute, ":"))
+
+journeys$Start.Time = journeys$Start.Time %>% 
+  parse_date_time(c("$Y-%m-%d %H:%M", "%y-%m-%d %H:%M"))
+```
+
+## Q2 
+
+```{r}
+# Get the end time
+journeys = journeys %>% mutate(End.Time = paste0(End.Year, "-", 
+                                                   End.Month, "-",
+                                                   End.Date, " ",
+                                                   End.Hour, ":",
+                                                   End.Minute, ":"))
+
+journeys$End.Time = journeys$End.Time %>% 
+  parse_date_time(c("$Y-%m-%d %H:%M", "%y-%m-%d %H:%M"))
+
+## Idea: if start time is 14min 59s and time taken is 61s, the end time is 16min 00s. It gets recorded as 14min to 16min. The difference here is 120s. Hence the max difference is 1min
+
+# Get the difference in seconds, check if withint +-60s
+time.taken = journeys$End.Time - journeys$Start.Time
+journeys$Time.Valid = time.taken >= (journeys$Journey.Duration - 60) &
+  time.taken <= (journeys$Journey.Duration + 60)
+
+# Check that all are valid
+head(journeys[!journeys$Time.Valid, ])
+```
+
+## Q3
+
+Generally, there is a higher demand for bike sharing on weekdays (Monday to Friday) than on Weekends (Saturday and Sunday). However, it is worth noting that the demand on Wednesday is significantly lower than on other weekdays.
+
+```{r}
+# add all the demand of the same day in the same week
+journeys$Start.Week = week(journeys$Start.Time)
+journeys$Start.Week.Day = weekdays(journeys$Start.Time)
+data = journeys %>% group_by(Start.Week, Start.Week.Day) %>%
+  summarise(Demand = n())
+
+# Average each day's demand
+data = data %>% group_by(Start.Week.Day) %>% summarise(Mean.Demand = mean(Demand))
+
+# Reorder data
+order = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+data = data %>% slice(match(order, Start.Week.Day))
+data$Start.Week.Day <- factor(data$Start.Week.Day, levels=unique(data$Start.Week.Day))
+
+# plot
+ggplot(data=data, aes(x=Start.Week.Day, y=Mean.Demand)) + 
+  geom_line(group=1) + 
+  geom_point(size=3, shape=23, fill="blue")
+
+```
+
+## Q4
+
+```{r}
+# remove brackets
+stations$Location = gsub("\\(|\\)", "", stations$Location)
+# split cols
+stations = stations %>% separate(Location, c("Latitude", "Longitude"), sep=",")
+
+head(stations)
+```
+
+## Q5
+
+### (a)
+
+```{r}
+# get the start minute of the time slot
+journeys$Timeslot =  ifelse(journeys$Start.Minute<30, 0, 30)
+
+# get the start hour
+journeys$Timeslot = paste0(journeys$Start.Hour, ":", journeys$Timeslot)
+
+# parse
+journeys$Timeslot = strptime(journeys$Timeslot, "%H:%M")
+
+# create end time
+journeys$Timeslot = paste0(strftime(journeys$Timeslot, "%H:%M"),
+                           "-",
+                           strftime(journeys$Timeslot + minutes(30), "%H:%M"))
+
+head(journeys)
+```
+
+### (b)
+
+```{r}
+journeys$Is.Weekend = journeys$Start.Week.Day %in% c("Saturday", "Sunday")
+
+head(journeys)
+```
+
+### (c)
+
+The hypothesis that weekday demand is driven by the practicalities of going to work seem to hold true. The weekday line plot shows higher demands around the 7:30-8:00 timeslot and the 17:30-18:00 timeslot. This means that it is likely people are using the bike sharing to travel to and from work.
+
+The weekend plot, on the other hand, shows a low demand in the early morning and late night and higher demand in the middle of the day, which is what we would expect from leisurely use.
+
+```{r}
+# Get the demand for each day
+data = journeys %>% group_by(as.Date(Start.Time), Timeslot) %>%
+  summarise(Is.Weekend = all(Is.Weekend), Demand = n())
+
+# Get the average demand for weekday/end
+data = data %>% group_by(Is.Weekend, Timeslot) %>%
+  summarise(Mean.Demand = mean(Demand))
+
+# Plot
+ggplot(data=data, aes(x=Timeslot, y=Mean.Demand, group=Is.Weekend, color=Is.Weekend)) + 
+  geom_line() + 
+  theme(axis.text.x = element_text(angle=90))
+```
+
+## Q6
+
+The current planned capacity does not seem to account for the station's crowd. Otherwise, we would see a generally increasing trend. Hence an improvement can be made in the plans to assign higher capacities where there is a greater demand.
+
+```{r}
+# Get daily demand
+data = journeys %>% group_by(as.Date(Start.Time), Start.Station.ID) %>%
+  summarise(Station.Crowd = n())
+
+# Get average crowd per station
+data = data %>% group_by(Start.Station.ID) %>%
+  summarise(Mean.Station.Crowd = mean(Station.Crowd))
+
+# Merge to get capacity
+data = merge(data, stations[c("Station.ID", "Capacity")], 
+             by.x="Start.Station.ID", by.y="Station.ID")
+
+# Plot
+ggplot(data=data, aes(x=Mean.Station.Crowd, y=Capacity)) + 
+  geom_line(group=1)
+```
+
+## Q7
+
+```{r}
+# Filter for weekdays
+data = journeys[!journeys$Is.Weekend,]
+
+# Get the busiest starting stations
+busiest.start = journeys %>% group_by(as.Date(Start.Time), Start.Station.ID) %>%
+  summarise(Demand = n())
+busiest.start = busiest.start %>% group_by(Start.Station.ID) %>%
+  summarise(Mean.Demand = mean(Demand))
+busiest.start = busiest.start[order(busiest.start$Mean.Demand, decreasing=T), ]
+busiest.start = busiest.start[1:10, ]
+busiest.start$Busiest.Start = TRUE
+
+# Get the busiest end
+busiest.end = journeys %>% group_by(as.Date(End.Time), End.Station.ID) %>%
+  summarise(Demand = n())
+busiest.end = busiest.end %>% group_by(End.Station.ID) %>%
+  summarise(Mean.Demand = mean(Demand))
+busiest.end = busiest.end[order(busiest.end$Mean.Demand, decreasing=T), ]
+busiest.end = busiest.end[1:10, ]
+busiest.end$Busiest.End = TRUE
+
+# join
+busiest = merge(busiest.start, busiest.end, 
+                by.x=c("Start.Station.ID", "Mean.Demand"), 
+                by.y=c("End.Station.ID", "Mean.Demand"), all=T)
+
+head(busiest)
+```

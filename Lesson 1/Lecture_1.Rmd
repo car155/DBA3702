@@ -1,0 +1,37 @@
+---
+title: "Lesson 1"
+output: html_document
+---
+
+## Lesson 1
+
+File 'sf_crime-data.csv' was downloaded and placed in the same folder as this markdown
+
+```{r crime-wrong}
+#read.csv("sf_crime-data-2017.csv") -> not in the correct working directory
+```
+
+We need to define the directory properly. This can be done by explicitly defining the file path (absolute) as such:
+
+```{r crime-absolute}
+head(read.csv("C:/Users/Carissa Ying/Documents/Year 3 Sem 1/DBA3702/Lesson 1/sf_crime-data-2017.csv"))
+```
+
+**However**, this is not recommended since it affects code sharing. We can use relative paths instead.
+```{r crime-relative}
+# other users can change this part to suit their own systems
+setwd("C:/Users/Carissa Ying/Documents/Year 3 Sem 1/DBA3702/Lesson 1")
+head(read.csv("sf_crime-data-2017.csv"))
+```
+
+```{r crime-relative-2}
+# . refers to the current working directory
+head(read.csv("./sf_crime-data-2017.csv"))
+# .. navigates to the parent directory
+```
+
+It is also possible to set the root working directory under Tools > Global Options > General
+
+## Packages
+
+You can install packages by using the 'install.packages("dplyr")' command. You can then load the package using 'library(dplyr)'

@@ -1,0 +1,239 @@
+---
+title: "Lecture 8"
+output: html_document
+---
+
+## Data Transformation
+
+1. Modelling Needs
+2. Better Visualisation
+3. Better Interpretation 
+
+### 1. Mathematical Transformation
+
+```{r}
+library("ggplot2")
+
+data = read.csv("./Data/area&population-raw.csv")
+ggplot(data, aes(x=Area..in.sq.mi., y=Population)) + geom_point(colour="blue")
+
+```
+
+The visualisation is poor. Most points are concentrated in the bottom left corner, making it difficult to draw any reasonable conclusions. To figure out how to transform the data, we need to understand it first.
+
+Density plot of area:
+
+```{r}
+ggplot(data, aes(x=Area..in.sq.mi.)) + geom_density()
+ggplot(data, aes(x=Population)) + geom_density()
+```
+
+The graphs look logarithmic. We can now transform the graphs.
+
+```{r}
+data$area_log = log10(data$Area..in.sq.mi.)
+data$population_log = log10(data$Population)
+
+ggplot(data, aes(x=area_log, y=population_log)) + geom_point(colour="blue") + geom_smooth(method="lm", color="red")
+```
+
+### 2. Categorisation
+
+Sometimes, data is split into categories. For numerical values, they are usually split into intervals of equal lengths. 
+
+Note that this method might carry risks. For example, 0-2 years old vs 20-22 years old. Babies change a lot in 3 years while young adults do not change as dramatically. We must always evaluate what the meaning of the intervals we choose.
+
+Numerical values are also split along convenient numbers (e.g. 1-1000, 1000-5000). Such methods have no statistical foundation. This is also risky as there might not be a pronounced difference between the 2 groups (e.g. 999 vs 1001).
+
+One way to base our categorisations is with visualisation:
+
+```{r}
+custdata = read.table("./Data/custdata.tsv", sep="\t", header=T)
+
+ggplot(custdata, aes(x=income, y=as.numeric(health.ins))) + geom_point(position=position_jitter(w=0.05, h=0.05)) + scale_x_log10(breaks=c(100,1000,10000,100000)) + geom_smooth() + annotation_logticks(sides="bt")
+```
+
+The blue line is the best fit line of customers' likelyhood of buying insurance with respect to their income. It has a clear increase between 20,000 to 100,000. Hence, it is best to have 3 groups: <20000, 20000-100000, >100000.
+
+### 3. Normalisation
+
+When we want to compare data that is affected by other environmental factors that cause its weight to differ, we need to normalise it. For example, it is difficult to draw any reasonable conclusions about the income in Indonesia vs in Singapore using just the raw data. Other factors like exchange rate and purchasing power greatly affect our results.
+
+We should instead use the median/mean as benchmarks within each country to normalise their respective income data. 
+
+```{}
+# join data
+custdata = merge(custdata, median.income, by.x="State.of.res", by.y="State")
+
+# normalise
+custdata$income.normalised = with(custdata, income/Per.Capita.Income)
+```
+
+## ggmap
+
+ggmap is a package developed on top of ggplot2. Hence all plots from ggmap can be overlayed with plots from ggplot2.
+
+```{r}
+library(ggmap)
+ggmap::register_google(key='AIzaSyCnGFj3-tmhyhkx2Suxw3HNa6P0c0fjHc0')
+
+m = get_map("Singapore", source="google", zoom=11, maptype="roadmap")
+ggmap(m)
+```
+
+### Integrating with ggplot2
+
+```{r}
+pizzahut.location = read.csv("./Data/PizzaHut.csv", header=T, colClasses=c("character", "character", "factor", "character", "numeric", "numeric"))
+
+# get singapore map
+map = get_map("Singapore", zoom=11, source="google")
+
+# plot latitude and longitude and combine with map
+m1 = ggmap(m, base_layer = ggplot(data=pizzahut.location, aes(x=lon, y=lat)))
+
+# plot points by region
+m1 + geom_point(aes(color=Region))
+```
+
+### Region Borders
+
+Sometimes, we want a map, not by the country but by the regions. This cannot be done with only ggmap. We will use **raster** and **rgdal**.
+
+```{r}
+library("raster")
+library("rgdal")
+library("XML")
+
+SG = getData('GADM', country="SG", level=1) # GADM is the source of the map data
+class(SG) # SpatialPolygonsDataFrame
+
+# Access elements using @
+class(SG@data) # data frame
+head(SG@data) # used to communicate with other data
+
+class(SG@polygons) # list
+# SG@polygons[1] # contains coordinate data about region boundaries
+
+data = data.frame(Region=c("Central", "East", "North", "North-East", "West"), 
+                  value=c(3,4,1,7,10))
+SG@data = merge(SG@data, data, by.x="NAME_1", by.y="Region")
+
+# plot
+spplot(SG, "value") # colours using values in the value column of SG@data
+```
+
+## leaflet
+
+leaflet is an open-source javascript library for interactive maps.
+
+```{r}
+library("leaflet")
+library("tidyverse")
+
+m = leaflet()
+
+# adding a map layer
+m = addTiles(m) 
+
+# adding markers
+m = addMarkers(m, lat=1.239660, lng=103.835381, popup="Sentosa Cove")
+
+# preset zooming level
+m = setView(m, lat=1.239660, lng=103.835381, zoom=11)
+
+m
+```
+
+### Adding Multiple Markers
+
+```{r}
+df = read.csv("./Data/Singapore_Tourist_Locations.csv", colClasses=c("numeric", "numeric", "character"))
+leaflet() %>% addTiles() %>% addMarkers(data=df, lng=~longitude, lat=~latitude, popup=~name)
+```
+
+### Adding Clusters
+
+```{r}
+# showing clusters rather than individual points
+leaflet() %>% addTiles() %>% addCircleMarkers(data=df, lng=~longitude, lat=~latitude, 
+                                              radius=5, clusterOptions=markerClusterOptions(),
+                                              popup=~name)
+```
+
+### Overlaying Plots
+
+```{r}
+library(htmlwidgets)
+
+pizzahut.location = read.csv("./Data/PizzaHut.csv")
+region.list = c("North", "East", "Central", "West")
+colorFactors = colorFactor(c("red", "green", "blue"), domain=pizzahut.location$Region)
+
+m = leaflet() %>% addTiles()
+
+for (i in 1:4) {
+  pizzahut.region = pizzahut.location[pizzahut.location$Region == region.list[i], ]
+  
+  m = addCircleMarkers(m, lng=pizzahut.region$lon, lat=pizzahut.region$lat, 
+                       radius=10, stroke=F, fillOpacity=1, 
+                       color = colorFactors(pizzahut.region$Region),
+                       group=region.list[i]) # the group is to add the checkbox options later
+}
+
+# add map types
+m = m %>% addTiles(group="Default") %>%
+  addProviderTiles("Esri.WorldImagery", group="Esri") %>%
+  addProviderTiles("Stamen.Toner", group="Toner") %>% 
+  addProviderTiles("Stamen.TonerLite", group="Toner Lite")
+
+# add radio and checkbox controls
+## base groups can only show 1 type at a time (radio)
+## overlay groups can be shown together (checkbox)
+m = addLayersControl(m, baseGroups=c("Default", "Esri", "Toner", "Toner Lite"),
+                    overlayGroups=region.list)
+
+saveWidget(m, file="m.html")
+m
+```
+
+### Plotting Polygons
+
+```{r}
+library(raster)
+
+data = data.frame(Region=c("Central", "East", "North", "North-East", "West"),
+                  value=c(3,4,1,7,10))
+SG = getData("GADM", country="SG", level=1)
+SG@data = merge(SG@data, data, by.x="NAME_1", by.y="Region")
+popup = paste0("<strong>Name: </strong>", SG$Name_1)
+
+# create numeric palette
+pal = colorNumeric(palette="Blues", domain=SG$value)
+m = leaflet() %>% addTiles() %>% addPolygons(data=SG, weight=2, stroke=T, 
+                                             smoothFactor=0.1, fillOpacity=0.8,
+                                             color=~pal(value), popup=popup)
+m
+
+# create static palette
+factpal = colorFactor(topo.colors(5), SG$value) 
+m = leaflet() %>% addTiles() %>% addPolygons(data=SG, weight=2, stroke=F,
+                                             smoothFactor=0.2, fillOpacity=0.8,
+                                             color=~factpal(value), popup=popup)
+m
+```
+
+### Generate Heatmap
+
+```{r}
+library("leaflet.extras")
+
+# heatmap based on number of earthquakes in each area
+leaflet(quakes) %>% addProviderTiles(providers$CartoDB.DarkMatter) %>% 
+  addWebGLHeatmap(lng=~long, lat=~lat, size=60000) # size is in meters
+
+# heatmap based on eartquake magnitude
+leaflet(quakes) %>% addProviderTiles(providers$CartoDB.DarkMatter) %>% 
+  addWebGLHeatmap(lng=~long, lat=~lat, intensity=~mag, size=60000)
+
+```

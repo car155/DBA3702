@@ -1,0 +1,1001 @@
+id,gender,is.employed,income,marital.status,bought.product,housing.type,is.member,num.cards,age,district,no.family.members,industry
+2068,F,NA,53900,Married,TRUE,Homeowner free and clear,FALSE,2,49,GEYLANG,4,NA
+2073,F,NA,43500,Married,TRUE,Rented,TRUE,3,40,TOA PAYOH,1,NA
+2848,M,TRUE,9500,Ever Single,FALSE,Rented,TRUE,3,22,STRAITS VIEW,1,Manufacturing
+5641,M,TRUE,69300,Ever Single,FALSE,Rented,FALSE,0,22,WESTERN ISLANDS,5,Telecom
+6369,F,TRUE,28800,Ever Single,TRUE,Rented,TRUE,1,31,MARINA EAST,6,Others
+8322,F,TRUE,2900,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,40,WOODLANDS,1,Education
+8521,M,TRUE,78300,Ever Single,TRUE,Homeowner free and clear,TRUE,1,39,NEWTON,5,Manufacturing
+12195,M,TRUE,23400,Married,TRUE,Rented,FALSE,3,48,QUEENSTOWN,4,Manufacturing
+14989,M,NA,80700,Married,TRUE,Rented,FALSE,2,44,OUTRAM,3,NA
+15917,F,TRUE,8800,Divorced,TRUE,Homeowner free and clear,FALSE,1,70,TANGLIN,2,Education
+16551,F,NA,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,46,SENGKANG,4,NA
+17134,M,TRUE,NA,Married,TRUE,Homeowner free and clear,TRUE,2,33,TENGAH,5,Finance
+17946,F,TRUE,38700,Divorced,TRUE,Rented,FALSE,1,51,TAMPINES,3,Education
+18487,F,TRUE,13200,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,63,CHOA CHU KANG,3,Education
+20383,M,TRUE,16200,Ever Single,TRUE,Homeowner with mortgage/loan,TRUE,1,35,SENGKANG,4,Finance
+22295,M,TRUE,0,Married,TRUE,Homeowner free and clear,FALSE,3,54,OUTRAM,1,Finance
+25863,M,NA,29600,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,70,TANGLIN,8,NA
+26057,M,TRUE,146600,Married,TRUE,NA,NA,NA,28,WESTERN ISLANDS,8,Finance
+26355,M,TRUE,15900,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,36,STRAITS VIEW,7,Manufacturing
+27214,M,NA,NA,Married,TRUE,Homeowner free and clear,FALSE,2,68,PASIR RIS,4,NA
+27445,F,TRUE,33300,Ever Single,TRUE,Rented,FALSE,2,53,PASIR RIS,3,Transportation
+27761,M,TRUE,45900,Ever Single,FALSE,Rented,FALSE,2,33,CHANGI,5,IT
+27928,M,TRUE,19400,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,58,CLEMENTI,1,Telecom
+30768,M,TRUE,30600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,50,OUTRAM,5,Manufacturing
+31710,F,TRUE,20400,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,2,55,SUNGEI KADUT,3,Education
+33651,F,TRUE,62800,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,2,44,LIM CHU KANG,6,Others
+33828,F,TRUE,47100,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,49,STRAITS VIEW,5,Education
+36825,M,TRUE,NA,Married,FALSE,Rented,FALSE,2,35,JURONG EAST,7,Telecom
+37224,M,TRUE,52800,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,48,BUKIT BATOK,1,Manufacturing
+38827,F,NA,132700,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,72,BISHAN,5,NA
+40132,M,TRUE,166000,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,66,SELETAR,6,Education
+40449,M,NA,NA,Married,TRUE,Homeowner free and clear,FALSE,3,84,BUKIT BATOK,7,NA
+42374,M,NA,10600,Ever Single,TRUE,Homeowner free and clear,FALSE,1,65,SELETAR,5,NA
+46099,M,TRUE,75200,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,2,65,PASIR RIS,3,Finance
+46791,M,NA,2900,Married,TRUE,Homeowner free and clear,FALSE,2,67,MARINA EAST,3,NA
+47009,F,TRUE,0,Married,TRUE,Rented,FALSE,1,33,BEDOK,7,Transportation
+48479,M,TRUE,0,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,58,MARINA SOUTH,7,Transportation
+49496,M,NA,125000,Widowed,TRUE,Homeowner free and clear,FALSE,2,88,SUNGEI KADUT,7,NA
+50220,M,NA,53300,Divorced,TRUE,Rented,FALSE,1,85,CHANGI BAY,1,NA
+51723,F,NA,37400,Widowed,TRUE,Homeowner free and clear,FALSE,1,78,LIM CHU KANG,8,NA
+52197,M,NA,23700,Married,TRUE,Homeowner free and clear,FALSE,2,66,SOUTHERN ISLANDS,4,NA
+52382,M,TRUE,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,39,BUKIT MERAH,6,Transportation
+52420,M,TRUE,NA,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,57,MARINA SOUTH,8,Telecom
+52436,F,TRUE,60000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,46,NORTH-EASTERN ISLANDS,3,Telecom
+53186,F,NA,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,61,HOUGANG,2,NA
+53214,M,TRUE,12500,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,57,PUNGGOL,6,Others
+53759,F,NA,81900,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,34,JURONG WEST,3,NA
+54177,M,FALSE,6700,Married,TRUE,Homeowner free and clear,FALSE,2,86,PASIR RIS,4,Manufacturing
+55873,F,NA,17200,Ever Single,TRUE,Rented,FALSE,1,60,BUKIT TIMAH,3,NA
+55992,F,NA,32600,Married,TRUE,Rented,FALSE,1,38,BUKIT MERAH,3,NA
+56040,F,NA,56700,Married,TRUE,Rented,TRUE,2,39,STRAITS VIEW,2,NA
+62999,M,TRUE,14200,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,51,TANGLIN,4,Manufacturing
+65004,F,TRUE,NA,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,4,49,HOUGANG,1,Transportation
+66778,M,TRUE,10500,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,40,SENGKANG,7,IT
+67776,M,TRUE,7000,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,38,WOODLANDS,4,Finance
+68013,M,NA,46400,Divorced,FALSE,NA,NA,NA,28,WESTERN ISLANDS,4,NA
+68221,M,TRUE,37700,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,29,WESTERN WATER CATCHMENT,3,Manufacturing
+69062,M,TRUE,48600,Married,TRUE,Homeowner free and clear,FALSE,4,59,JURONG WEST,5,Others
+72741,F,NA,0,Widowed,TRUE,Homeowner free and clear,FALSE,0,88,MARINE PARADE,5,NA
+74447,M,TRUE,152200,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,33,WESTERN ISLANDS,1,Education
+76182,F,TRUE,NA,Divorced,FALSE,Homeowner with mortgage/loan,FALSE,1,41,OUTRAM,8,Education
+77312,M,TRUE,11600,Married,FALSE,Homeowner free and clear,FALSE,2,35,CLEMENTI,1,Education
+78476,M,TRUE,76500,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,60,SENGKANG,5,IT
+79069,M,TRUE,0,Married,FALSE,Rented,TRUE,1,40,CHOA CHU KANG,8,Manufacturing
+80274,M,NA,26600,Married,TRUE,Homeowner free and clear,FALSE,5,68,SOUTHERN ISLANDS,2,NA
+80549,M,NA,47500,Married,TRUE,Homeowner free and clear,FALSE,2,75,SINGAPORE RIVER,2,NA
+82503,M,TRUE,10800,Married,TRUE,Homeowner free and clear,FALSE,2,69,QUEENSTOWN,3,IT
+84636,M,TRUE,29300,Married,FALSE,Rented,FALSE,2,32,PUNGGOL,5,Transportation
+84879,F,TRUE,12100,Married,TRUE,Homeowner free and clear,FALSE,2,42,PUNGGOL,8,Education
+85398,F,TRUE,21300,Ever Single,FALSE,Homeowner with mortgage/loan,FALSE,6,44,SENGKANG,1,IT
+86711,M,NA,83900,Ever Single,TRUE,Homeowner free and clear,FALSE,1,76,TUAS,8,NA
+86786,F,TRUE,NA,Ever Single,TRUE,Rented,FALSE,1,49,PAYA LEBAR,8,Manufacturing
+90303,M,NA,21500,Ever Single,FALSE,NA,NA,NA,45,SEMBAWANG,7,NA
+90863,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,37,MARINA SOUTH,8,Manufacturing
+92706,M,NA,117200,Ever Single,TRUE,Rented,FALSE,0,82,BUKIT BATOK,7,NA
+94743,M,TRUE,37000,Married,TRUE,Homeowner free and clear,FALSE,2,64,BUKIT MERAH,6,Education
+96964,M,TRUE,15100,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,69,SENGKANG,7,Transportation
+97247,F,NA,36800,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,1,78,JURONG EAST,2,NA
+98086,M,NA,12600,Married,TRUE,Homeowner with mortgage/loan,TRUE,2,69,ANG MO KIO,1,NA
+99068,F,TRUE,26400,Ever Single,TRUE,Rented,FALSE,3,34,BOON LAY,2,Telecom
+100475,F,TRUE,1800,Divorced,TRUE,Rented,FALSE,1,48,LIM CHU KANG,2,Manufacturing
+102269,M,NA,88000,Married,TRUE,Rented,TRUE,1,84,LIM CHU KANG,8,NA
+103389,F,TRUE,40500,Ever Single,TRUE,Rented,TRUE,1,41,CHANGI BAY,8,Manufacturing
+104048,F,TRUE,102600,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,69,MARINA EAST,6,Manufacturing
+104506,M,NA,111600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,83,BUKIT PANJANG,8,NA
+106395,M,TRUE,99300,Married,TRUE,Rented,TRUE,1,32,NOVENA,3,Finance
+106726,M,TRUE,51100,Married,TRUE,Rented,FALSE,1,53,SERANGOON,6,Transportation
+106956,F,TRUE,23000,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,50,MARINA EAST,4,Finance
+107458,M,TRUE,63100,Married,TRUE,Homeowner with mortgage/loan,TRUE,2,66,NOVENA,2,Telecom
+108042,F,FALSE,42800,Ever Single,TRUE,Rented,FALSE,1,22,MANDAI,7,Education
+110024,F,NA,89700,Widowed,TRUE,Homeowner free and clear,FALSE,2,83,TANGLIN,8,NA
+110699,M,TRUE,4000,Ever Single,TRUE,Homeowner free and clear,FALSE,1,53,SELETAR,2,Education
+111870,M,TRUE,69000,Married,FALSE,Homeowner with mortgage/loan,FALSE,1,54,NOVENA,1,IT
+112116,M,TRUE,122600,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,65,GEYLANG,8,IT
+113390,M,TRUE,15500,Ever Single,FALSE,Rented,FALSE,3,43,MARINA EAST,5,IT
+114806,F,TRUE,1100,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,53,NEWTON,8,Transportation
+115100,M,NA,12800,Ever Single,FALSE,NA,NA,NA,29,MARINE PARADE,8,NA
+116171,F,NA,9800,Widowed,TRUE,Homeowner free and clear,FALSE,1,81,QUEENSTOWN,6,NA
+116481,F,NA,21500,Divorced,TRUE,Homeowner free and clear,FALSE,2,88,TANGLIN,8,NA
+117491,M,TRUE,97800,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,58,SOUTHERN ISLANDS,3,Others
+117900,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,40,WESTERN ISLANDS,7,Others
+117911,M,TRUE,21600,Widowed,TRUE,Rented,FALSE,2,67,SIMPANG,3,Manufacturing
+118561,F,NA,32500,Widowed,TRUE,Rented,FALSE,1,60,TENGAH,7,NA
+120705,M,TRUE,38000,Ever Single,TRUE,Rented,TRUE,0,30,SENGKANG,5,IT
+122231,M,TRUE,161100,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,48,JURONG WEST,3,Telecom
+124968,F,TRUE,14200,Ever Single,TRUE,Homeowner free and clear,FALSE,1,56,SOUTHERN ISLANDS,5,IT
+125155,M,TRUE,30600,Married,FALSE,Rented,TRUE,1,55,CENTRAL WATER CATCHMENT,6,Others
+126507,M,TRUE,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,51,WOODLANDS,1,IT
+127965,M,TRUE,10700,Divorced,TRUE,Homeowner free and clear,FALSE,1,50,TENGAH,8,Finance
+131301,M,TRUE,NA,Married,FALSE,Rented,FALSE,2,48,PASIR RIS,4,IT
+133268,M,TRUE,54900,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,49,PAYA LEBAR,2,Education
+136206,F,NA,159900,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,56,BUKIT MERAH,6,NA
+138865,M,TRUE,0,Divorced,FALSE,Rented,FALSE,1,28,MUSEUM,3,Manufacturing
+139771,M,TRUE,16400,Married,TRUE,Rented,FALSE,2,42,BUKIT MERAH,2,Transportation
+141492,F,NA,44600,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,34,STRAITS VIEW,8,NA
+145172,M,NA,7400,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,83,ANG MO KIO,2,NA
+146457,M,TRUE,11600,Ever Single,TRUE,Rented,FALSE,2,35,BUKIT PANJANG,7,Education
+147984,F,NA,87600,Married,TRUE,Rented,FALSE,1,49,TENGAH,7,NA
+149429,M,TRUE,272700,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,2,41,LIM CHU KANG,4,Education
+149480,F,NA,13900,Married,FALSE,Homeowner free and clear,FALSE,2,46,CLEMENTI,3,NA
+150055,F,TRUE,49900,Married,TRUE,Rented,FALSE,2,24,JURONG EAST,4,Finance
+150721,M,TRUE,900,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,44,MANDAI,3,Others
+151170,F,TRUE,NA,Divorced,TRUE,Rented,FALSE,2,57,JURONG WEST,1,Education
+151678,M,NA,27800,Ever Single,FALSE,NA,NA,NA,34,CHANGI,4,NA
+151876,F,NA,101000,Divorced,TRUE,Rented,FALSE,1,86,WOODLANDS,7,NA
+153419,M,NA,30200,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,73,KALLANG,1,NA
+155762,M,TRUE,71700,Divorced,FALSE,Homeowner free and clear,FALSE,2,49,DOWNTOWN CORE,5,Transportation
+156520,M,TRUE,50000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,40,MUSEUM,2,Education
+158530,M,NA,132400,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,83,MARINE PARADE,3,NA
+159107,M,NA,45400,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,1,65,SENGKANG,6,NA
+159573,F,NA,11000,Widowed,TRUE,Homeowner free and clear,FALSE,1,69,STRAITS VIEW,8,NA
+164576,F,NA,70000,Ever Single,FALSE,Rented,FALSE,1,28,PASIR RIS,5,NA
+166246,F,TRUE,71600,Ever Single,TRUE,Rented,FALSE,1,30,PAYA LEBAR,8,Manufacturing
+167154,M,NA,41100,Ever Single,FALSE,NA,NA,NA,31,WESTERN ISLANDS,1,NA
+167498,M,FALSE,4900,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,32,CHANGI BAY,5,Education
+169519,F,TRUE,0,Divorced,TRUE,Rented,FALSE,1,62,WESTERN ISLANDS,7,Others
+173493,M,FALSE,79000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,56,SINGAPORE RIVER,7,Education
+174248,M,NA,107600,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,68,SERANGOON,6,NA
+175033,M,NA,19300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,47,BUKIT TIMAH,4,NA
+175572,F,FALSE,120600,Married,FALSE,Rented,TRUE,2,38,PAYA LEBAR,2,Manufacturing
+177122,F,TRUE,80200,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,39,WOODLANDS,2,Others
+177145,M,TRUE,63200,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,46,BUKIT PANJANG,7,Transportation
+178178,F,TRUE,23400,Ever Single,TRUE,Rented,FALSE,1,35,NOVENA,5,IT
+178887,F,NA,1800,Married,FALSE,Rented,FALSE,0,44,WESTERN WATER CATCHMENT,7,NA
+179481,F,TRUE,83700,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,53,SEMBAWANG,1,Finance
+180009,M,FALSE,11200,Divorced,TRUE,Rented,TRUE,1,31,CHOA CHU KANG,4,Finance
+181385,F,NA,43900,Married,FALSE,Homeowner free and clear,FALSE,2,28,BUKIT TIMAH,8,NA
+181754,M,TRUE,22700,Married,TRUE,Rented,FALSE,4,49,TUAS,3,IT
+182072,F,NA,23100,Widowed,FALSE,Rented,FALSE,1,45,BISHAN,6,NA
+182146,F,FALSE,21400,Ever Single,FALSE,Rented,FALSE,1,35,MARINE PARADE,5,IT
+183889,M,TRUE,55900,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,67,TAMPINES,7,Transportation
+184170,M,NA,124300,Married,TRUE,Homeowner free and clear,FALSE,3,70,BUKIT PANJANG,8,NA
+184506,M,TRUE,33700,Divorced,FALSE,Rented,TRUE,2,39,HOUGANG,1,Education
+184686,F,TRUE,23400,Divorced,TRUE,Homeowner free and clear,FALSE,2,59,DOWNTOWN CORE,1,IT
+186475,M,TRUE,11300,Ever Single,TRUE,Rented,FALSE,2,29,MARINE PARADE,5,IT
+186808,F,NA,25600,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,4,61,CENTRAL WATER CATCHMENT,6,NA
+191018,F,NA,47900,Married,TRUE,Homeowner free and clear,FALSE,4,64,BUKIT MERAH,1,NA
+191536,F,NA,49800,Widowed,TRUE,Rented,FALSE,0,82,DOWNTOWN CORE,8,NA
+194740,F,FALSE,53000,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,53,KALLANG,3,Manufacturing
+195539,M,NA,9300,Married,TRUE,Rented,FALSE,2,69,MANDAI,1,NA
+196613,F,TRUE,24600,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,45,PIONEER,2,Finance
+196828,M,TRUE,97800,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,65,BUKIT PANJANG,4,Others
+199788,M,FALSE,72600,Ever Single,FALSE,Homeowner free and clear,TRUE,2,37,BUKIT PANJANG,5,Finance
+203816,F,NA,13600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,57,SOUTHERN ISLANDS,8,NA
+204591,F,TRUE,0,Divorced,TRUE,Rented,FALSE,3,49,SUNGEI KADUT,2,Manufacturing
+206122,M,TRUE,41200,Married,TRUE,Rented,FALSE,2,47,RIVER VALLEY,1,Transportation
+209604,M,TRUE,25500,Married,TRUE,Homeowner free and clear,FALSE,4,54,BOON LAY,7,Telecom
+210241,F,TRUE,26600,Ever Single,FALSE,Rented,FALSE,1,29,NEWTON,1,Finance
+210427,M,NA,12100,Married,TRUE,Homeowner free and clear,FALSE,3,78,MUSEUM,7,NA
+211330,F,NA,700,Divorced,TRUE,Homeowner free and clear,FALSE,1,78,TENGAH,8,NA
+211424,M,TRUE,82500,Divorced,TRUE,Rented,FALSE,1,50,CHOA CHU KANG,5,Education
+213854,M,NA,1900,Ever Single,TRUE,Rented,FALSE,0,22,OUTRAM,8,NA
+214083,M,NA,176100,Married,TRUE,Homeowner free and clear,FALSE,1,73,SENGKANG,1,NA
+215876,F,NA,41400,Widowed,TRUE,Rented,FALSE,0,88,WESTERN WATER CATCHMENT,5,NA
+217315,M,TRUE,63100,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,47,BUKIT MERAH,7,Finance
+218283,F,NA,36800,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,37,BUKIT PANJANG,6,NA
+220135,M,TRUE,NA,Divorced,TRUE,Rented,TRUE,2,64,MANDAI,2,Education
+220142,F,NA,87000,Ever Single,TRUE,NA,NA,NA,18,SINGAPORE RIVER,1,NA
+220205,M,TRUE,156400,Ever Single,TRUE,Rented,FALSE,1,38,YISHUN,8,Finance
+223271,M,FALSE,500,Married,TRUE,Rented,TRUE,3,37,QUEENSTOWN,5,Others
+223773,F,NA,13500,Widowed,TRUE,Rented,TRUE,1,74,SIMPANG,6,NA
+224356,M,TRUE,20600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,60,PIONEER,4,Telecom
+226840,M,TRUE,NA,Married,TRUE,Homeowner with mortgage/loan,TRUE,3,36,OUTRAM,7,IT
+227318,M,NA,92600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,69,TAMPINES,8,NA
+228513,F,TRUE,65800,Widowed,TRUE,Homeowner free and clear,FALSE,3,47,TENGAH,3,Transportation
+236067,M,TRUE,33900,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,46,ORCHARD,8,Manufacturing
+236880,F,TRUE,23900,Ever Single,TRUE,Rented,FALSE,1,39,OUTRAM,3,Transportation
+237048,M,FALSE,44600,Married,TRUE,Homeowner free and clear,FALSE,3,72,OUTRAM,7,Finance
+249492,F,NA,53400,Widowed,TRUE,NA,NA,NA,93,MARINA EAST,2,NA
+250108,F,TRUE,NA,Divorced,TRUE,Rented,FALSE,2,31,CENTRAL WATER CATCHMENT,5,Finance
+251365,F,TRUE,29000,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,64,HOUGANG,4,IT
+252100,M,TRUE,54100,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,2,52,BISHAN,3,Education
+253015,M,TRUE,50800,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,35,CLEMENTI,1,IT
+254969,F,TRUE,43000,Divorced,FALSE,Rented,FALSE,1,57,TENGAH,5,Others
+258722,F,NA,31800,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,45,QUEENSTOWN,1,NA
+258948,F,NA,16600,Widowed,TRUE,Rented,FALSE,1,85,MARINE PARADE,1,NA
+259807,M,NA,19500,Married,TRUE,NA,NA,NA,49,TAMPINES,6,NA
+262234,M,NA,39400,Married,TRUE,Homeowner free and clear,FALSE,3,65,TAMPINES,1,NA
+264292,M,TRUE,56200,Married,TRUE,Homeowner with mortgage/loan,FALSE,0,50,SIMPANG,6,Finance
+265299,M,NA,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,69,GEYLANG,5,NA
+268667,M,NA,15400,Ever Single,TRUE,NA,NA,NA,31,MUSEUM,7,NA
+269836,F,NA,87900,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,1,77,SENGKANG,4,NA
+272748,M,TRUE,286600,Ever Single,TRUE,Rented,FALSE,3,44,BOON LAY,2,IT
+274182,M,TRUE,131000,Married,FALSE,Homeowner with mortgage/loan,FALSE,2,36,STRAITS VIEW,4,IT
+276306,M,FALSE,94400,Married,TRUE,Rented,FALSE,1,29,RIVER VALLEY,6,Finance
+277784,F,NA,27600,Divorced,TRUE,Rented,FALSE,1,76,BOON LAY,2,NA
+278995,F,TRUE,40200,Married,TRUE,Rented,TRUE,2,38,MUSEUM,4,Telecom
+279538,F,TRUE,28500,Ever Single,TRUE,Rented,TRUE,1,42,SELETAR,6,Finance
+281529,F,NA,48600,Divorced,FALSE,Homeowner free and clear,FALSE,3,41,JURONG EAST,1,NA
+283521,F,TRUE,77400,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,55,CHANGI,5,Others
+283607,M,TRUE,30700,Married,TRUE,Rented,TRUE,2,41,NORTH-EASTERN ISLANDS,7,Finance
+284973,F,FALSE,14400,Divorced,TRUE,Rented,FALSE,2,30,CLEMENTI,1,Telecom
+287882,M,TRUE,51900,Married,TRUE,Rented,TRUE,2,137.7000296,RIVER VALLEY,8,Others
+291564,F,NA,100,Widowed,TRUE,Homeowner free and clear,FALSE,1,75,PASIR RIS,2,NA
+291599,M,TRUE,NA,Married,TRUE,Rented,FALSE,2,27,BUKIT TIMAH,8,Telecom
+291608,F,NA,5500,Widowed,TRUE,Homeowner free and clear,FALSE,1,79,ROCHOR,7,NA
+297117,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,63,DOWNTOWN CORE,5,Transportation
+298205,M,TRUE,123600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,38,TANGLIN,8,Others
+298782,M,NA,52100,Widowed,TRUE,NA,NA,NA,73,STRAITS VIEW,8,NA
+303624,M,TRUE,16600,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,41,LIM CHU KANG,8,Manufacturing
+304200,F,FALSE,41500,Divorced,FALSE,Homeowner with mortgage/loan,FALSE,1,53,SELETAR,6,Others
+307655,F,TRUE,3600,Married,TRUE,Rented,TRUE,3,26,YISHUN,6,IT
+308107,F,TRUE,33200,Ever Single,FALSE,Rented,FALSE,1,54,SUNGEI KADUT,8,IT
+310588,M,TRUE,12400,Ever Single,TRUE,Rented,FALSE,0,40,TUAS,6,Manufacturing
+311095,F,TRUE,20300,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,51,SEMBAWANG,3,Finance
+314099,F,NA,9800,Widowed,FALSE,Rented,TRUE,2,68,STRAITS VIEW,6,NA
+315265,M,NA,8800,Married,TRUE,Homeowner free and clear,FALSE,3,82,WESTERN ISLANDS,2,NA
+316205,F,FALSE,103700,Married,TRUE,Rented,FALSE,2,25,WOODLANDS,8,Education
+316280,M,TRUE,44300,Divorced,TRUE,Rented,FALSE,1,44,RIVER VALLEY,2,Telecom
+316753,M,TRUE,22200,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,36,TAMPINES,1,IT
+317166,F,TRUE,NA,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,3,54,NORTH-EASTERN ISLANDS,7,Finance
+318105,M,TRUE,9200,Divorced,TRUE,Rented,FALSE,0,54,MANDAI,6,Others
+318348,F,TRUE,16100,Divorced,FALSE,Homeowner with mortgage/loan,FALSE,4,55,MARINA EAST,1,Manufacturing
+319774,M,TRUE,30900,Married,TRUE,Homeowner free and clear,FALSE,3,49,GEYLANG,1,IT
+323508,M,TRUE,70800,Ever Single,TRUE,Rented,TRUE,1,27,NORTH-EASTERN ISLANDS,8,Manufacturing
+324029,F,TRUE,14000,Married,TRUE,Rented,FALSE,1,37,DOWNTOWN CORE,5,Transportation
+330543,F,NA,33600,Married,TRUE,NA,NA,NA,93,TUAS,4,NA
+331868,F,NA,23800,Widowed,TRUE,Homeowner free and clear,FALSE,2,85,SIMPANG,6,NA
+332292,M,TRUE,134400,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,3,28,BEDOK,1,Finance
+333355,M,FALSE,NA,Married,TRUE,Rented,TRUE,2,44,KALLANG,3,Others
+333982,F,NA,70600,Married,TRUE,Homeowner free and clear,FALSE,2,72,QUEENSTOWN,4,NA
+334135,F,TRUE,71000,Ever Single,TRUE,Rented,TRUE,1,32,BOON LAY,1,Finance
+335080,M,TRUE,44000,Married,TRUE,Rented,TRUE,2,28,WESTERN ISLANDS,7,IT
+335174,M,NA,20800,Married,TRUE,Homeowner with mortgage/loan,FALSE,0,76,TUAS,3,NA
+337683,F,TRUE,71400,Widowed,TRUE,Rented,FALSE,1,65,SELETAR,7,IT
+338635,F,TRUE,3100,Ever Single,TRUE,Rented,TRUE,1,21,CENTRAL WATER CATCHMENT,1,Manufacturing
+341507,M,FALSE,78000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,61,TENGAH,1,Manufacturing
+342460,M,TRUE,41100,Married,TRUE,Rented,FALSE,1,32,MARINE PARADE,8,Telecom
+343235,M,TRUE,115900,Ever Single,TRUE,Rented,FALSE,1,32,CHANGI BAY,3,IT
+344685,M,NA,53500,Ever Single,TRUE,NA,NA,NA,39,BUKIT BATOK,2,NA
+345994,M,TRUE,34100,Married,TRUE,Homeowner with mortgage/loan,FALSE,5,48,TENGAH,2,Telecom
+348319,F,NA,81700,Married,TRUE,Rented,FALSE,3,26,ROCHOR,6,NA
+349344,M,TRUE,300,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,55,MARINA EAST,8,Others
+351129,F,NA,9900,Ever Single,TRUE,Rented,FALSE,2,51,JURONG WEST,6,NA
+352275,F,FALSE,81100,Married,TRUE,Rented,FALSE,3,58,PASIR RIS,3,Finance
+354269,M,NA,20500,Ever Single,FALSE,Rented,TRUE,1,29,NEWTON,1,NA
+356073,M,TRUE,176500,Ever Single,TRUE,Rented,FALSE,1,54,BOON LAY,6,Manufacturing
+356688,F,TRUE,8100,Ever Single,FALSE,Rented,FALSE,1,26,WESTERN WATER CATCHMENT,6,IT
+356763,M,TRUE,16600,Married,FALSE,Rented,FALSE,3,48,KALLANG,6,Others
+359997,F,TRUE,121200,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,39,NEWTON,6,Manufacturing
+360674,M,TRUE,49400,Ever Single,TRUE,Rented,FALSE,2,38,BUKIT PANJANG,2,Finance
+361561,F,NA,30100,Divorced,TRUE,Rented,FALSE,1,26,BEDOK,3,NA
+361946,M,TRUE,9600,Married,TRUE,Homeowner free and clear,FALSE,2,68,BISHAN,3,IT
+361968,M,FALSE,113300,Divorced,TRUE,Rented,FALSE,1,68,GEYLANG,7,Telecom
+363008,F,NA,NA,Married,TRUE,Rented,FALSE,1,84,PUNGGOL,3,NA
+364328,M,TRUE,178000,Married,TRUE,Rented,FALSE,1,30,SIMPANG,5,IT
+364991,F,NA,66700,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,123.0610226,WOODLANDS,8,NA
+368645,M,TRUE,10800,Married,TRUE,Homeowner free and clear,FALSE,2,52,HOUGANG,8,Telecom
+373976,F,TRUE,34900,Divorced,TRUE,Rented,TRUE,1,56,CHANGI,3,Finance
+374461,M,NA,21600,Divorced,TRUE,Rented,FALSE,1,80,WESTERN ISLANDS,6,NA
+374930,M,NA,142500,Married,FALSE,NA,NA,NA,55,HOUGANG,6,NA
+376508,F,NA,55500,Married,FALSE,Rented,FALSE,1,42,SIMPANG,2,NA
+382338,M,NA,25800,Married,TRUE,Homeowner free and clear,FALSE,1,70,SOUTHERN ISLANDS,4,NA
+382614,M,NA,21400,Ever Single,TRUE,NA,NA,NA,55,TENGAH,4,NA
+382908,F,NA,122000,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,2,74,MARINA SOUTH,4,NA
+383409,M,TRUE,92100,Ever Single,FALSE,Rented,FALSE,2,24,CENTRAL WATER CATCHMENT,5,Manufacturing
+383455,M,TRUE,40700,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,4,44,CLEMENTI,1,Manufacturing
+385318,F,NA,NA,Widowed,TRUE,Rented,FALSE,0,72,PAYA LEBAR,1,NA
+388567,F,NA,42600,Divorced,TRUE,Rented,FALSE,1,44,STRAITS VIEW,1,NA
+390273,M,NA,55400,Married,TRUE,Homeowner free and clear,FALSE,2,64,PAYA LEBAR,4,NA
+394696,F,NA,7200,Married,TRUE,Rented,FALSE,1,58,MARINA EAST,3,NA
+394790,M,NA,66400,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,75,TENGAH,4,NA
+395888,M,TRUE,86700,Married,FALSE,Rented,FALSE,1,29,BUKIT MERAH,7,Transportation
+396116,F,NA,58600,Married,TRUE,Rented,FALSE,2,25,BUKIT MERAH,3,NA
+396256,M,TRUE,0,Married,FALSE,Homeowner with mortgage/loan,FALSE,3,34,SINGAPORE RIVER,8,Telecom
+396675,F,TRUE,105800,Ever Single,TRUE,Rented,TRUE,1,45,KALLANG,4,Transportation
+397230,F,TRUE,49300,Married,TRUE,Rented,FALSE,2,136.0521596,MUSEUM,7,IT
+399150,M,TRUE,65700,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,38,SERANGOON,6,Education
+399930,M,TRUE,1900,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,42,BUKIT TIMAH,3,Others
+403690,M,FALSE,3100,Divorced,FALSE,Homeowner with mortgage/loan,FALSE,2,50,TENGAH,3,Telecom
+406984,F,NA,0,Divorced,TRUE,Rented,FALSE,1,71,WOODLANDS,6,NA
+408221,M,TRUE,82900,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,60,SEMBAWANG,4,Finance
+409728,M,TRUE,10300,Ever Single,FALSE,Homeowner with mortgage/loan,FALSE,1,50,SINGAPORE RIVER,3,Manufacturing
+411385,M,TRUE,116200,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,45,SERANGOON,7,Others
+415060,F,FALSE,67100,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,60,PAYA LEBAR,7,Manufacturing
+415381,M,TRUE,50400,Married,TRUE,Homeowner with mortgage/loan,TRUE,2,39,MARINA EAST,2,Education
+415575,M,NA,NA,Ever Single,TRUE,NA,NA,NA,63,NEWTON,8,NA
+415741,M,TRUE,31900,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,3,47,CHANGI BAY,4,Transportation
+416144,F,TRUE,16200,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,44,MARINE PARADE,4,Finance
+416624,F,TRUE,111200,Married,TRUE,Rented,FALSE,1,43,BUKIT BATOK,7,Transportation
+419751,M,TRUE,20100,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,57,PUNGGOL,4,Transportation
+419951,F,TRUE,2600,Ever Single,TRUE,Rented,FALSE,2,21,MARINE PARADE,7,Manufacturing
+421248,M,TRUE,179000,Married,TRUE,Homeowner free and clear,FALSE,3,58,MARINE PARADE,3,Telecom
+421666,M,FALSE,100,Married,TRUE,Rented,FALSE,3,54,LIM CHU KANG,4,IT
+423279,M,TRUE,12700,Ever Single,TRUE,Rented,TRUE,3,42,PIONEER,1,Finance
+423910,M,TRUE,14700,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,58,WOODLANDS,2,Education
+426154,F,NA,117600,Divorced,TRUE,Rented,FALSE,0,76,TANGLIN,8,NA
+427431,F,NA,1700,Divorced,TRUE,Rented,FALSE,0,45,SINGAPORE RIVER,2,NA
+427589,F,TRUE,NA,Divorced,TRUE,Rented,TRUE,1,54,BUKIT PANJANG,5,Finance
+430516,F,NA,106400,Widowed,TRUE,Homeowner free and clear,FALSE,1,81,LIM CHU KANG,1,NA
+431729,M,NA,8500,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,75,CHANGI,3,NA
+432526,F,NA,44600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,44,HOUGANG,1,NA
+433755,F,NA,43700,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,3,85,SUNGEI KADUT,3,NA
+435651,F,NA,80700,Divorced,TRUE,Rented,FALSE,1,63,SINGAPORE RIVER,3,NA
+438304,M,FALSE,20400,Married,TRUE,Rented,FALSE,1,77,BOON LAY,2,Telecom
+439284,F,TRUE,21100,Ever Single,TRUE,Rented,FALSE,1,32,BEDOK,3,Education
+440475,M,TRUE,NA,Married,TRUE,Homeowner free and clear,FALSE,2,49,PIONEER,4,Telecom
+441221,M,TRUE,114900,Ever Single,TRUE,Rented,TRUE,0,25,MARINA EAST,2,Manufacturing
+442608,M,TRUE,NA,Ever Single,TRUE,Homeowner with mortgage/loan,TRUE,4,23,WESTERN WATER CATCHMENT,8,Others
+445622,F,NA,47700,Ever Single,TRUE,Rented,FALSE,2,48,MARINE PARADE,4,NA
+445937,F,NA,122100,Widowed,TRUE,Rented,FALSE,1,86,BEDOK,3,NA
+445985,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,56,MARINA EAST,5,Education
+449907,M,TRUE,49600,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,42,BUKIT BATOK,8,Telecom
+450221,M,TRUE,45700,Married,FALSE,Homeowner with mortgage/loan,FALSE,2,64,ANG MO KIO,3,Telecom
+450776,F,TRUE,52000,Divorced,FALSE,Rented,FALSE,1,33,QUEENSTOWN,1,Transportation
+456859,M,TRUE,13900,Ever Single,TRUE,NA,NA,NA,18,JURONG EAST,7,Manufacturing
+458094,F,NA,34400,Divorced,TRUE,Rented,FALSE,1,41,CHOA CHU KANG,2,NA
+458212,M,TRUE,102100,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,34,PUNGGOL,7,IT
+458265,M,TRUE,38300,Married,TRUE,Homeowner free and clear,FALSE,1,58,TUAS,3,Finance
+459429,F,TRUE,232100,Married,TRUE,Rented,FALSE,3,38,HOUGANG,1,IT
+459910,M,NA,32400,Married,TRUE,Homeowner free and clear,FALSE,1,93,ANG MO KIO,2,NA
+459959,F,NA,37400,Widowed,TRUE,NA,NA,NA,68,QUEENSTOWN,4,NA
+460642,F,TRUE,3500,Divorced,TRUE,Rented,FALSE,1,44,OUTRAM,5,IT
+460925,F,NA,52700,Married,TRUE,Homeowner free and clear,FALSE,1,72,JURONG WEST,6,NA
+461021,F,FALSE,76100,Widowed,TRUE,Rented,FALSE,2,64,PUNGGOL,2,Manufacturing
+461429,M,NA,19900,Married,TRUE,Rented,FALSE,2,81,BISHAN,7,NA
+462569,M,NA,11700,Widowed,TRUE,Homeowner free and clear,FALSE,0,89,ORCHARD,2,NA
+463808,F,TRUE,26800,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,46,WESTERN ISLANDS,6,Transportation
+464082,F,NA,53600,Married,FALSE,Rented,FALSE,2,26,BISHAN,2,NA
+465818,F,FALSE,23700,Married,FALSE,Homeowner with mortgage/loan,FALSE,3,33,MARINA SOUTH,3,IT
+467335,M,TRUE,4100,Ever Single,FALSE,Rented,FALSE,1,33,MANDAI,4,Finance
+468344,F,TRUE,19200,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,2,28,CENTRAL WATER CATCHMENT,4,Transportation
+468553,M,TRUE,126700,Ever Single,TRUE,Rented,FALSE,2,32,BUKIT TIMAH,3,Telecom
+474507,F,TRUE,237500,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,52,NORTH-EASTERN ISLANDS,6,Education
+478228,M,NA,167400,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,64,NEWTON,3,NA
+478502,M,TRUE,59200,Married,FALSE,Rented,FALSE,1,62,SERANGOON,8,Education
+479327,F,TRUE,NA,Divorced,TRUE,Rented,FALSE,2,37,BUKIT PANJANG,1,Education
+482611,M,TRUE,123300,Married,TRUE,Rented,TRUE,0,24,MARINA SOUTH,1,IT
+487124,M,TRUE,17400,Married,FALSE,Rented,FALSE,2,54,QUEENSTOWN,8,Education
+487369,F,FALSE,59300,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,48,PIONEER,4,Others
+487556,M,TRUE,283300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,55,BEDOK,5,Manufacturing
+489718,M,NA,9600,Ever Single,TRUE,Rented,TRUE,0,21,MARINA EAST,6,NA
+491280,M,NA,11600,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,61,CHOA CHU KANG,5,NA
+491389,F,NA,130900,Married,TRUE,Homeowner free and clear,TRUE,2,51,PAYA LEBAR,1,NA
+491848,F,NA,65200,Widowed,TRUE,Rented,FALSE,1,84,SENGKANG,2,NA
+492072,F,TRUE,3200,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,49,GEYLANG,1,Transportation
+492789,F,NA,159300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,60,JURONG EAST,3,NA
+496465,M,NA,31300,Divorced,FALSE,NA,NA,NA,45,CHANGI BAY,1,NA
+497970,F,TRUE,97300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,30,CHOA CHU KANG,4,Transportation
+498048,M,TRUE,26400,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,60,STRAITS VIEW,8,Telecom
+499492,M,NA,10400,Ever Single,TRUE,Homeowner free and clear,FALSE,1,54,CLEMENTI,5,NA
+499637,F,NA,5800,Ever Single,TRUE,NA,NA,NA,93,CHOA CHU KANG,6,NA
+499807,M,TRUE,10000,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,43,CLEMENTI,7,Transportation
+501259,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,56,SIMPANG,7,Telecom
+502705,M,TRUE,278600,Married,FALSE,Rented,FALSE,4,37,WOODLANDS,7,IT
+502764,F,TRUE,107500,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,47,NOVENA,5,Manufacturing
+503412,M,TRUE,13600,Ever Single,TRUE,NA,NA,NA,21,GEYLANG,3,Others
+504889,M,FALSE,NA,Married,FALSE,Homeowner with mortgage/loan,FALSE,2,40,BEDOK,8,Manufacturing
+505318,F,TRUE,68700,Divorced,TRUE,Rented,FALSE,1,36,BOON LAY,2,Finance
+506042,M,TRUE,NA,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,51,HOUGANG,1,Manufacturing
+509386,F,NA,60200,Ever Single,TRUE,NA,NA,NA,85,LIM CHU KANG,7,NA
+510349,F,NA,29700,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,78,SINGAPORE RIVER,3,NA
+510555,M,TRUE,18900,Divorced,FALSE,Rented,FALSE,2,47,BUKIT MERAH,2,Finance
+511732,F,NA,114000,Ever Single,FALSE,NA,NA,NA,32,BUKIT PANJANG,5,NA
+512594,F,TRUE,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,36,TANGLIN,5,Manufacturing
+516129,F,TRUE,0,Ever Single,FALSE,Rented,FALSE,2,45,BEDOK,3,Transportation
+517253,M,TRUE,12500,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,60,DOWNTOWN CORE,3,Manufacturing
+517696,F,NA,14800,Married,TRUE,Homeowner free and clear,FALSE,2,56,SUNGEI KADUT,7,NA
+518076,F,NA,0,Widowed,TRUE,Homeowner free and clear,FALSE,2,73,BUKIT MERAH,4,NA
+518899,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,49,CHANGI BAY,7,Education
+519446,F,NA,11400,Divorced,TRUE,Rented,FALSE,0,70,WESTERN WATER CATCHMENT,3,NA
+520030,M,TRUE,6700,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,66,TUAS,3,IT
+520390,F,TRUE,30200,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,51,BEDOK,5,Others
+523769,F,TRUE,26800,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,43,NEWTON,6,IT
+523990,F,TRUE,NA,Ever Single,TRUE,Rented,FALSE,1,31,QUEENSTOWN,4,Manufacturing
+525942,F,NA,0,Divorced,TRUE,Rented,FALSE,0,78,SUNGEI KADUT,1,NA
+527928,F,TRUE,49700,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,43,NOVENA,1,Finance
+528994,M,NA,369700,Divorced,FALSE,NA,NA,NA,44,BUKIT PANJANG,6,NA
+532940,M,TRUE,49100,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,33,MUSEUM,4,IT
+532971,M,TRUE,31100,Married,TRUE,Rented,FALSE,2,33,CHOA CHU KANG,5,Manufacturing
+535114,F,NA,64700,Married,FALSE,Homeowner with mortgage/loan,TRUE,1,50,BOON LAY,1,NA
+536463,M,TRUE,23000,Married,TRUE,Homeowner free and clear,FALSE,2,68,SOUTHERN ISLANDS,1,Manufacturing
+536879,M,NA,23600,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,53,SINGAPORE RIVER,7,NA
+537484,F,TRUE,46400,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,51,CHANGI BAY,1,Others
+540956,F,TRUE,10600,Ever Single,FALSE,Rented,FALSE,0,49,SIMPANG,8,Education
+542384,F,NA,11400,Married,FALSE,Rented,FALSE,2,57,BUKIT PANJANG,6,NA
+543309,M,NA,11200,Ever Single,TRUE,Rented,FALSE,0,44,BUKIT PANJANG,1,NA
+545826,F,NA,41300,Divorced,TRUE,Rented,FALSE,0,78,NORTH-EASTERN ISLANDS,4,NA
+546208,M,NA,57300,Divorced,TRUE,NA,NA,NA,40,SEMBAWANG,2,NA
+547258,M,FALSE,0,Married,TRUE,Rented,FALSE,2,53,PUNGGOL,4,Telecom
+548303,M,NA,33600,Widowed,TRUE,Homeowner free and clear,FALSE,0,63,BEDOK,4,NA
+549068,M,TRUE,41600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,42,BUKIT PANJANG,2,Finance
+550733,F,TRUE,NA,Ever Single,TRUE,Rented,FALSE,1,30,CHANGI BAY,2,Others
+551584,M,TRUE,19800,Married,TRUE,Homeowner free and clear,TRUE,1,40,SUNGEI KADUT,7,Manufacturing
+556935,F,TRUE,35100,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,60,WOODLANDS,3,Others
+559163,M,NA,15700,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,70,BUKIT TIMAH,7,NA
+559955,M,NA,157800,Ever Single,FALSE,NA,NA,NA,36,MARINA SOUTH,2,NA
+560007,F,TRUE,43400,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,45,PUNGGOL,2,Others
+560783,F,NA,164700,Ever Single,TRUE,NA,NA,NA,37,NORTH-EASTERN ISLANDS,3,NA
+561588,F,TRUE,24800,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,54,SINGAPORE RIVER,3,Others
+562962,M,NA,36900,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,55,TAMPINES,8,NA
+565628,F,TRUE,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,58,SEMBAWANG,7,Others
+565740,F,TRUE,16700,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,3,34,ROCHOR,4,IT
+568892,F,NA,0,Widowed,TRUE,Rented,FALSE,0,86,TENGAH,5,NA
+569414,F,TRUE,51400,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,57,YISHUN,7,Education
+571834,F,FALSE,71400,Ever Single,TRUE,Rented,FALSE,1,29,BOON LAY,5,IT
+572341,F,TRUE,61500,Divorced,TRUE,Rented,FALSE,1,36,TOA PAYOH,3,Telecom
+573573,M,TRUE,28100,Ever Single,TRUE,Rented,TRUE,2,28,BUKIT MERAH,3,Manufacturing
+575660,F,TRUE,29000,Ever Single,FALSE,Rented,TRUE,1,24,TANGLIN,1,Telecom
+576799,F,TRUE,31200,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,4,47,JURONG EAST,3,Others
+578596,M,TRUE,0,Married,TRUE,Homeowner free and clear,FALSE,4,66,SINGAPORE RIVER,3,Telecom
+580304,F,TRUE,91800,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,52,BUKIT PANJANG,7,Finance
+581657,F,NA,8100,Widowed,TRUE,Homeowner free and clear,FALSE,1,83,MARINA SOUTH,4,NA
+583093,M,TRUE,37200,Ever Single,TRUE,Rented,FALSE,2,48,SELETAR,3,IT
+583249,F,TRUE,11900,Ever Single,TRUE,Rented,FALSE,2,59,BEDOK,6,IT
+583934,F,NA,58800,Widowed,TRUE,Homeowner free and clear,FALSE,2,69,SIMPANG,7,NA
+584570,M,TRUE,9900,Married,TRUE,Rented,FALSE,1,38,NORTH-EASTERN ISLANDS,6,Transportation
+588705,M,NA,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,84,CHOA CHU KANG,5,NA
+588711,F,FALSE,42300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,57,ANG MO KIO,3,Manufacturing
+589826,F,TRUE,42800,Ever Single,TRUE,Rented,FALSE,1,30,ANG MO KIO,3,Telecom
+591244,M,NA,23200,Ever Single,TRUE,Homeowner free and clear,FALSE,2,58,STRAITS VIEW,7,NA
+592496,M,TRUE,17500,Divorced,TRUE,Rented,FALSE,1,60,TANGLIN,1,Others
+595225,M,TRUE,80300,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,51,TAMPINES,6,IT
+595796,M,NA,54300,Married,TRUE,Homeowner free and clear,FALSE,2,82,MUSEUM,3,NA
+595944,F,TRUE,NA,Ever Single,TRUE,Homeowner free and clear,FALSE,1,63,NORTH-EASTERN ISLANDS,4,Finance
+596523,F,TRUE,73900,Divorced,TRUE,Rented,TRUE,1,31,CHANGI,7,Others
+597817,F,NA,4300,Widowed,TRUE,Rented,FALSE,1,80,SELETAR,1,NA
+598008,M,TRUE,4400,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,51,PIONEER,2,Transportation
+601247,M,NA,0,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,3,73,SUNGEI KADUT,8,NA
+601778,F,TRUE,11100,Widowed,FALSE,Homeowner with mortgage/loan,FALSE,1,63,CENTRAL WATER CATCHMENT,7,Education
+603304,M,TRUE,44000,Married,TRUE,Rented,TRUE,2,44,CHOA CHU KANG,1,Telecom
+604216,M,NA,78700,Divorced,FALSE,NA,NA,NA,42,CHANGI,2,NA
+604839,M,TRUE,63400,Ever Single,TRUE,Rented,FALSE,2,25,SINGAPORE RIVER,2,Education
+605624,F,TRUE,114800,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,48,ANG MO KIO,6,Transportation
+606108,F,TRUE,NA,Ever Single,TRUE,Rented,TRUE,1,45,PASIR RIS,5,Education
+606307,M,TRUE,18300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,38,CLEMENTI,6,Transportation
+607766,F,TRUE,10400,Ever Single,TRUE,Rented,FALSE,1,49,BUKIT BATOK,3,Transportation
+608789,M,NA,26300,Divorced,TRUE,NA,NA,NA,58,BOON LAY,4,NA
+609449,F,NA,0,Widowed,TRUE,Homeowner free and clear,FALSE,2,83,BUKIT MERAH,6,NA
+612775,M,TRUE,24900,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,34,WOODLANDS,1,Finance
+612779,F,TRUE,36400,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,49,NEWTON,5,Transportation
+613391,M,TRUE,70700,Married,TRUE,Rented,TRUE,2,23,SENGKANG,6,Manufacturing
+616498,M,TRUE,56300,Ever Single,FALSE,Rented,FALSE,4,52,KALLANG,4,Telecom
+618036,M,FALSE,0,Ever Single,FALSE,Rented,FALSE,2,41,SEMBAWANG,6,Manufacturing
+618059,F,NA,10900,Widowed,TRUE,Rented,FALSE,2,89,WOODLANDS,4,NA
+618500,F,TRUE,241900,Married,TRUE,Rented,TRUE,3,64,TENGAH,8,Others
+620116,F,TRUE,23700,Married,TRUE,Rented,TRUE,2,26,GEYLANG,5,Telecom
+620452,M,FALSE,283500,Married,FALSE,Homeowner with mortgage/loan,FALSE,1,46,SEMBAWANG,1,IT
+622713,F,TRUE,5000,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,4,44,ROCHOR,1,IT
+624593,M,TRUE,133700,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,54,WOODLANDS,6,Others
+628305,M,NA,169300,Married,TRUE,NA,NA,NA,93,JURONG WEST,6,NA
+634710,F,TRUE,NA,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,2,54,PAYA LEBAR,6,Education
+635515,F,TRUE,321200,Divorced,TRUE,Rented,FALSE,1,51,RIVER VALLEY,5,Transportation
+635574,M,TRUE,19400,Ever Single,TRUE,Rented,FALSE,2,32,MARINA SOUTH,1,Others
+638458,F,NA,0,Ever Single,FALSE,Rented,FALSE,0,43,ORCHARD,7,NA
+638760,M,FALSE,66900,Married,FALSE,Homeowner free and clear,FALSE,1,33,OUTRAM,2,Education
+642727,F,TRUE,34900,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,58,WOODLANDS,8,Transportation
+643754,M,TRUE,2800,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,54,SERANGOON,6,Transportation
+645268,M,TRUE,31000,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,88,YISHUN,6,Transportation
+646061,F,NA,25300,Widowed,TRUE,Rented,FALSE,2,54,SIMPANG,2,NA
+646808,M,TRUE,19000,Married,TRUE,Rented,FALSE,0,40,CHOA CHU KANG,5,IT
+647206,M,TRUE,13000,Married,FALSE,Homeowner with mortgage/loan,FALSE,4,47,BUKIT BATOK,5,IT
+648220,M,TRUE,50300,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,51,BUKIT BATOK,5,Education
+649827,F,NA,9100,Married,TRUE,NA,NA,NA,89,SELETAR,1,NA
+650803,M,TRUE,109500,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,40,WESTERN WATER CATCHMENT,1,Transportation
+650961,F,TRUE,22200,Ever Single,TRUE,Rented,FALSE,1,38,SENGKANG,8,Telecom
+655940,F,TRUE,0,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,2,62,SOUTHERN ISLANDS,4,Others
+661353,F,NA,31000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,64,NEWTON,7,NA
+665669,F,TRUE,27000,Ever Single,TRUE,Rented,FALSE,4,33,BEDOK,8,IT
+667156,F,TRUE,0,Married,TRUE,Rented,TRUE,1,46,GEYLANG,7,Others
+668199,M,TRUE,29300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,45,ORCHARD,2,IT
+668750,F,NA,7900,Ever Single,FALSE,NA,NA,NA,24,CHOA CHU KANG,6,NA
+668777,M,NA,48500,Ever Single,FALSE,NA,NA,NA,33,PIONEER,2,NA
+673010,M,TRUE,30600,Married,TRUE,Rented,TRUE,1,46,PUNGGOL,8,Others
+674271,M,FALSE,90300,Married,TRUE,Rented,TRUE,1,54,SERANGOON,5,IT
+679084,M,NA,12700,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,88,SUNGEI KADUT,4,NA
+679364,F,FALSE,17300,Married,TRUE,Homeowner free and clear,FALSE,2,55,RIVER VALLEY,8,IT
+680475,M,TRUE,20200,Ever Single,TRUE,NA,NA,NA,21,QUEENSTOWN,4,Transportation
+680503,M,TRUE,21900,Ever Single,TRUE,Rented,FALSE,1,33,WESTERN WATER CATCHMENT,2,IT
+682848,F,TRUE,33400,Widowed,TRUE,Rented,FALSE,0,58,MARINA EAST,4,Transportation
+683320,F,TRUE,16900,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,32,BOON LAY,2,Education
+683867,M,TRUE,68400,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,62,CHANGI BAY,5,Transportation
+684640,M,TRUE,86300,Divorced,TRUE,Rented,FALSE,1,70,TOA PAYOH,3,Finance
+684701,M,NA,114300,Widowed,FALSE,Homeowner with mortgage/loan,FALSE,3,63,SELETAR,4,NA
+685624,M,TRUE,142200,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,45,QUEENSTOWN,5,Finance
+685994,F,TRUE,12400,Married,FALSE,Homeowner free and clear,FALSE,2,63,NEWTON,3,IT
+688580,M,TRUE,11900,Married,TRUE,Rented,TRUE,2,22,BISHAN,6,Transportation
+688736,F,NA,156700,Married,TRUE,Rented,FALSE,2,34,PIONEER,1,NA
+692445,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,5,48,WOODLANDS,6,Transportation
+693235,M,TRUE,42300,Married,TRUE,Homeowner free and clear,FALSE,2,43,PIONEER,8,IT
+693571,F,NA,NA,Married,FALSE,Homeowner with mortgage/loan,FALSE,2,44,LIM CHU KANG,3,NA
+696895,M,TRUE,62200,Married,FALSE,Homeowner with mortgage/loan,FALSE,2,44,TANGLIN,8,Education
+699499,M,TRUE,54700,Ever Single,TRUE,Rented,FALSE,2,29,ORCHARD,1,Finance
+702348,F,NA,NA,Married,TRUE,Rented,TRUE,4,20,YISHUN,3,NA
+702740,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,35,WOODLANDS,8,Transportation
+705752,F,TRUE,69000,Widowed,TRUE,Rented,FALSE,1,71,OUTRAM,2,Transportation
+706135,M,TRUE,39200,Married,TRUE,Homeowner free and clear,FALSE,2,41,TAMPINES,2,Others
+711954,F,TRUE,27100,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,44,SELETAR,3,Finance
+712409,M,TRUE,24500,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,41,BOON LAY,6,Transportation
+714135,F,TRUE,27000,Ever Single,TRUE,Rented,FALSE,1,40,SERANGOON,8,Education
+715902,F,TRUE,1200,Married,TRUE,Rented,FALSE,4,51,TOA PAYOH,8,Education
+716518,M,TRUE,116000,Married,FALSE,Homeowner with mortgage/loan,FALSE,3,44,WOODLANDS,3,Education
+716521,M,TRUE,75700,Married,FALSE,Rented,FALSE,2,62,SINGAPORE RIVER,7,Others
+719883,M,TRUE,43300,Ever Single,FALSE,Rented,FALSE,1,30,JURONG EAST,6,IT
+721921,M,TRUE,23600,Married,TRUE,Rented,FALSE,3,39,STRAITS VIEW,5,Finance
+723040,M,TRUE,NA,Married,TRUE,Homeowner free and clear,FALSE,2,54,TAMPINES,2,Finance
+724575,F,TRUE,NA,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,56,MUSEUM,1,Manufacturing
+726057,F,TRUE,86400,Married,TRUE,Rented,TRUE,5,52,QUEENSTOWN,6,IT
+728498,M,TRUE,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,52,CHANGI BAY,6,Transportation
+733069,F,NA,18300,Married,TRUE,Homeowner free and clear,TRUE,1,45,MARINA EAST,7,NA
+733279,M,TRUE,69400,Married,FALSE,Rented,FALSE,0,52,TANGLIN,3,IT
+733457,F,NA,134000,Divorced,TRUE,Rented,FALSE,0,86,BOON LAY,2,NA
+735845,M,TRUE,NA,Married,TRUE,Homeowner free and clear,FALSE,1,76,ROCHOR,4,Telecom
+737283,M,NA,83500,Married,FALSE,Homeowner with mortgage/loan,FALSE,2,61,PUNGGOL,4,NA
+739344,M,NA,0,Widowed,TRUE,Homeowner free and clear,FALSE,5,75,OUTRAM,4,NA
+739654,M,TRUE,47900,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,50,ROCHOR,1,Finance
+743329,M,TRUE,4000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,39,TOA PAYOH,8,IT
+743605,F,TRUE,NA,Ever Single,TRUE,Rented,FALSE,2,28,CHOA CHU KANG,5,Finance
+748153,F,TRUE,61100,Divorced,TRUE,Homeowner free and clear,FALSE,1,58,TUAS,4,IT
+750282,M,NA,58600,Married,TRUE,Rented,FALSE,1,89,YISHUN,7,NA
+752338,M,TRUE,46800,Divorced,FALSE,Rented,FALSE,2,34,BUKIT TIMAH,6,Telecom
+755587,M,TRUE,11600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,55,WESTERN WATER CATCHMENT,2,Manufacturing
+756099,M,TRUE,21500,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,62,BEDOK,8,Education
+756667,F,TRUE,24200,Married,TRUE,Rented,TRUE,2,45,TENGAH,8,Transportation
+756752,M,TRUE,79000,Ever Single,FALSE,Rented,TRUE,2,29,MARINE PARADE,8,Others
+756892,M,NA,16800,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,68,KALLANG,6,NA
+757404,M,TRUE,9100,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,35,JURONG EAST,2,Finance
+761350,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,50,TOA PAYOH,6,Transportation
+761380,M,TRUE,4300,Married,TRUE,Rented,TRUE,2,34,PUNGGOL,3,Manufacturing
+761424,M,TRUE,219200,Married,TRUE,Homeowner free and clear,FALSE,2,39,BISHAN,1,Finance
+763255,M,TRUE,79700,Ever Single,TRUE,Rented,TRUE,1,23,STRAITS VIEW,1,Others
+766390,M,NA,26300,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,86,PAYA LEBAR,3,NA
+768162,M,TRUE,126900,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,57,ANG MO KIO,4,Others
+773461,F,TRUE,321100,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,52,PIONEER,3,IT
+773582,F,NA,49600,Widowed,TRUE,Homeowner free and clear,FALSE,2,74,MARINA SOUTH,8,NA
+774920,M,TRUE,24600,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,4,43,MANDAI,1,Others
+776005,F,TRUE,49700,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,3,48,SUNGEI KADUT,7,IT
+776265,F,TRUE,56800,Ever Single,TRUE,Homeowner free and clear,FALSE,3,49,BEDOK,4,Others
+776471,M,NA,8400,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,64,BUKIT BATOK,8,NA
+778092,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,38,MUSEUM,3,IT
+778821,M,NA,16400,Widowed,TRUE,Homeowner free and clear,FALSE,2,79,STRAITS VIEW,6,NA
+779164,M,TRUE,19600,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,32,CHOA CHU KANG,3,IT
+782988,M,TRUE,391000,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,53,CHOA CHU KANG,2,Manufacturing
+786358,M,TRUE,23100,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,56,DOWNTOWN CORE,2,Manufacturing
+789913,M,TRUE,71000,Married,TRUE,Rented,FALSE,2,68,WESTERN ISLANDS,2,IT
+792130,F,NA,28100,Ever Single,TRUE,Homeowner free and clear,FALSE,1,72,KALLANG,7,NA
+795198,F,FALSE,30300,Married,TRUE,Rented,FALSE,2,31,HOUGANG,8,Others
+799074,F,NA,7600,Married,TRUE,Homeowner free and clear,FALSE,3,74,SENGKANG,2,NA
+799565,M,NA,56600,Ever Single,FALSE,NA,NA,NA,23,WOODLANDS,4,NA
+800960,M,NA,73500,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,68,BUKIT TIMAH,8,NA
+801018,F,NA,97900,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,64,NEWTON,2,NA
+805224,F,TRUE,37000,Ever Single,TRUE,Rented,TRUE,1,33,CHANGI,7,IT
+805571,M,TRUE,370600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,41,TENGAH,6,Telecom
+809267,M,TRUE,13300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,62,BUKIT TIMAH,4,Telecom
+811443,F,TRUE,61200,Ever Single,FALSE,Homeowner with mortgage/loan,FALSE,1,26,KALLANG,1,Telecom
+814516,F,TRUE,111300,Divorced,TRUE,Rented,TRUE,1,27,SERANGOON,7,Others
+814627,M,TRUE,147200,Ever Single,TRUE,Rented,FALSE,0,24,MARINE PARADE,7,Transportation
+816773,M,TRUE,31100,Married,TRUE,Rented,TRUE,2,50,SENGKANG,8,Telecom
+816872,M,NA,18800,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,72,NOVENA,4,NA
+818228,M,NA,306900,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,2,73,NEWTON,7,NA
+819436,F,NA,18700,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,1,81,WESTERN ISLANDS,6,NA
+819585,M,TRUE,80400,Ever Single,FALSE,Rented,FALSE,3,38,CLEMENTI,2,Finance
+820384,M,TRUE,16200,Married,TRUE,Rented,FALSE,2,43,PUNGGOL,8,Others
+821107,F,TRUE,10300,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,68,DOWNTOWN CORE,1,Transportation
+821682,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,62,WESTERN WATER CATCHMENT,7,Transportation
+822729,M,NA,65300,Married,TRUE,Homeowner free and clear,FALSE,2,67,WESTERN WATER CATCHMENT,2,NA
+823146,F,NA,94100,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,1,81,SERANGOON,4,NA
+824378,F,NA,35400,Widowed,TRUE,Homeowner free and clear,FALSE,1,75,BOON LAY,1,NA
+825129,M,TRUE,107400,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,46,KALLANG,2,Finance
+825790,F,TRUE,25500,Married,TRUE,Homeowner free and clear,TRUE,1,39,SELETAR,3,IT
+828208,M,TRUE,18600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,69,PIONEER,2,IT
+829195,M,FALSE,143000,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,55,TUAS,6,Telecom
+829722,F,NA,102200,Widowed,TRUE,Homeowner free and clear,FALSE,0,78,QUEENSTOWN,4,NA
+830245,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,48,MARINA EAST,7,Education
+830758,F,TRUE,214000,Ever Single,FALSE,Rented,TRUE,1,24,WESTERN ISLANDS,8,Finance
+831497,M,TRUE,21500,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,47,KALLANG,8,Manufacturing
+832435,M,TRUE,0,Married,TRUE,Homeowner free and clear,FALSE,3,48,TANGLIN,2,Others
+832866,M,NA,110100,Divorced,FALSE,Homeowner with mortgage/loan,FALSE,2,57,PUNGGOL,2,NA
+832949,M,TRUE,6200,Divorced,TRUE,Rented,FALSE,1,42,WOODLANDS,2,Telecom
+833321,M,FALSE,15500,Ever Single,FALSE,Homeowner with mortgage/loan,FALSE,2,51,SIMPANG,7,IT
+835830,F,TRUE,59000,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,41,PASIR RIS,7,IT
+837381,M,TRUE,46500,Ever Single,TRUE,NA,NA,NA,20,SENGKANG,1,Telecom
+841342,M,TRUE,53500,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,62,WESTERN WATER CATCHMENT,7,Transportation
+843811,F,TRUE,10300,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,146.6801966,ORCHARD,2,Finance
+844007,M,NA,9300,Married,FALSE,NA,NA,NA,46,SIMPANG,6,NA
+845421,F,FALSE,16900,Married,TRUE,Rented,FALSE,0,27,HOUGANG,6,Transportation
+846713,M,NA,50300,Ever Single,TRUE,NA,NA,NA,45,SENGKANG,1,NA
+847156,M,TRUE,26000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,52,ORCHARD,7,Education
+847699,M,TRUE,41100,Ever Single,TRUE,Homeowner with mortgage/loan,TRUE,4,26,TOA PAYOH,3,Transportation
+848521,M,TRUE,20700,Married,FALSE,Rented,FALSE,3,44,BUKIT TIMAH,4,Telecom
+851013,M,TRUE,255200,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,63,CENTRAL WATER CATCHMENT,8,Others
+851287,M,NA,79500,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,2,65,STRAITS VIEW,1,NA
+851744,F,TRUE,122700,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,2,24,SINGAPORE RIVER,4,IT
+855914,F,FALSE,NA,Married,TRUE,Rented,FALSE,0,31,NOVENA,6,Transportation
+856222,F,TRUE,52000,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,55,RIVER VALLEY,4,Telecom
+857482,F,TRUE,52100,Divorced,FALSE,Homeowner with mortgage/loan,FALSE,1,63,PIONEER,4,Transportation
+857511,F,TRUE,23000,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,54,ANG MO KIO,4,Telecom
+860763,M,TRUE,39000,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,49,KALLANG,3,Education
+861046,F,TRUE,37000,Married,TRUE,Rented,TRUE,2,29,PUNGGOL,8,Others
+861489,F,FALSE,77300,Divorced,FALSE,Homeowner with mortgage/loan,FALSE,1,56,BEDOK,6,Others
+862412,M,TRUE,57100,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,75,WESTERN ISLANDS,5,Transportation
+863276,F,FALSE,67800,Married,TRUE,Rented,FALSE,1,46,MARINA EAST,6,Others
+863391,M,TRUE,28300,Married,TRUE,Rented,FALSE,2,20,CLEMENTI,4,Manufacturing
+863424,F,TRUE,1500,Ever Single,TRUE,Rented,FALSE,1,42,PAYA LEBAR,6,IT
+863443,F,TRUE,31200,Ever Single,FALSE,Rented,FALSE,2,48,DOWNTOWN CORE,8,Education
+864947,F,NA,5900,Divorced,TRUE,Homeowner free and clear,FALSE,1,67,CENTRAL WATER CATCHMENT,6,NA
+867842,F,NA,11900,Widowed,TRUE,Homeowner free and clear,FALSE,1,75,SERANGOON,1,NA
+868481,M,TRUE,12100,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,36,SENGKANG,3,IT
+869997,M,TRUE,2200,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,28,TOA PAYOH,6,Transportation
+870169,M,TRUE,78100,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,36,BOON LAY,2,IT
+870909,F,NA,0,Married,TRUE,Homeowner free and clear,FALSE,2,57,CHANGI,2,NA
+871562,M,TRUE,92000,Ever Single,FALSE,Rented,TRUE,2,19,TUAS,3,Others
+872071,M,TRUE,76600,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,57,CHOA CHU KANG,4,Education
+873626,F,TRUE,28400,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,46,JURONG WEST,3,Telecom
+874159,F,TRUE,19700,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,47,MARINE PARADE,7,Finance
+875771,M,FALSE,20500,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,124.8450872,ROCHOR,7,Telecom
+876972,F,TRUE,21400,Married,FALSE,Rented,TRUE,3,28,QUEENSTOWN,6,IT
+878578,M,TRUE,48200,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,2,38,TAMPINES,4,Others
+878875,M,TRUE,35900,Married,TRUE,Rented,TRUE,2,37,NORTH-EASTERN ISLANDS,2,Transportation
+878882,M,TRUE,30800,Married,TRUE,Homeowner with mortgage/loan,FALSE,0,33,NORTH-EASTERN ISLANDS,7,Manufacturing
+880240,M,NA,5600,Ever Single,TRUE,NA,NA,NA,87,QUEENSTOWN,4,NA
+882950,F,NA,0,Widowed,TRUE,Homeowner free and clear,FALSE,0,86,LIM CHU KANG,4,NA
+883639,M,TRUE,5900,Married,TRUE,Rented,FALSE,2,38,CLEMENTI,2,Telecom
+884334,M,TRUE,NA,Married,TRUE,Rented,FALSE,2,52,BISHAN,4,Finance
+885269,M,FALSE,7000,Married,FALSE,Homeowner with mortgage/loan,FALSE,3,50,LIM CHU KANG,3,Others
+886647,F,TRUE,15400,Ever Single,FALSE,Rented,FALSE,4,19,CLEMENTI,7,Manufacturing
+887135,M,NA,63500,Married,TRUE,Homeowner free and clear,FALSE,2,67,SIMPANG,3,NA
+887400,M,TRUE,49200,Divorced,TRUE,Rented,FALSE,2,57,ANG MO KIO,1,Others
+892483,M,NA,111200,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,68,PIONEER,1,NA
+896869,F,FALSE,269900,Divorced,FALSE,Rented,FALSE,1,63,BISHAN,2,Finance
+897580,M,TRUE,68700,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,50,OUTRAM,6,Finance
+898396,M,TRUE,220300,Married,TRUE,Homeowner free and clear,FALSE,3,47,TENGAH,2,Education
+900377,M,TRUE,17300,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,47,MARINA SOUTH,8,Finance
+900986,F,TRUE,28700,Married,TRUE,Rented,FALSE,1,33,GEYLANG,4,Manufacturing
+901246,F,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,39,SINGAPORE RIVER,6,Others
+902413,M,TRUE,51300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,45,QUEENSTOWN,8,Manufacturing
+904144,F,NA,15300,Widowed,TRUE,Homeowner free and clear,FALSE,1,93,NOVENA,5,NA
+904594,F,NA,94800,Married,FALSE,Rented,TRUE,2,50,ORCHARD,3,NA
+904673,F,NA,15300,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,52,BUKIT BATOK,4,NA
+907824,F,FALSE,99200,Ever Single,FALSE,Rented,FALSE,1,55,ANG MO KIO,7,Transportation
+908176,F,NA,66500,Widowed,TRUE,Rented,FALSE,0,76,SOUTHERN ISLANDS,5,NA
+908928,M,TRUE,91700,Divorced,TRUE,Homeowner free and clear,FALSE,4,56,KALLANG,2,Education
+909002,F,NA,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,31,PAYA LEBAR,4,NA
+911763,F,NA,79800,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,2,77,TENGAH,6,NA
+912196,F,NA,0,Divorced,TRUE,Rented,FALSE,0,84,NOVENA,1,NA
+913398,M,FALSE,15500,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,51,ORCHARD,7,Education
+913679,M,NA,13200,Married,TRUE,Homeowner free and clear,FALSE,2,83,ROCHOR,6,NA
+914187,F,TRUE,58300,Married,TRUE,Homeowner with mortgage/loan,TRUE,3,25,ANG MO KIO,1,Others
+924426,M,TRUE,62100,Divorced,TRUE,Rented,TRUE,2,37,KALLANG,5,Transportation
+924897,F,TRUE,52700,Divorced,TRUE,Rented,FALSE,1,50,SEMBAWANG,1,Finance
+925421,M,TRUE,89200,Married,FALSE,Homeowner with mortgage/loan,FALSE,2,49,PASIR RIS,5,Telecom
+926808,M,TRUE,229200,Married,FALSE,Rented,FALSE,2,42,HOUGANG,4,Transportation
+927129,F,FALSE,26400,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,6,32,PUNGGOL,1,Others
+928004,M,NA,274000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,58,WESTERN ISLANDS,8,NA
+928569,F,TRUE,54700,Married,TRUE,Rented,TRUE,2,21,NORTH-EASTERN ISLANDS,2,Others
+931141,M,TRUE,55100,Divorced,FALSE,Rented,TRUE,4,25,BUKIT MERAH,3,Finance
+931352,F,NA,43100,Widowed,TRUE,Homeowner free and clear,FALSE,1,85,JURONG WEST,3,NA
+931449,M,NA,109400,Married,TRUE,Homeowner free and clear,FALSE,2,0,PAYA LEBAR,2,NA
+932143,F,TRUE,0,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,52,MANDAI,3,Transportation
+932574,M,NA,27000,Ever Single,TRUE,Rented,FALSE,0,66,WESTERN ISLANDS,2,NA
+934426,M,TRUE,45400,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,62,JURONG WEST,5,Education
+938913,M,NA,211700,Married,TRUE,Homeowner free and clear,FALSE,1,61,SERANGOON,8,NA
+940084,M,TRUE,37600,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,2,29,CLEMENTI,2,Transportation
+948494,M,TRUE,43300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,34,PIONEER,6,Finance
+949925,F,TRUE,88600,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,44,WESTERN WATER CATCHMENT,6,Transportation
+950326,M,TRUE,47500,Ever Single,FALSE,Rented,FALSE,1,26,BUKIT PANJANG,1,Transportation
+952729,F,TRUE,167300,Ever Single,TRUE,Rented,FALSE,1,28,MARINA EAST,4,Education
+953043,F,TRUE,12100,Ever Single,TRUE,Rented,TRUE,2,19,PUNGGOL,3,Finance
+955457,M,TRUE,53400,Married,TRUE,Homeowner free and clear,FALSE,4,43,PUNGGOL,7,Education
+957083,M,NA,37100,Divorced,TRUE,Rented,TRUE,0,64,LIM CHU KANG,2,NA
+958271,F,TRUE,61200,Divorced,TRUE,Rented,FALSE,1,39,MARINE PARADE,5,Education
+960591,M,TRUE,36500,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,49,SERANGOON,4,Finance
+961665,M,NA,6700,Ever Single,FALSE,NA,NA,NA,45,NEWTON,4,NA
+964297,M,TRUE,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,5,56,MARINA EAST,5,Finance
+965058,F,FALSE,11400,Ever Single,FALSE,Rented,TRUE,1,28,SOUTHERN ISLANDS,3,Finance
+965618,M,TRUE,23800,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,2,48,ROCHOR,1,Finance
+965689,M,NA,105800,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,56,TUAS,1,NA
+966699,M,TRUE,16500,Divorced,TRUE,Rented,FALSE,1,50,MARINA EAST,1,Manufacturing
+968478,F,TRUE,62400,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,3,48,WOODLANDS,4,Others
+968830,M,TRUE,NA,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,3,67,TENGAH,7,Finance
+970098,M,NA,187400,Married,TRUE,Rented,TRUE,2,65,PAYA LEBAR,2,NA
+971703,M,FALSE,60900,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,60,PAYA LEBAR,4,Education
+971768,M,TRUE,4300,Ever Single,FALSE,NA,NA,NA,45,ROCHOR,7,Others
+973386,M,TRUE,39300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,58,RIVER VALLEY,6,Transportation
+973839,M,TRUE,35500,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,67,MARINA SOUTH,3,Manufacturing
+975187,F,TRUE,900,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,3,48,BISHAN,6,Transportation
+975652,F,TRUE,42600,Ever Single,TRUE,Rented,FALSE,1,35,PASIR RIS,5,Transportation
+979475,F,TRUE,56600,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,56,SEMBAWANG,2,IT
+979736,M,TRUE,20200,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,36,BOON LAY,7,Others
+980375,F,TRUE,62400,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,61,BUKIT MERAH,7,IT
+980412,F,NA,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,62,MARINA SOUTH,5,NA
+980947,F,NA,67000,Ever Single,TRUE,Rented,TRUE,2,20,SENGKANG,7,NA
+985415,F,TRUE,32500,Divorced,TRUE,Homeowner free and clear,FALSE,1,55,SINGAPORE RIVER,8,Education
+986039,M,TRUE,NA,Ever Single,FALSE,Rented,FALSE,1,36,SUNGEI KADUT,6,Telecom
+986096,M,TRUE,47700,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,41,OUTRAM,4,Others
+987046,M,TRUE,21200,Married,TRUE,Rented,FALSE,1,44,BUKIT PANJANG,2,Transportation
+987884,F,TRUE,16800,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,2,50,CHANGI,8,Telecom
+988264,M,FALSE,16600,Married,TRUE,Homeowner with mortgage/loan,FALSE,5,55,BUKIT BATOK,4,Telecom
+988580,M,NA,106500,Married,TRUE,Homeowner with mortgage/loan,FALSE,0,77,BUKIT BATOK,8,NA
+991697,F,NA,57700,Ever Single,FALSE,Rented,FALSE,2,40,SUNGEI KADUT,5,NA
+991794,M,NA,105500,Married,TRUE,Homeowner free and clear,FALSE,1,93,YISHUN,7,NA
+991888,M,NA,26200,Married,TRUE,Homeowner free and clear,FALSE,1,93,MUSEUM,5,NA
+993668,F,TRUE,45100,Ever Single,TRUE,Rented,TRUE,2,39,SERANGOON,6,Manufacturing
+994628,F,NA,31200,Married,FALSE,Rented,FALSE,2,29,SINGAPORE RIVER,2,NA
+996953,F,FALSE,NA,Married,FALSE,Rented,TRUE,3,35,BISHAN,6,Finance
+997940,F,NA,2500,Married,TRUE,Rented,TRUE,2,27,BUKIT PANJANG,5,NA
+998185,F,NA,22300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,36,HOUGANG,2,NA
+999444,M,TRUE,69200,Married,TRUE,Rented,FALSE,2,24,PIONEER,2,Transportation
+1000510,M,TRUE,19500,Married,FALSE,Rented,TRUE,3,41,SOUTHERN ISLANDS,2,Finance
+1002936,F,TRUE,36300,Ever Single,TRUE,Rented,FALSE,2,41,RIVER VALLEY,6,Finance
+1003135,M,NA,NA,Married,TRUE,NA,NA,NA,88,JURONG EAST,4,NA
+1003695,F,NA,107900,Ever Single,TRUE,Rented,FALSE,1,55,BUKIT PANJANG,6,NA
+1005559,M,NA,50700,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,63,SERANGOON,3,NA
+1006488,F,TRUE,20800,Divorced,TRUE,Rented,FALSE,0,59,BUKIT MERAH,4,Finance
+1010216,F,TRUE,100700,Ever Single,TRUE,Rented,FALSE,6,28,SOUTHERN ISLANDS,8,Education
+1016594,M,NA,10500,Married,TRUE,Rented,FALSE,1,69,NOVENA,8,NA
+1022619,M,NA,40800,Divorced,TRUE,Rented,FALSE,1,72,PIONEER,5,NA
+1024624,F,TRUE,95300,Divorced,TRUE,Homeowner free and clear,FALSE,1,62,ORCHARD,1,Manufacturing
+1024809,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,TRUE,1,24,BUKIT BATOK,5,Others
+1026982,M,TRUE,12400,Ever Single,FALSE,Rented,TRUE,2,26,SERANGOON,5,Finance
+1029778,M,TRUE,17000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,84,TOA PAYOH,5,IT
+1031473,M,TRUE,12900,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,4,65,KALLANG,2,Transportation
+1031701,M,TRUE,253400,Ever Single,TRUE,Rented,FALSE,1,44,CLEMENTI,3,Others
+1032071,F,FALSE,74800,Ever Single,TRUE,Rented,TRUE,1,35,TUAS,6,Manufacturing
+1032120,F,TRUE,19500,Married,FALSE,Homeowner with mortgage/loan,FALSE,2,41,CLEMENTI,7,Education
+1032402,M,TRUE,0,Married,TRUE,Rented,TRUE,2,72,BUKIT PANJANG,1,Others
+1033341,M,TRUE,43400,Married,TRUE,Rented,FALSE,2,34,TENGAH,5,Education
+1033571,M,TRUE,38500,Divorced,TRUE,Rented,FALSE,2,68,CENTRAL WATER CATCHMENT,2,Education
+1034979,F,NA,0,Ever Single,TRUE,Rented,FALSE,1,38,OUTRAM,4,NA
+1034994,F,NA,81600,Widowed,TRUE,Rented,FALSE,2,57,SELETAR,8,NA
+1036358,F,TRUE,8600,Divorced,TRUE,Rented,TRUE,1,48,RIVER VALLEY,1,IT
+1036746,F,NA,76000,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,2,65,ORCHARD,1,NA
+1037495,F,TRUE,NA,Ever Single,FALSE,Rented,TRUE,1,30,OUTRAM,7,Telecom
+1037857,M,TRUE,115400,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,22,MANDAI,6,Transportation
+1038537,F,TRUE,12700,Ever Single,FALSE,Homeowner free and clear,FALSE,1,42,HOUGANG,2,Transportation
+1039209,M,NA,190200,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,59,PASIR RIS,3,NA
+1040818,M,TRUE,21800,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,46,CHANGI BAY,7,Finance
+1042303,M,TRUE,0,Married,TRUE,Rented,FALSE,2,28,MUSEUM,6,IT
+1042791,M,FALSE,39300,Married,TRUE,Rented,TRUE,2,46,TUAS,5,Telecom
+1044036,F,TRUE,NA,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,31,ANG MO KIO,2,Education
+1046317,F,NA,600,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,1,89,OUTRAM,8,NA
+1046696,M,TRUE,204600,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,65,PASIR RIS,3,Education
+1047534,M,TRUE,14700,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,130.4016047,JURONG WEST,2,Education
+1048652,F,NA,18800,Divorced,TRUE,Rented,TRUE,1,77,PAYA LEBAR,2,NA
+1048836,M,TRUE,32300,Married,TRUE,Rented,FALSE,3,55,ANG MO KIO,2,Others
+1051439,M,TRUE,129700,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,40,DOWNTOWN CORE,8,Manufacturing
+1052064,M,TRUE,164800,Ever Single,TRUE,Rented,FALSE,1,33,SELETAR,6,Education
+1053513,M,TRUE,19300,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,59,BUKIT BATOK,3,Transportation
+1055360,F,NA,60900,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,58,TUAS,5,NA
+1057167,F,NA,44800,Widowed,TRUE,NA,NA,NA,93,HOUGANG,5,NA
+1057778,F,NA,26600,Ever Single,TRUE,Rented,FALSE,4,19,PAYA LEBAR,2,NA
+1058755,F,TRUE,195700,Divorced,TRUE,Homeowner free and clear,FALSE,1,59,TUAS,8,Manufacturing
+1063014,F,TRUE,NA,Married,TRUE,Rented,FALSE,2,43,NEWTON,6,Finance
+1064979,F,TRUE,24700,Divorced,TRUE,Rented,FALSE,2,43,BUKIT MERAH,4,Others
+1065059,F,FALSE,0,Ever Single,FALSE,Rented,FALSE,1,28,QUEENSTOWN,3,Education
+1065669,F,TRUE,47500,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,61,OUTRAM,6,Telecom
+1068379,F,TRUE,100800,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,61,DOWNTOWN CORE,6,Education
+1068855,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,6,59,SINGAPORE RIVER,8,Telecom
+1072259,M,NA,4300,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,60,TANGLIN,8,NA
+1072827,M,TRUE,39900,Married,FALSE,Rented,FALSE,4,64,BUKIT TIMAH,8,Others
+1075920,M,TRUE,416100,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,47,TUAS,8,Finance
+1076007,M,TRUE,41100,Ever Single,TRUE,Rented,FALSE,3,25,RIVER VALLEY,7,Finance
+1079462,F,TRUE,100800,Ever Single,TRUE,Rented,FALSE,2,36,MANDAI,3,Transportation
+1079878,F,NA,125500,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,62,CHOA CHU KANG,8,NA
+1082333,M,TRUE,69000,Divorced,TRUE,Homeowner free and clear,FALSE,2,50,SINGAPORE RIVER,4,Education
+1083939,M,NA,17200,Married,TRUE,Homeowner free and clear,FALSE,1,73,HOUGANG,1,NA
+1084583,F,TRUE,115100,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,41,JURONG EAST,3,Telecom
+1086100,F,FALSE,85500,Ever Single,FALSE,Rented,FALSE,2,26,YISHUN,3,Manufacturing
+1086785,F,NA,117800,Married,TRUE,Homeowner free and clear,FALSE,2,84,TANGLIN,3,NA
+1087193,F,TRUE,9600,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,0,75,RIVER VALLEY,5,Transportation
+1088407,M,TRUE,454500,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,36,CHANGI,4,IT
+1089530,F,TRUE,400,Widowed,TRUE,Rented,FALSE,1,54,BUKIT PANJANG,3,Education
+1090019,M,TRUE,33900,Married,FALSE,Rented,FALSE,2,57,DOWNTOWN CORE,7,IT
+1095968,F,TRUE,25400,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,46,CHANGI,4,Manufacturing
+1096606,M,TRUE,20800,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,50,BUKIT TIMAH,1,Education
+1097109,M,TRUE,208100,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,50,RIVER VALLEY,4,Others
+1097837,F,FALSE,48000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,53,BOON LAY,5,Education
+1100932,F,FALSE,9300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,40,BISHAN,1,IT
+1105503,M,TRUE,61300,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,62,PUNGGOL,8,Telecom
+1108038,F,TRUE,8900,Married,TRUE,Rented,TRUE,2,40,CHANGI,6,Education
+1108230,F,TRUE,27400,Widowed,TRUE,Rented,FALSE,1,64,SEMBAWANG,4,Manufacturing
+1110560,M,TRUE,NA,Ever Single,FALSE,Homeowner with mortgage/loan,FALSE,3,20,MARINE PARADE,7,Transportation
+1110962,M,FALSE,8000,Divorced,FALSE,Rented,FALSE,0,58,MARINE PARADE,3,Education
+1111699,M,TRUE,NA,Ever Single,TRUE,Rented,FALSE,4,40,TUAS,1,Others
+1114096,M,TRUE,0,Married,TRUE,Rented,FALSE,1,46,YISHUN,8,Telecom
+1115937,F,NA,7600,Ever Single,TRUE,Rented,FALSE,0,58,WESTERN WATER CATCHMENT,7,NA
+1116742,M,TRUE,18200,Married,TRUE,Rented,FALSE,2,65,TENGAH,5,Education
+1117486,M,TRUE,37800,Married,TRUE,Homeowner free and clear,FALSE,1,64,CLEMENTI,8,Finance
+1117622,F,TRUE,73700,Ever Single,TRUE,Homeowner with mortgage/loan,TRUE,1,26,MARINA SOUTH,7,Education
+1120122,M,NA,165900,Ever Single,TRUE,NA,NA,NA,80,RIVER VALLEY,7,NA
+1121202,F,TRUE,68900,Married,TRUE,Rented,FALSE,2,37,TOA PAYOH,2,Education
+1121810,F,NA,NA,Divorced,TRUE,Homeowner free and clear,FALSE,1,80,BUKIT PANJANG,6,NA
+1127889,F,TRUE,28300,Divorced,TRUE,Rented,FALSE,2,55,WOODLANDS,1,IT
+1131536,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,57,KALLANG,5,Telecom
+1131990,F,TRUE,200,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,2,51,SINGAPORE RIVER,2,Education
+1132236,F,TRUE,133600,Ever Single,TRUE,Rented,FALSE,1,55,STRAITS VIEW,2,Education
+1133606,F,NA,NA,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,1,67,OUTRAM,2,NA
+1133846,F,TRUE,64100,Married,TRUE,Homeowner with mortgage/loan,FALSE,5,47,MUSEUM,8,Others
+1137728,F,NA,37200,Widowed,TRUE,Homeowner free and clear,FALSE,1,84,CLEMENTI,1,NA
+1139422,F,NA,52100,Widowed,TRUE,Rented,FALSE,1,85,TAMPINES,8,NA
+1140783,F,TRUE,0,Married,TRUE,Rented,FALSE,2,43,MUSEUM,6,IT
+1140973,M,NA,25700,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,43,WESTERN ISLANDS,8,NA
+1143785,F,TRUE,37200,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,50,LIM CHU KANG,4,IT
+1144205,M,TRUE,19800,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,65,BUKIT MERAH,6,Finance
+1145290,F,TRUE,0,Married,TRUE,Rented,FALSE,1,33,SIMPANG,6,Finance
+1149284,M,TRUE,35500,Divorced,TRUE,Homeowner with mortgage/loan,TRUE,1,40,BOON LAY,7,Manufacturing
+1150024,M,TRUE,44900,Married,TRUE,Rented,FALSE,2,37,JURONG EAST,6,Transportation
+1152584,F,NA,0,Divorced,TRUE,Rented,FALSE,0,73,MANDAI,3,NA
+1152642,M,NA,5100,Ever Single,FALSE,Rented,FALSE,1,54,GEYLANG,5,NA
+1159665,M,TRUE,-7600,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,46,TOA PAYOH,1,Transportation
+1159694,M,TRUE,22400,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,41,HOUGANG,8,Others
+1159904,M,TRUE,62900,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,39,BUKIT MERAH,4,Others
+1160167,M,NA,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,74,BUKIT TIMAH,2,NA
+1165177,M,TRUE,160400,Divorced,TRUE,Rented,FALSE,2,38,SEMBAWANG,8,Finance
+1165631,M,TRUE,30400,Ever Single,TRUE,Rented,TRUE,1,37,BOON LAY,7,Finance
+1167155,M,TRUE,81300,Ever Single,TRUE,Rented,FALSE,1,32,WOODLANDS,2,Education
+1169067,M,TRUE,82000,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,71,SELETAR,2,Education
+1170716,F,NA,24800,Widowed,TRUE,Rented,FALSE,1,65,TOA PAYOH,1,NA
+1171358,F,TRUE,24700,Ever Single,TRUE,Rented,TRUE,1,40,PIONEER,3,IT
+1171408,M,TRUE,23000,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,33,RIVER VALLEY,4,Manufacturing
+1172770,M,NA,0,Married,TRUE,Homeowner free and clear,FALSE,2,62,TOA PAYOH,7,NA
+1175925,M,NA,96000,Married,TRUE,Homeowner with mortgage/loan,FALSE,5,59,PAYA LEBAR,7,NA
+1176266,F,TRUE,31600,Ever Single,FALSE,Rented,TRUE,1,45,SUNGEI KADUT,4,Education
+1178989,M,TRUE,43700,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,2,58,BUKIT MERAH,6,Finance
+1180739,F,TRUE,12500,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,52,SENGKANG,6,Transportation
+1181596,M,TRUE,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,55,TANGLIN,8,IT
+1184851,F,TRUE,0,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,66,WESTERN ISLANDS,3,IT
+1185185,M,NA,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,71,JURONG WEST,8,NA
+1185382,F,NA,153300,Ever Single,TRUE,NA,NA,NA,26,OUTRAM,1,NA
+1192089,M,NA,11100,Married,TRUE,Homeowner free and clear,FALSE,2,77,NEWTON,8,NA
+1194722,F,FALSE,22700,Ever Single,FALSE,Rented,FALSE,0,40,WOODLANDS,3,IT
+1197386,F,TRUE,42000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,55,TENGAH,5,Education
+1198992,M,NA,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,70,SINGAPORE RIVER,5,NA
+1199409,M,TRUE,34000,Ever Single,FALSE,Rented,FALSE,1,34,WESTERN WATER CATCHMENT,3,Telecom
+1200487,M,NA,13100,Ever Single,FALSE,NA,NA,NA,36,WOODLANDS,7,NA
+1201949,M,NA,441200,Divorced,TRUE,Homeowner free and clear,FALSE,4,83,BEDOK,2,NA
+1210039,F,TRUE,46000,Ever Single,FALSE,Rented,FALSE,0,48,SENGKANG,8,Finance
+1210604,F,NA,49500,Widowed,TRUE,Rented,FALSE,0,89,SEMBAWANG,3,NA
+1211323,M,NA,36300,Widowed,TRUE,Rented,TRUE,1,74,OUTRAM,8,NA
+1212823,F,TRUE,43500,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,3,37,ORCHARD,8,IT
+1213106,M,TRUE,26400,Married,TRUE,Homeowner free and clear,TRUE,2,38,MARINA EAST,3,Finance
+1213329,F,TRUE,66800,Divorced,TRUE,Rented,TRUE,1,44,MARINA SOUTH,6,Transportation
+1213522,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,58,WOODLANDS,2,Telecom
+1215332,F,TRUE,93100,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,64,NORTH-EASTERN ISLANDS,8,Education
+1216026,M,NA,29700,Ever Single,FALSE,Rented,FALSE,6,50,WOODLANDS,7,NA
+1216094,M,NA,59100,Married,TRUE,Homeowner free and clear,FALSE,2,69,PIONEER,4,NA
+1216112,M,TRUE,33800,Ever Single,TRUE,Homeowner free and clear,FALSE,1,41,YISHUN,8,Others
+1216615,F,NA,NA,Widowed,TRUE,Homeowner free and clear,FALSE,3,83,CHANGI,2,NA
+1217985,F,NA,24600,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,2,74,TOA PAYOH,8,NA
+1218268,F,NA,8500,Divorced,TRUE,Rented,FALSE,1,57,CHANGI BAY,7,NA
+1219346,M,NA,NA,Ever Single,FALSE,NA,NA,NA,23,MUSEUM,7,NA
+1222380,M,TRUE,46200,Married,FALSE,Homeowner with mortgage/loan,FALSE,2,33,ORCHARD,1,Manufacturing
+1222630,F,TRUE,46500,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,52,WOODLANDS,7,IT
+1223510,F,NA,15400,Widowed,TRUE,Homeowner free and clear,FALSE,2,76,TUAS,1,NA
+1224734,M,TRUE,46700,Ever Single,TRUE,Rented,FALSE,1,52,MUSEUM,8,Manufacturing
+1225516,F,TRUE,11900,Ever Single,TRUE,Rented,FALSE,1,48,TOA PAYOH,8,Education
+1225838,M,TRUE,32400,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,62,WESTERN ISLANDS,8,Transportation
+1227678,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,52,GEYLANG,6,Finance
+1229417,F,TRUE,32000,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,0,YISHUN,1,Manufacturing
+1231777,F,TRUE,112100,Ever Single,TRUE,Rented,FALSE,1,52,ORCHARD,2,Transportation
+1234349,F,TRUE,140800,Married,TRUE,Homeowner with mortgage/loan,TRUE,1,29,PIONEER,5,Finance
+1236386,F,NA,110300,Widowed,TRUE,Homeowner free and clear,FALSE,1,78,BISHAN,8,NA
+1236514,F,TRUE,5500,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,61,LIM CHU KANG,7,Manufacturing
+1236675,M,TRUE,41200,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,39,BUKIT PANJANG,7,Others
+1237055,M,TRUE,69800,Married,TRUE,Rented,FALSE,1,39,TAMPINES,1,Manufacturing
+1238436,F,NA,0,Married,FALSE,Rented,FALSE,2,25,SEMBAWANG,8,NA
+1238518,M,NA,21200,Married,TRUE,Homeowner free and clear,FALSE,2,78,MARINA EAST,3,NA
+1238678,M,TRUE,46200,Married,FALSE,Homeowner with mortgage/loan,FALSE,1,40,MANDAI,2,Manufacturing
+1239370,F,TRUE,28600,Married,TRUE,Homeowner with mortgage/loan,TRUE,2,50,OUTRAM,7,Transportation
+1239496,M,TRUE,35000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,33,NOVENA,5,Finance
+1241524,M,TRUE,12200,Divorced,TRUE,Homeowner free and clear,FALSE,2,56,PUNGGOL,2,IT
+1241975,M,TRUE,58700,Married,FALSE,Homeowner with mortgage/loan,FALSE,2,51,SEMBAWANG,7,Transportation
+1245887,F,TRUE,34500,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,44,MARINA SOUTH,5,Manufacturing
+1245912,F,TRUE,17200,Married,TRUE,Rented,FALSE,1,28,LIM CHU KANG,4,Education
+1249187,F,TRUE,25700,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,55,GEYLANG,6,Others
+1250656,M,TRUE,84700,Married,TRUE,Homeowner with mortgage/loan,FALSE,6,55,MARINA SOUTH,1,Finance
+1250816,F,TRUE,41500,Ever Single,TRUE,Rented,FALSE,1,28,STRAITS VIEW,6,Telecom
+1253904,M,TRUE,186400,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,55,MARINA SOUTH,4,Others
+1254684,M,NA,5300,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,93,CHANGI BAY,1,NA
+1255530,M,FALSE,162800,Ever Single,FALSE,Rented,TRUE,1,50,RIVER VALLEY,4,Finance
+1258309,M,TRUE,451300,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,52,PIONEER,2,IT
+1259310,M,TRUE,54500,Ever Single,FALSE,Rented,TRUE,4,23,BEDOK,5,Finance
+1259643,F,FALSE,35700,Divorced,TRUE,Rented,TRUE,1,57,ANG MO KIO,6,Others
+1262812,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,70,TOA PAYOH,8,Telecom
+1262853,M,TRUE,54200,Ever Single,TRUE,NA,NA,NA,20,PASIR RIS,7,Education
+1263543,M,NA,213400,Married,TRUE,Homeowner free and clear,FALSE,3,77,BOON LAY,6,NA
+1264160,F,NA,NA,Widowed,TRUE,Homeowner free and clear,FALSE,1,80,ANG MO KIO,4,NA
+1264817,F,TRUE,124600,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,51,SUNGEI KADUT,2,Others
+1264848,M,TRUE,9900,Ever Single,TRUE,Rented,FALSE,0,40,NEWTON,3,Manufacturing
+1267400,M,NA,123500,Divorced,TRUE,Rented,FALSE,0,70,WESTERN ISLANDS,1,NA
+1267682,F,NA,55800,Widowed,TRUE,Homeowner free and clear,FALSE,2,74,SUNGEI KADUT,2,NA
+1267710,M,TRUE,137400,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,2,42,STRAITS VIEW,3,Finance
+1268916,M,TRUE,0,Married,FALSE,Rented,FALSE,2,42,BUKIT TIMAH,3,Others
+1269051,F,NA,NA,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,1,69,HOUGANG,2,NA
+1269422,M,TRUE,42600,Ever Single,TRUE,NA,NA,NA,26,BUKIT MERAH,8,Telecom
+1269661,F,NA,1700,Married,FALSE,Homeowner free and clear,FALSE,2,59,GEYLANG,4,NA
+1273216,M,NA,55100,Married,FALSE,Rented,FALSE,2,59,ROCHOR,7,NA
+1274592,M,TRUE,6200,Widowed,TRUE,Homeowner free and clear,FALSE,2,83,BUKIT PANJANG,8,Manufacturing
+1276808,M,TRUE,NA,Ever Single,FALSE,Rented,FALSE,1,27,SUNGEI KADUT,6,Others
+1278230,F,TRUE,41600,Married,TRUE,Homeowner with mortgage/loan,TRUE,2,33,BOON LAY,3,IT
+1278909,M,NA,NA,Married,TRUE,Homeowner free and clear,FALSE,5,70,TENGAH,2,NA
+1280826,M,TRUE,43200,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,40,GEYLANG,3,Transportation
+1281448,M,NA,23200,Widowed,TRUE,Homeowner free and clear,FALSE,2,47,ANG MO KIO,3,NA
+1282540,M,NA,0,Ever Single,TRUE,Homeowner free and clear,FALSE,1,52,QUEENSTOWN,3,NA
+1282762,M,NA,30800,Ever Single,FALSE,NA,NA,NA,41,WESTERN WATER CATCHMENT,7,NA
+1283591,M,NA,43900,Married,TRUE,Homeowner free and clear,FALSE,2,84,HOUGANG,4,NA
+1283783,F,TRUE,12100,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,63,MUSEUM,2,Manufacturing
+1283962,M,TRUE,71100,Ever Single,FALSE,Rented,FALSE,1,65,JURONG WEST,8,IT
+1284555,F,TRUE,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,41,BOON LAY,8,Telecom
+1285807,F,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,31,PASIR RIS,8,Others
+1288195,M,TRUE,33300,Ever Single,TRUE,Rented,FALSE,0,28,NEWTON,1,Finance
+1293509,M,NA,34700,Ever Single,TRUE,Rented,TRUE,0,34,SERANGOON,5,NA
+1295682,M,NA,27000,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,76,WESTERN WATER CATCHMENT,2,NA
+1297652,M,TRUE,31300,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,62,MARINA EAST,2,Education
+1299959,M,TRUE,0,Married,TRUE,Rented,FALSE,3,51,WESTERN WATER CATCHMENT,1,Others
+1303744,M,TRUE,73700,Divorced,TRUE,Rented,TRUE,2,44,BUKIT PANJANG,2,Manufacturing
+1303929,F,FALSE,29100,Ever Single,TRUE,Rented,FALSE,1,126.7372844,TAMPINES,2,Others
+1305771,F,TRUE,85100,Ever Single,TRUE,Rented,TRUE,1,31,MARINA EAST,4,Transportation
+1307013,F,NA,29700,Widowed,FALSE,Rented,FALSE,5,55,STRAITS VIEW,8,NA
+1310634,M,TRUE,68900,Ever Single,FALSE,Rented,FALSE,0,24,WESTERN WATER CATCHMENT,3,Finance
+1314429,M,NA,18700,Married,TRUE,Homeowner free and clear,FALSE,2,69,TAMPINES,2,NA
+1317659,M,TRUE,10500,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,32,OUTRAM,6,Telecom
+1321154,F,NA,27500,Widowed,TRUE,NA,NA,NA,83,RIVER VALLEY,8,NA
+1322627,M,NA,46300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,54,SERANGOON,1,NA
+1324576,M,TRUE,18000,Married,TRUE,Homeowner with mortgage/loan,FALSE,1,39,ROCHOR,8,Telecom
+1327830,M,NA,44000,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,67,PAYA LEBAR,2,NA
+1328084,F,FALSE,0,Married,TRUE,Rented,FALSE,2,42,CHOA CHU KANG,4,IT
+1328836,M,NA,NA,Widowed,TRUE,Homeowner free and clear,FALSE,2,86,SENGKANG,6,NA
+1329294,M,TRUE,92400,Married,TRUE,Homeowner free and clear,FALSE,2,65,OUTRAM,3,Telecom
+1329913,F,NA,148500,Divorced,TRUE,Rented,FALSE,0,64,NORTH-EASTERN ISLANDS,1,NA
+1333775,M,FALSE,56200,Married,TRUE,Rented,FALSE,3,40,SENGKANG,6,Telecom
+1335632,M,TRUE,73800,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,56,CHOA CHU KANG,4,Manufacturing
+1339166,F,TRUE,70500,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,46,NEWTON,1,Transportation
+1342135,F,NA,8100,Ever Single,TRUE,NA,NA,NA,31,CHANGI BAY,2,NA
+1342272,F,FALSE,200,Married,FALSE,Rented,FALSE,2,27,BUKIT MERAH,1,IT
+1348440,M,TRUE,170100,Married,TRUE,Homeowner free and clear,FALSE,2,62,PUNGGOL,2,Telecom
+1353087,M,NA,11800,Ever Single,FALSE,NA,NA,NA,25,PUNGGOL,8,NA
+1354211,M,TRUE,61100,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,60,ANG MO KIO,1,IT
+1356541,F,NA,30900,Ever Single,TRUE,Rented,TRUE,1,21,BUKIT PANJANG,5,NA
+1356693,M,TRUE,90600,Married,TRUE,Homeowner free and clear,FALSE,3,47,CHOA CHU KANG,8,Manufacturing
+1358975,F,TRUE,73700,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,1,46,TAMPINES,5,Transportation
+1359790,M,NA,0,Married,TRUE,Homeowner free and clear,FALSE,2,67,SELETAR,8,NA
+1359848,F,FALSE,12200,Married,FALSE,Homeowner free and clear,FALSE,4,59,ORCHARD,4,Others
+1361012,F,NA,6100,Widowed,TRUE,Homeowner free and clear,FALSE,1,113.3372074,SERANGOON,2,NA
+1361709,M,NA,61800,Married,TRUE,Rented,FALSE,2,70,PIONEER,2,NA
+1362854,F,NA,4600,Married,FALSE,Homeowner with mortgage/loan,FALSE,1,28,ANG MO KIO,3,NA
+1364327,M,TRUE,50000,Married,TRUE,Rented,FALSE,2,40,YISHUN,1,Manufacturing
+1364927,M,TRUE,193900,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,59,DOWNTOWN CORE,3,Telecom
+1366883,F,TRUE,0,Married,TRUE,Rented,FALSE,1,32,BOON LAY,5,Others
+1369231,M,NA,NA,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,73,NEWTON,8,NA
+1369460,M,FALSE,47600,Ever Single,FALSE,Homeowner free and clear,FALSE,3,50,MARINA SOUTH,1,Manufacturing
+1369740,M,NA,98500,Widowed,TRUE,Rented,FALSE,1,64,SUNGEI KADUT,6,NA
+1370515,F,NA,19300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,62,LIM CHU KANG,5,NA
+1371785,F,TRUE,22700,Divorced,FALSE,Homeowner with mortgage/loan,FALSE,4,47,ORCHARD,3,Finance
+1372296,F,NA,116800,Widowed,TRUE,Homeowner free and clear,TRUE,1,62,BUKIT PANJANG,8,NA
+1375846,F,TRUE,14100,Divorced,TRUE,Rented,FALSE,2,0,CHANGI,7,Education
+1377197,M,NA,51000,Married,TRUE,Rented,TRUE,2,38,SOUTHERN ISLANDS,7,NA
+1377390,M,TRUE,26500,Married,TRUE,Homeowner free and clear,FALSE,3,69,NOVENA,7,Finance
+1379036,M,FALSE,265100,Divorced,FALSE,Rented,FALSE,2,61,ANG MO KIO,7,Transportation
+1379307,M,NA,34200,Ever Single,FALSE,NA,NA,NA,23,BEDOK,3,NA
+1380075,F,NA,9600,Widowed,TRUE,Homeowner with mortgage/loan,FALSE,1,81,SUNGEI KADUT,5,NA
+1386080,F,NA,0,Divorced,TRUE,Homeowner free and clear,FALSE,1,65,WOODLANDS,4,NA
+1386114,M,TRUE,168600,Married,TRUE,Rented,FALSE,2,41,CHANGI,5,Manufacturing
+1386763,F,TRUE,0,Ever Single,TRUE,Rented,TRUE,1,29,MARINE PARADE,7,Telecom
+1388751,F,FALSE,30400,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,45,MANDAI,2,Manufacturing
+1390506,M,TRUE,73000,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,33,PASIR RIS,4,Manufacturing
+1391586,M,NA,46600,Married,TRUE,Homeowner free and clear,FALSE,4,64,TOA PAYOH,1,NA
+1392011,F,TRUE,162000,Married,TRUE,Homeowner free and clear,FALSE,1,50,MARINA EAST,2,Others
+1392648,M,TRUE,83100,Married,TRUE,Homeowner with mortgage/loan,FALSE,5,60,MARINE PARADE,8,Telecom
+1393413,M,TRUE,NA,Ever Single,TRUE,Rented,FALSE,1,64,BOON LAY,2,Transportation
+1393715,F,FALSE,25500,Ever Single,TRUE,Rented,FALSE,1,48,JURONG EAST,4,Transportation
+1398054,M,TRUE,6800,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,34,TAMPINES,2,Telecom
+1400440,M,NA,374600,Married,TRUE,NA,NA,NA,37,BISHAN,3,NA
+1401383,F,TRUE,32300,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,57,JURONG EAST,3,Telecom
+1401938,F,TRUE,66600,Divorced,TRUE,Rented,FALSE,2,24,JURONG WEST,2,IT
+1402550,M,TRUE,21300,Married,TRUE,Homeowner with mortgage/loan,TRUE,2,37,WESTERN ISLANDS,1,Others
+1403515,M,TRUE,47800,Married,TRUE,Homeowner with mortgage/loan,FALSE,3,66,NORTH-EASTERN ISLANDS,5,Manufacturing
+1405584,F,NA,19200,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,55,MANDAI,5,NA
+1407195,M,TRUE,10800,Ever Single,FALSE,Homeowner with mortgage/loan,TRUE,1,30,BOON LAY,3,Others
+1407867,M,TRUE,24200,Divorced,TRUE,Homeowner with mortgage/loan,FALSE,3,53,STRAITS VIEW,6,Telecom
+1407895,M,TRUE,0,Married,TRUE,Homeowner with mortgage/loan,FALSE,2,55,TOA PAYOH,8,Others
+1407916,M,TRUE,61500,Ever Single,TRUE,Homeowner with mortgage/loan,FALSE,1,46,ROCHOR,6,Others
+1408280,F,TRUE,37800,Married,TRUE,Homeowner with mortgage/loan,FALSE,4,52,HOUGANG,5,Manufacturing
+1408913,F,NA,22900,Married,TRUE,Rented,FALSE,0,60,JURONG EAST,2,NA
+1409249,M,NA,NA,Married,TRUE,Homeowner free and clear,FALSE,5,73,SENGKANG,5,NA
+1411132,F,FALSE,247400,Divorced,TRUE,Rented,TRUE,1,56,JURONG EAST,8,Others
+1411860,F,NA,46200,Widowed,TRUE,NA,NA,NA,89,SELETAR,8,NA
+1412161,M,TRUE,NA,Married,TRUE,Rented,TRUE,1,29,NOVENA,8,Telecom
+1412971,M,NA,7600,Married,TRUE,Homeowner free and clear,FALSE,1,88,CENTRAL WATER CATCHMENT,6,NA
+1414286,F,FALSE,395500,Married,FALSE,Rented,FALSE,2,36,PIONEER,6,Finance

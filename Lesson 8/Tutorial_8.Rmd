@@ -1,0 +1,76 @@
+---
+title: "Tutorial 8"
+output: html_document
+---
+
+```{r}
+library("ggplot2")
+data <- read.csv("./Data/country_vaccinations.csv")
+
+data$date <- as.Date(data$date)
+data$iso_code <- as.factor(data$iso_code)
+g1 <- ggplot(data,aes(x=total_vaccinations))+geom_density()+scale_x_log10()
+g1 # note that the axis ticks are difficult to interpret
+```
+
+```{r}
+# transform data 
+formatX <- function(x)
+{
+  format(x, big.mark=",",scientific = F)
+}
+
+# labels will be formatted using the formatX function
+g2 <- ggplot(data,aes(x=total_vaccinations))+geom_density()+scale_x_log10(labels=formatX)
+g2 # labels are more interpretable BUT last number is truncated
+g2 = g2 + theme(axis.text.x = element_text(angle = 90)) # roatate labels by 90 degrees
+g2 # ticks have a lot of zeros
+```
+
+```{r}
+# format function to adjust for the size
+formatX0 <- function(x) {
+  dplyr::case_when(
+      x < 1e3 ~ as.character(x),
+      x < 1e6 ~ paste0(as.character(x/1e3), "K"),
+      x < 1e9 ~ paste0(as.character(x/1e6), "M"),
+      x < 1e12 ~ paste0(as.character(x/1e9), "B"),
+      TRUE ~ "To be implemented..."
+  )
+}
+
+g3 <- ggplot(data,aes(x=total_vaccinations))+geom_density()+scale_x_log10(labels=formatX0)
+g3
+```
+
+```{r}
+data = read.csv("./Data/flights1.csv")
+
+# Format time
+library(lubridate)
+data$date <- paste(data$YEAR,data$MONTH,data$DAY,sep = "-")
+
+data$SCHEDULED_DEPARTURE1 <- substr(as.POSIXct(sprintf("%04.0f", data$SCHEDULED_DEPARTURE), format='%H%M'), 12, 19)
+data$SCHEDULED_DEPARTURE_TIME <- strptime(paste(data$date,data$SCHEDULED_DEPARTURE1),format='%Y-%m-%d %H:%M:%S')
+data$WHEELS_OFF_TIME <- strptime(paste(data$date,data$WHEELS_OFF1),format='%Y-%m-%d %H:%M:%S')
+
+# 
+data$DEPARTURE_TIME1 <- substr(as.POSIXct(sprintf("%04.0f", data$DEPARTURE_TIME), format='%H%M'), 12, 19)
+data$ACTUAL_DEPARTURE_TIME <- strptime(paste(data$date,data$DEPARTURE_TIME1),format='%Y-%m-%d %H:%M:%S')
+
+data$WHEELS_OFF1 <- substr(as.POSIXct(sprintf("%04.0f", data$WHEELS_OFF), format='%H%M'), 12, 19)
+data$WHEELS_OFF_TIME <- strptime(paste(data$date,data$WHEELS_OFF1),format='%Y-%m-%d %H:%M:%S')
+
+#
+data$WHEELS_ON1 <- substr(as.POSIXct(sprintf("%04.0f", data$WHEELS_ON), format='%H%M'), 12, 19)
+data$WHEELS_ON_TIME <-  strptime(paste(data$date,data$WHEELS_ON1),format='%Y-%m-%d %H:%M:%S')
+
+#
+data$SCHEDULED_ARRIVAL1 <- substr(as.POSIXct(sprintf("%04.0f", data$SCHEDULED_ARRIVAL), format='%H%M'), 12, 19)
+data$SCHEDULED_ARRIVAL_TIME <- strptime(paste(data$date,data$SCHEDULED_ARRIVAL1),format='%Y-%m-%d %H:%M:%S')
+
+# data$ARRIVAL_TIME1 <- substr(as.POSIXct(sprintf("%04.0f", data$ARRIVAL_TIME), format='%H%M'), 12, 19)
+data$ACTUAL_ARRIVAL_TIME <- strptime(paste(data$date,data$ARRIVAL_TIME1),format='%Y-%m-%d %H:%M:%S')
+
+head(data)
+```

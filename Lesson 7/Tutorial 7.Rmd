@@ -1,0 +1,36 @@
+---
+title: "Tutorial 7"
+output: html_document
+---
+
+```{r}
+ks = read.csv("./Data/ks-projects.csv")
+head(ks)
+```
+
+```{r}
+# transform date type
+ks$deadline = as.Date(ks$deadline)
+ks$launched = as.Date(ks$launched)
+ks$duration = ks$deadline - ks$launched
+```
+
+```{r}
+library("dplyr")
+
+# only look at success and failures
+ks_cleaned = ks[ks$state %in% c("successful", "failed"), ]
+ks_cleaned$success = ks_cleaned$state == "successful"
+
+# group by 
+df = ks_cleaned %>% 
+  group_by(main_category, country, duration) %>%
+  summarise(success_rate=mean(success))
+
+head(df)
+```
+
+```{r}
+library("ggplot2")
+ggplot(data=df, aes(x=duration, y=success_rate, color=main_category, alpha=0.3)) + geom_point()
+```

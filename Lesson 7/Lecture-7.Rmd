@@ -1,0 +1,246 @@
+---
+title: "Lecture 7"
+output: html_document
+---
+
+# Data Visualisation
+
+## Types of Data Visualisation
+
+1. Idea illustration
+2. Idea generation
+3. Everyday data visualisation
+4. Visual discovery
+- Trendspotting
+- Sense-making
+- Deep analysis
+  
+  
+## Principles of Data Visualisation
+
+### 1. Simplify
+- captures only the essence of the data
+
+### 2. Compare
+- compare visualisations side-by-side
+- allow audience to spot trends, patterns and differences by sight
+
+### 3. Attend
+- highlight details that audience needs to attend to
+
+### 4. Explore
+- Allow audience to explore data and discover things by sight
+
+### 5. View Diversely
+- look at the same data from different perspectives at the same time
+- learn how the data fits together
+
+### 6. Ask Why
+- allow the audience to dig into the data to find out why things are happening
+
+### 7. Be Skeptical
+- don't be contented with the first answer we get
+- always explore further
+
+### 8. Respond
+- share the data to allow others to make use of it and to check it
+  
+
+## ggplot2
+
+### 1. Layer
+- allow combine graphs in different layers to make one complex graph
+
+### 2. Scale
+- maps values in the data space to values in the aesthetic space (e.g. color, size, shape)
+
+### 3. Coordinate system
+- how points are positioned in space
+
+### 4. Faceting
+- split the data into subsets of the entire data set
+
+```{r, message=FALSE, warning=FALSE}
+library("ggplot2")
+countries = read.csv("./Data/Countries.csv")
+head(countries)
+```
+
+### Plotting
+
+Comparing the number of countries among different continents:
+
+```{r}
+library("countrycode")
+countries$Continent <- countrycode(sourcevar = countries[, "Country"],
+                            origin = "country.name",
+                            destination = "continent")
+
+ggplot(data=countries,aes(x=Continent)) + geom_bar()
+```
+
+**aes** means aesthetics and determines the look of the graph. Here, we are specifying that the Continent column is mapped to the x-axis of the layer. **geom_bar** function means that we are expecting the plot to be a bar chart.
+
+This is only using a few of the possible components of a layer. Each geom function has its own statistical transformation (in this case, count) and position by default. 
+
+We can change this transformation using **stat**.We can also colour the bars using **fill** and specify bar dimensions using **width**.
+
+```{r}
+library("dplyr")
+df = countries %>% group_by(Continent) %>% summarize(Count=n())
+
+ggplot(data=df,aes(x=Continent, y=Count)) + geom_bar(stat="identity", fill="lightblue", width=0.5)
+```
+
+### Overlay Layers
+
+For a line plot, we use **geom_line**. Note that geom_line connects lines in the same group. Hence, we need to specify **group=1**.
+
+```{r}
+ggplot(data=df, aes(x=Continent, y=Count)) + geom_line(group=1)
+```
+
+We can use **geom_point** for a scatter plot and use **size**, **shape**, and fill to specify the look of our points.
+
+```{r}
+ggplot(data=df, aes(x=Continent, y=Count)) + geom_point(size=5, shape=23, fill="blue")
+```
+
+To overlay the two, we can just add the two geom functions:
+
+```{r}
+ggplot(data=df, aes(x=Continent, y=Count)) + geom_line(group=1) + 
+  geom_point(size=5, shape=23, fill="blue")
+```
+
+This works in this case because the data here shares the same data source. However, ggplot2 also offers flexibility for plots of different data like so:
+
+```{r}
+df = countries %>% group_by(Continent) %>% summarize(Average_GDP_Per_Capita_1000=mean(GDP_Per_Capita)/1000)
+
+ggplot() + geom_bar(data=countries, aes(x=Continent), fill="lightblue", width=0.5) +
+  geom_line(data=df, aes(x=Continent, y=Average_GDP_Per_Capita_1000), group=1)
+```
+
+Note that the sequence of geom functions determines the order in which the layers are added. Since the geom_line is added last, it is layered on the top.
+
+
+### Scaling
+
+GDP per Capita vs Life Expectancy:
+
+```{r}
+ggplot(data=countries, aes(x=GDP_Per_Capita, y=Life_Expectancy, 
+                           size=Population, color=Continent)) + geom_point()
+```
+
+This relationship is non-linear (likely logarithmic). We can rescale the GDP per Capita using **scale_x_log10**:
+
+```{r}
+ggplot(data=countries, aes(x=GDP_Per_Capita, y=Life_Expectancy, size=Population, 
+                           color=Continent)) + geom_point() + scale_x_log10()
+```
+
+We can also scale other factors (e.g. point size). In this case, we resize the population to a logarithmic scale using **scale_size_continuous**:
+
+```{r}
+ggplot(data=countries, aes(x=GDP_Per_Capita, y=Life_Expectancy, 
+                           size=Population, color=Continent)) + 
+  geom_point() + scale_x_log10() + scale_size_continuous(trans="log10")
+```
+
+We can also set the colours of the points manually using **scale_color_manual**:
+
+```{r}
+ggplot(data=countries, aes(x=GDP_Per_Capita, y=Life_Expectancy, 
+                           size=Population, color=Continent)) + 
+  geom_point() + scale_x_log10() + scale_color_manual(values=c("red", "darkgreen", "purple", "orange", "blue"))
+```
+
+
+### Coordinate System
+
+By default, ggplot2 uses the Cartesian coordinate system. We can switch to a Polar system using **coord_polar**:
+
+```{r}
+ggplot(data=countries,aes(x=Continent)) + geom_bar(fill="blue") + coord_polar()
+```
+
+### Graph Components
+
+1. Plot title (Text)
+2. Axis Title (Text)
+3. Tick Label (Text)
+4. Background Panel (Rectangle)
+5. Grid Lines (Line)
+6. Others (found under ?theme)
+
+Each of the 3 types can be manipulated using the **element_text**, **element_rect** and **element_line** functions respectively:
+
+```{r}
+## change bg to white
+ggplot(data=countries,aes(x=Continent)) + geom_bar(fill="blue") + 
+  theme(panel.background=element_rect(fill="white"))
+
+## change orientation of tick labels
+ggplot(data=countries,aes(x=Continent)) + geom_bar(fill="blue") + 
+  theme(axis.text.x=element_text(size=15, angle=90))
+```
+
+We can also adopt a theme:
+
+```{r}
+ggplot(data=countries,aes(x=Continent)) + geom_bar(fill="blue") + theme_linedraw()
+```
+
+### Faceting
+
+```{r}
+library("gapminder")
+head(gapminder)
+```
+
+gapminder contains the data for multiple years. If we plot it as such, the data becomes very messy. Instead, we can facet the data by year using **facet_wrap** to produce multiple side-by-side plots:
+
+```{r}
+ggplot(data=gapminder, aes(x=gdpPercap, y=lifeExp, size=pop, color=continent)) +
+  geom_point() + scale_x_log10() + theme_bw() + facet_wrap(~year)
+```
+
+### Positioning
+- identity (default for most geoms)
+- jitter (default for geom_jitter)
+- dodge (default of geom_boxplot)
+- stack (default of geom_bar, geom_histogram, geom_area)
+- fill (useful for geom_bar, geom_histogram, geom_area)
+
+```{r}
+custdata = read.csv("./Data/Customers.csv")
+
+ggplot(custdata) + geom_bar(aes(x=marital.status, fill=is.member))
+```
+
+```{r}
+ggplot(custdata) + geom_bar(aes(x=marital.status, fill=is.member), position="dodge")
+
+```
+
+```{r}
+ggplot(custdata) + geom_bar(aes(x=marital.status, fill=is.member), position="fill")
+```
+
+## gganimate
+
+Animate the changes in plot by year using **transition_time**
+
+```{r}
+library("gganimate")
+library("png")
+library("gifski")
+
+p = ggplot(data=gapminder, aes(x=gdpPercap, y=lifeExp, size=pop, color=continent)) +
+  geom_point() + scale_x_log10() + theme_bw()
+
+p + transition_time(year) + labs(title="Year: {frame_time}")
+```
+

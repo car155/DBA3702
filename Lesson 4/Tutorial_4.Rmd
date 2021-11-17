@@ -1,0 +1,75 @@
+---
+title: "Tutorial 4"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(root.dir="./Data")
+```
+
+### 1
+
+```{r}
+library("jsonlite")
+
+# yesterday's information
+url = "https://api.data.gov.sg/v1/transport/taxi-availability?date_time=2021-08-30T12:00:00"
+
+data = fromJSON(url)
+
+taxi_coords = as.data.frame(data$features$geometry$coordinates)
+
+head(taxi_coords)
+```
+
+### 2
+
+```{r}
+library("curl")
+library("XML")
+
+theurl = "https://www.ncaa.com/rankings/basketball-men/d1/ncaa-mens-basketball-net-rankings"
+url = curl(theurl)
+urldata = readLines(url)
+basketball_data = readHTMLTable(urldata, stringAsFactors=F)
+
+head(basketball_data[[1]])
+
+theurl = "https://cloudatlas.wmo.int/en/appendix-1-etymology-of-latin-names-of-clouds.html"
+url = curl(theurl)
+urldata = readLines(url)
+cloud_data = readHTMLTable(urldata, stringAsFactors=F)
+species_data = cloud_data[2]
+
+head(species_data)
+```
+
+### 3
+
+How to get HTML data from a webpage? Use SearchGadget (Chrome extension), rvest and tidyverse
+
+```{r}
+library(rvest)
+library(tidyverse)
+## To obtain links to each NBA team (There are 30 teams in the NBA)
+url <- "http://www.espn.com/nba/players"
+page <- read_html(url) # reads the whole page
+nodes <- html_nodes(page, ".small-logos div a")
+
+length(nodes) # 30 teams
+
+nodes[[1]] # href stores the url
+# note that the url is incomplete
+
+rosters = html_attr(nodes,"href")
+rosters
+
+url_header = "http://www.espn.com"
+urls = paste0(url_header, rosters)
+urls
+
+# names are not hidden
+teams = html_text(nodes)
+head(teams)
+```
+

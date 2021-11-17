@@ -1,0 +1,5 @@
+Name,Position,Date of Join,Salary,Gender
+James,CEO,2010-01-01,20934.89,Male
+Joe,VP,2011-03-09,13094.54,Male
+May,Manager,2015-08-08,9800,Female
+Alice,Clerk,2012-04-05,3500.45,Female

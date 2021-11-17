@@ -1,0 +1,314 @@
+---
+title: "Lecture 4"
+output: html_document
+---
+
+```{r setup}
+knitr::opts_knit$set(root.dir = './Data')
+```
+
+## Importing Local Data
+
+### 1. CSV
+
+```{r}
+head(read.csv("airport.csv"))
+```
+
+### 2. TXT
+
+```{r}
+read.delim("employees.txt", sep=",") # , is the delimiter
+
+# assume no header by default
+read.table("employees.txt", header=T, sep=",") 
+```
+
+### 3. DAT
+
+Other file types that can be viewed by a text editor can also use read.delim and read.table
+
+```{r}
+read.delim("employees.txt", sep=",")
+read.table("employees.txt", header=T, sep=",")
+```
+
+### 4. Excel
+
+Excel files can have multiple worksheets. We can use the **readxl** package to read an excel sheet properly
+
+```{r}
+library("readxl")
+
+# sheet number
+read_excel("employees.xlsx", sheet=2)
+
+# sheet name
+read_excel("employees.xlsx", sheet="employees")
+```
+
+***
+
+## Crawling Data from the Internet
+
+Some data on websites are already presented in a table format. To extract these data, we use 2 libraries: **curl** and **XML**.
+
+```{r}
+library("curl")
+library("XML")
+
+# Store the url as a string
+theurl = "http://apps.saferoutesinfo.org/legislation_funding/state_apportionment.cfm"
+
+# extract url data
+url = curl(theurl)
+urldata = readLines(url)
+
+## MUST CLOSE CONNECTION
+close(url)
+
+## SLEEP AFTER NUMEROUS CRAWLS
+Sys.sleep(1)
+
+# read HTML table
+data = readHTMLTable(urldata, stringAsFactors=F)
+
+head(data[[1]])
+```
+
+What if the page has multiple tables?
+
+```{r}
+theurl = "https://en.wikipedia.org/wiki/FIFA_World_Cup"
+url = curl(theurl)
+urldata = readLines(url)
+data = readHTMLTable(urldata, stringAsFactors=F)
+
+# data is a list
+class(data)
+length(data)
+
+# attendance table
+head(data[3][[1]])
+```
+
+### HTML
+- Hypertext Markup Language
+- designed to display data
+- tags must be pre-defined
+
+### XML
+- Extensible Markup Language
+- designed to stroe and transport data
+
+```{XML}
+<?xml version"1.0"?>
+# <startingTag>XML text</endingTag>
+<person>
+  <firstName>Lilian</fistName>
+  <lastName>TeO</lastName>
+  <age>42</age>
+  <spouse></spouse>
+  
+  # tree like structure. Each tag is a node.
+  <children>
+  
+    # gender attribute in the tag itself
+    <child gender="male">
+      <name>Melvyn</name>
+      <age>12</age>
+    </child>
+  
+    <child gender="female">
+      <name>Joan</name>
+      <age>8</age>
+    </child>
+  
+  </children>
+</person>
+```
+
+Data in XML format can be read and explored using the **XML** library.
+
+```{r}
+library("XML")
+
+# read data
+data = xmlParse("books.xml")
+
+# get nodes
+root = xmlRoot(data)
+nodes = xmlChildren(root)
+books = xmlChildren(nodes[[2]])
+
+books[1]
+```
+
+However, this method of exploring the data is tedious. If we know the structure of the xml data set, we can use the tag/attribute to search for the data we want.
+
+```{r}
+books = getNodeSet(data,"/library/catalog/book[@type='HardCover']")
+
+books[1]
+```
+
+We can also convert the data into other formats
+
+```{r}
+# list
+Lib = xmlToList(data)
+Lib
+
+# data frame
+Books = xmlToDataFrame(books)
+head(Books)
+```
+
+***
+
+## Efficient Data Importing
+
+Why is CSV preferred over XLSX in the data science community?
+- More efficient in storing large amounts of data
+- can be used across platforms without reliance on Microsoft Excel
+
+However, since there is no real size limit for CSV files, they can get very big! 
+
+When importing, the class for each column is selected automatically. However, such an assignment could be undesired (e.g. zipcode is better as a character/factor). It is also a lot slower for R to go through every line in order to determine the best class for that column.
+
+```{r}
+care.data = read.csv("hospital-data.csv", stringsAsFactors=T)
+
+# overview
+str(care.data)
+
+# time taken
+system.time(care.data<-read.csv("hospital-data.csv"))
+```
+
+Instead, we can first view the first few rows to get a feel for the layout of the data.
+
+Then, we can pre-set the column classes, **colclasses* of the data
+
+```{r}
+# view first few rows
+data.sample = read.csv("hospital-data.csv", nrows=5)
+data.sample
+
+# preset column class
+colclass = c("character", "character", "character",
+             "character", "character",
+             "character", "factor", "factor", "factor",
+             "character", "factor", "factor", "factor")
+
+# slight drop in time
+system.time(care.data<-read.csv("hospital-data.csv", 
+                                colClasses=colclass))
+```
+
+***
+
+## Data from API
+
+Application Programming Interface (API) is a software intermediary that allows communication between 2 applications.It is a programming standard agreed and used by 2 parties to exchange data.
+
+CSV files only store static data. However, some data, collected over time and stored in databases, are dynamic. 
+
+### JSON
+
+- lightweight data interchange format
+- language independent
+- standard accepted by all programming languages
+
+e.g.
+```{JSON}
+{
+  # "fieldName": fieldValue,
+  "firstName": "Lilian",
+  "lastName": "Teo",
+  "age": 42,
+  "spouse": NULL,
+  "children": [ #list of JSON objects
+    {
+      "name": "Melvyn",
+      "age": 12
+    },
+    {
+      "name": "Joan",
+      "age": 8
+    }
+  ]
+}
+```
+
+In order to read data in the JSON format, we can use **jsonlite**.
+
+```{r}
+library("jsonlite")
+
+# API url
+url = "https://api.data.gov.sg/v1/transport/carpark-availability"
+
+# read data
+data = fromJSON(url)
+
+# fields contained in the data
+head(as.data.frame(data$items$carpark_data))
+```
+
+***
+
+## Missing Data
+
+### Supplementing with Other Information
+
+Data can be inter-related between different columns/records.
+
+```{r}
+library("dplyr")
+properties = read.csv("properties.csv")
+
+# Developer is missing
+properties %>% 
+  filter(Property.Name == "Le Quest") %>%
+  .[c("Property.Name", "Developer")]
+
+# can take the developer from the other property of the same name
+developer = properties %>% 
+  filter(Property.Name == "Le Quest" & 
+           !is.na(Developer)) %>% .$Developer %>% head(1)
+
+properties[properties$Property.Name == "Le Quest", "Developer"] = developer
+
+# result
+properties %>% 
+  filter(Property.Name == "Le Quest") %>%
+  .[c("Property.Name", "Developer")]
+```
+
+### Numeric
+
+1. Convert numeric data into categorical data
+- NA values converted to an "Unknown" category
+
+2. Replace the data with value 0
+- e.g. assume people with missing children information don't have children
+- assumptions may or may not be valid
+
+3. Replace the data with mean value
+- as to not overly bias the data when handling missing values
+
+4. Calibrate the data and estimate the missing value
+- e.g. property price is affected by type, location, area. We can try to find the mean price per square feet of similar properties to the one we are calibrating. Use the PSF to estimate the property price
+
+## Other Data Problems
+
+1. Data entry problem
+2. Logical error
+3. Outdated
+4. Different standard
+
+```{r}
+## MAKE SURE TO CLOSE
+# closeAllConnections()
+```

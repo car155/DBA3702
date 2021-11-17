@@ -1,0 +1,284 @@
+---
+title: "Lecture 5"
+output: html_document
+---
+
+## Conditional Statements
+
+```{r}
+x = 0
+
+if (x > 0) {
+  x = 10
+} else if (x < -2) {
+  x = 20
+} else {
+  x = 40
+}
+
+x # -2<x<0, returns 40
+```
+
+```{r}
+ifelse(x<30, "Low", ifelse(x>50, "High", "Medium"))
+```
+
+***
+
+## For Loops
+
+```{r}
+sum = 0
+a = c()
+for (i in seq(0, 100, 5)) {
+  sum = sum + i
+  a = append(a, sum)
+}
+
+a
+```
+
+``` {r}
+
+properties_data = read.csv("./Data/properties.csv")
+
+nrows = nrow(properties_data)
+
+for (i in 1:nrows) {
+  # get the ith property
+  property = properties_data[i, ]
+  
+  # if developer is missing
+  if (is.na(property$Developer)) {
+    # get other properties with the same name
+    idx = properties_data$Property.Name == property$Property.Name &
+      !is.na(properties_data$Developer)
+    # if they have a developer
+    if (sum(idx) > 0) {
+      # use data to fill in missing
+      property$Developer = properties_data[idx, "Developer"][[1]]
+    }
+  }
+}
+```
+
+***
+
+## While Loops
+
+```{r}
+fibs = c(1, 1)
+i = 1; j = 2
+
+while (fibs[i] + fibs[j] < 1000) { # good for uncertain ranges
+  fibs[j+1] = fibs[i] + fibs[j]
+  i = i + 1
+  j = j + 1
+}
+
+fibs
+```
+
+Using break to escape the while loop:
+
+```{r}
+fibs = c(1, 1)
+i = 1; j = 2
+
+while (T) { # good for uncertain ranges
+  fibs[j+1] = fibs[i] + fibs[j]
+  i = i + 1
+  j = j + 1
+  if (fibs[i] + fibs[j] >= 1000) { # be careful; can lead to infinite looping
+    break
+  }
+}
+
+fibs
+```
+
+***
+
+## Functions
+
+Define a function using:
+
+```{}
+function_name = function(inputs) { # can have zero inputs
+  actions
+  return(output) # optional, returns the last line by default
+}
+```
+
+```{r}
+# will give the tightest fibonacci series from start to stop inclusive
+generate_fib = function(stop, start=1) {
+  fib = c(1, 1)
+  
+  i = 1; j = 2;
+  while (fib[i] + fib[j] <= stop) {
+    fib[j+1] = fib[i] + fib[j]
+    i = i + 1
+    j = j + 1
+  }
+  
+  fib = fib[fib >= start & fib <= stop]
+  return(fib)
+}
+
+generate_fib(1000, start=10)
+```
+
+***
+
+## Apply Functions
+
+- allows application of a function to a margin of a matrix or data frame without the use of explicit looping
+- iterates across rows or columns more efficiently
+- apply(), sapply(), mapply(), lapply(), vapply(), rapply(), tapply()
+
+### Apply
+
+```{r}
+ID = c(3000, 1234, 2000)
+start = c(5, 50, 0) 
+end = c(100, 100, 0)
+
+m = cbind(ID, start, end)
+
+# MARGIN = 1 performs operations across rows
+# MARGIN = 2 performs operations along columns
+# FUNC must be able to accept a variable as its input
+apply(m, 2, sum)
+```
+
+Can apply user-defined functions too:
+
+```{r}
+CountOdd = function(x) {
+  return(sum(x%%2))
+}
+
+apply(m, 2, CountOdd)
+
+CountOdderEven = function(x, flag) {
+  if(flag) {
+    return(sum(x%%2)) # flag true, count odd
+  } else {
+    return(length(x) - sum(x%%2)) # flag false, count even
+  }
+}
+
+apply(m, 2, CountOdderEven, F) # need to supply the flag variable
+```
+
+Other apply functions work similarly but on more specific data structures:
+
+### 2. Lapply
+
+- input is a list of vectors
+- returns a list of the same length as the input
+
+```{r}
+x = list(A=1:4, B=seq(0.1, 1, by=0.1))
+
+lapply(x, mean)
+```
+
+### 3. Sapply
+
+- A wrapper function of lapply
+- returns a vector instead of a list
+
+```{r}
+x = list(A=1:4, B=seq(0.1, 1, by=0.1))
+
+sapply(x, mean)
+```
+
+### 4. Rapply
+
+- recursive apply
+- good for lists of lists
+
+```{r}
+x = list(A=2, B=list(-1, 3), c=list(-2, list(-5, 6)))
+
+rapply(x, function(x){x^2})
+```
+
+### 5. Mapply
+
+- some functions are multivariate
+- takes multiple vectors as inputs
+- applies functions to combinations of elements from each vector
+
+```{r}
+mapply(rep, 1:5, c(4,4,4,4,4))
+
+## 1 3 1
+## 2 4 2
+A = matrix(c(1,2,3,4), ncol=2) 
+## 1 2 3
+## 4 5 6
+B = matrix(c(1,2,3,4,5,6), ncol=2, byrow=T)
+A
+B
+mapply(rep, A, B)
+```
+
+### 6. Tapply
+
+- applies function to each group of an array, grouped by certain factors
+
+```{r}
+x = 1:10
+y = factor(c("A", "A", "A", "B", "B", "B", "B", "C", "C", "C"))
+
+x
+y
+tapply(x, y, sum)
+```
+
+*** 
+
+## Pivot Table
+
+```{r}
+# total murders per region
+murders = read.csv("./Data/murders.csv")
+tapply(murders$total, murders$region, sum)
+
+# divides population into intervals, gets mean
+bins = cut(murders$population, breaks=c(0, 1e+06, 1e+07, 1e+08))
+tapply(murders$population, bins, mean)
+```
+
+### Split
+
+- splits data frame into a list of data frames by a factor array
+
+```{r}
+# ratio of murder cases to population by region
+## total by region
+total = tapply(murders$total, murders$region, sum)
+## population by region
+pop = tapply(murders$population, murders$region, sum)
+total/pop
+
+# DONE USING SPLIT
+region = split(murders, murders$region)
+sapply(region, function(x){sum(x$total)/sum(x$population)})
+```
+
+### Group by Multiple Factors
+
+Use a list for the aggregating factor:
+
+```{r}
+head(mtcars) # built in dataset
+
+# Ave. h-p by a-m and gear
+# am becomes the rows, gear becomes the columns
+tapply(mtcars$mpg, INDEX=list(mtcars$am, mtcars$gear), mean)
+```
